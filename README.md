@@ -1,74 +1,67 @@
 # VELOOP Rewards — Watch Ads
 
-A premium, responsive Watch Ads experience built for the VELOOP Rewards frontend internship task.
+<p align="center">
+  <strong>A premium, responsive Watch Ads experience built for the VELOOP Rewards frontend internship task.</strong>
+</p>
 
-The page allows users to discover advertisements, watch them completely, earn VELOOP Earn Tokens (VEs), track their daily progress, and review their recent earning activity.
-
----
-
-## ✨ Project Overview
-
-VELOOP Rewards is a reward-focused platform where users can earn VEs by completing short advertisements.
-
-For this task, the original Watch Ads experience was completely redesigned with a modern dark fintech-inspired interface focused on:
-
-- Premium visual design
-- Clear earning information
-- Smooth interactions
-- Responsive layouts
-- Reward-focused UX
-- Progress tracking
-- Meaningful loading and completion states
-
-The goal was to create an experience that feels trustworthy, rewarding, interactive, and easy to use.
+<p align="center">
+  <a href="https://veloop-watch-ads-kappa.vercel.app/">Live Demo</a>
+  ·
+  <a href="https://github.com/MrSAGARSINGH/veloop-watch-ads">GitHub Repository</a>
+</p>
 
 ---
 
-## 🚀 Features
+## ✨ Overview
+
+**VELOOP Rewards** is a reward-focused Watch Ads experience where users can discover advertisements, watch them completely, earn **VELOOP Earn Tokens (VEs)**, track daily earnings, and review recent earning activity.
+
+For this assignment, the Watch Ads experience was redesigned with a **premium dark, fintech-inspired interface** focused on clarity, responsiveness, interaction, and reward visibility.
+
+### Design Goals
+
+- Premium and modern visual language
+- Clear earning and reward hierarchy
+- Smooth micro-interactions
+- Responsive experience across devices
+- Meaningful loading, progress, and completion states
+- Accessible interactive controls
+- Dynamic dashboard updates
+
+---
+
+## 🚀 Key Features
 
 ### 🎯 Premium Watch Ads Experience
 
-- Modern dark-themed UI
-- Premium gradient-based visual system
-- Reward-focused interface
-- Responsive layout across screen sizes
-- Subtle hover and transition effects
+- Modern dark-themed dashboard
+- Advertisement discovery cards
+- Brand and category information
+- Reward amount and duration
+- Watch Advertisement CTA
+- Real-time watching state
+- Countdown timer
+- Watching progress indicator
+- Completed advertisement state
+- Reward-success feedback
 
-### 💰 Earnings Dashboard
+### 💰 Dynamic Earnings Dashboard
 
 - Today's earnings
 - Lifetime earnings
 - Ads watched today
 - Remaining advertisements
 - Daily earning goal
-- Dynamic earning progress
-
-### ▶️ Watch Advertisements
-
-- Multiple advertisement cards
-- Advertisement category and brand
-- Reward amount
-- Advertisement duration
-- Watch Advertisement CTA
-- Watching state
-- Countdown timer
-- Progress indicator
-- Completed state
-- Reward success feedback
-
-### 📊 Progress Tracking
-
-- Daily earning goal
-- Dynamic percentage calculation
-- Remaining VEs
+- Dynamic progress percentage
 - Goal completion state
-- Daily bonus section
+- Dashboard values update after completing advertisements
 
 ### 🏆 Daily Bonus
 
-- Interactive bonus banner
+- Interactive daily bonus banner
 - Goal-based reward messaging
-- Navigation to `/watchAd-bonus`
+- Bonus unlocked state
+- Navigation action connected to `/watchAd-bonus`
 
 ### 🧾 Recent Activity
 
@@ -81,79 +74,58 @@ The goal was to create an experience that feels trustworthy, rewarding, interact
 
 ### 📱 Responsive Design
 
-Designed to work across:
+Designed for:
 
-- Mobile devices
-- Large mobile phones
+- Mobile phones
+- Large mobile screens
 - Tablets
 - Laptops
-- Desktop screens
-- Full HD displays
-- Ultra-wide screens
+- Desktop displays
+- Full HD screens
+- Wide screens
 
 ### ♿ Accessibility
 
 - Semantic HTML
-- Accessible buttons
-- ARIA labels
-- Progressbar accessibility
-- Keyboard focus states
+- Accessible buttons and labels
+- ARIA attributes
+- Accessible progressbars
+- Keyboard-visible focus states
 - Reduced-motion support
 
 ---
 
 ## 🛠️ Technology Stack
 
-- React.js
-- Vite
-- React Hooks
-- JavaScript
-- SCSS
-- Lucide React
-- CSS3
-- Responsive Design
+| Technology | Usage |
+|---|---|
+| **React.js** | Component-based UI |
+| **Vite** | Development and production tooling |
+| **JavaScript** | Application logic |
+| **React Hooks** | State and lifecycle management |
+| **SCSS** | Component styling and responsive layouts |
+| **Lucide React** | Interface icons |
+| **CSS3** | Layout, gradients, transitions and visual effects |
 
-> Note: The assignment recommends Bootstrap 5 and CSS Modules. This implementation uses a custom SCSS architecture to maintain a reusable and scalable styling system.
+> **Assignment Note:** The assignment recommends Bootstrap 5 and CSS Modules. This implementation uses a custom SCSS architecture with reusable component styling, responsive breakpoints, and a consistent design system.
 
 ---
 
-## 📁 Project Structure
+## 🧩 Functional Flow
 
 ```text
-src/
-│
-├── components/
-│   ├── activity/
-│   │   └── RecentActivity.jsx
-│   │
-│   ├── ads/
-│   │   └── AdSection.jsx
-│   │
-│   ├── earnings/
-│   │   ├── EarningsInfo.jsx
-│   │   └── HowItWorks.jsx
-│   │
-│   ├── hero/
-│   │   └── WatchAdsHero.jsx
-│   │
-│   ├── layout/
-│   │   ├── Sidebar.jsx
-│   │   └── Topbar.jsx
-│   │
-│   ├── progress/
-│   │   └── DailyProgress.jsx
-│   │
-│   └── stats/
-│       └── Stats.jsx
-│
-├── data/
-│   └── ads.js
-│
-├── hooks/
-│   └── useAdWatch.js
-│
-├── styles/
-│   └── globals.scss
-│
-├── App.jsx
-└── main.jsx
+Choose Advertisement
+        ↓
+Start Watching
+        ↓
+Countdown + Progress
+        ↓
+Advertisement Completed
+        ↓
+Reward Earned
+        ↓
+Earnings Updated
+        ↓
+Ads Remaining Updated
+        ↓
+Recent Activity Updated
