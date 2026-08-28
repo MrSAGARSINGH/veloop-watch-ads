@@ -1,0 +1,779 @@
+// ============================================
+// VELOOP — SIDEBAR
+// Premium Responsive Navigation
+// ============================================
+
+.sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 250px;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 22px 14px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13, 20, 48, 0.98) 0%,
+      rgba(5, 8, 22, 0.99) 100%
+    );
+
+  border-right: 1px solid var(--border);
+
+  box-shadow:
+    8px 0 35px rgba(0, 0, 0, 0.08);
+
+  z-index: 1000;
+}
+
+// ============================================
+// LOGO
+// ============================================
+
+.logoArea {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 4px 10px 24px;
+
+  flex: 0 0 auto;
+}
+
+.logoMark {
+  width: 39px;
+  height: 39px;
+
+  flex: 0 0 39px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #6d28d9
+    );
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  box-shadow:
+    0 0 25px rgba(124, 58, 237, 0.4);
+
+  transform: skew(-7deg);
+}
+
+.logoText {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1;
+}
+
+.logoText strong {
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.logoText span {
+  margin-top: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+
+.navigation {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  flex: 1;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  padding-right: 2px;
+}
+
+.navigation::-webkit-scrollbar {
+  width: 3px;
+}
+
+.navigation::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navigation::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background: rgba(124, 58, 237, 0.25);
+}
+
+// ============================================
+// NAV ITEM
+// ============================================
+
+.navItem {
+  position: relative;
+
+  width: 100%;
+  min-height: 43px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 0 13px;
+
+  border: 1px solid transparent;
+  border-radius: 11px;
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease,
+    border-color 200ms ease;
+}
+
+.navItem:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  border-color: rgba(255, 255, 255, 0.04);
+
+  transform: translateX(2px);
+}
+
+.navItem:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.5);
+
+  outline-offset: 2px;
+}
+
+.navItem.active {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.95),
+      rgba(91, 33, 182, 0.82)
+    );
+
+  border-color: rgba(167, 139, 250, 0.18);
+
+  box-shadow:
+    0 8px 25px rgba(124, 58, 237, 0.22);
+}
+
+.navItem > span:not(.activeIndicator) {
+  min-width: 0;
+
+  overflow: hidden;
+
+  font-size: 13px;
+  font-weight: 550;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activeIndicator {
+  margin-left: auto;
+
+  width: 22px;
+  height: 22px;
+
+  flex: 0 0 22px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+// ============================================
+// STREAK CARD
+// ============================================
+
+.streakCard {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  flex: 0 0 auto;
+
+  margin-bottom: 10px;
+
+  padding: 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.018);
+}
+
+.streakIcon {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background: rgba(249, 115, 22, 0.12);
+
+  color: #fb923c;
+}
+
+.streakContent {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.streakContent strong {
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.streakContent span {
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+// ============================================
+// USER CARD
+// ============================================
+
+.userCard {
+  display: flex;
+
+  gap: 10px;
+
+  flex: 0 0 auto;
+
+  margin-bottom: 10px;
+
+  padding: 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.018);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #38bdf8,
+      #6366f1
+    );
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.userInfo {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo strong {
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userInfo > span {
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+// ============================================
+// XP
+// ============================================
+
+.xpTrack {
+  width: 100%;
+  height: 4px;
+
+  margin-top: 7px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.xpFill {
+  width: 65%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6366f1,
+      #a855f7
+    );
+}
+
+.userInfo small {
+  margin-top: 4px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+}
+
+// ============================================
+// INVITE CARD
+// ============================================
+
+.inviteCard {
+  flex: 0 0 auto;
+
+  padding: 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.1),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.018);
+}
+
+.inviteTop {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.inviteTop > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.inviteTop strong {
+  color: #ffffff;
+
+  font-size: 11px;
+}
+
+.inviteTop div > span {
+  margin-top: 4px;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+.gift {
+  flex: 0 0 auto;
+
+  font-size: 24px;
+}
+
+.inviteButton {
+  width: 100%;
+
+  margin-top: 11px;
+
+  padding: 8px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #7c3aed
+    );
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.inviteButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px rgba(99, 102, 241, 0.28);
+}
+
+.inviteButton:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.55);
+
+  outline-offset: 3px;
+}
+
+// ============================================
+// MOBILE CLOSE BUTTON
+// ============================================
+
+.sidebarClose {
+  display: none;
+}
+
+// ============================================
+// TABLET — COLLAPSED SIDEBAR
+// ============================================
+
+@media (max-width: 1000px) and (min-width: 601px) {
+  .sidebar {
+    width: 82px;
+
+    padding: 18px 10px;
+  }
+
+  .logoArea {
+    justify-content: center;
+
+    padding-inline: 0;
+  }
+
+  .logoText,
+  .navItem > span:not(.activeIndicator),
+  .activeIndicator,
+  .streakContent,
+  .userInfo,
+  .inviteCard {
+    display: none;
+  }
+
+  .navItem {
+    justify-content: center;
+
+    padding: 0;
+  }
+
+  .streakCard,
+  .userCard {
+    justify-content: center;
+
+    padding: 9px;
+  }
+}
+
+// ============================================
+// MOBILE DRAWER
+// ============================================
+
+@media (max-width: 600px) {
+  .sidebar {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+
+    width: min(290px, 82vw);
+
+    height: 100vh;
+    height: 100dvh;
+
+    padding: 20px 14px;
+
+    flex-direction: column;
+
+    border-top: 0;
+    border-right: 1px solid var(--border);
+
+    transform: translateX(-105%);
+
+    transition:
+      transform 260ms cubic-bezier(
+        0.4,
+        0,
+        0.2,
+        1
+      );
+
+    box-shadow:
+      20px 0 60px rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+  }
+
+  .sidebar.sidebarOpen {
+    transform: translateX(0);
+  }
+
+  // ------------------------------------------
+  // CLOSE
+  // ------------------------------------------
+
+  .sidebarClose {
+    position: absolute;
+
+    top: 17px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    transition:
+      color 180ms ease,
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .sidebarClose:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebarClose:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.5);
+
+    outline-offset: 3px;
+  }
+
+  // ------------------------------------------
+  // LOGO
+  // ------------------------------------------
+
+  .logoArea {
+    display: flex;
+
+    padding: 4px 10px 24px;
+    padding-right: 50px;
+  }
+
+  .logoText {
+    display: flex;
+  }
+
+  // ------------------------------------------
+  // NAVIGATION
+  // ------------------------------------------
+
+  .navigation {
+    width: 100%;
+    height: auto;
+
+    flex-direction: column;
+
+    align-items: stretch;
+    justify-content: flex-start;
+
+    gap: 5px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .navItem {
+    width: 100%;
+    min-height: 45px;
+
+    justify-content: flex-start;
+
+    padding: 0 13px;
+  }
+
+  .navItem > span:not(.activeIndicator) {
+    display: block;
+
+    font-size: 13px;
+  }
+
+  .activeIndicator {
+    display: grid;
+  }
+
+  // ------------------------------------------
+  // BOTTOM CARDS
+  // ------------------------------------------
+
+  .streakCard,
+  .userCard,
+  .inviteCard {
+    display: flex;
+  }
+
+  .streakContent,
+  .userInfo {
+    display: flex;
+  }
+
+  .streakCard {
+    margin-top: auto;
+  }
+
+  .userCard {
+    margin-bottom: 10px;
+  }
+
+  .inviteCard {
+    flex-direction: column;
+  }
+}
+
+// ============================================
+// SMALL MOBILE
+// ============================================
+
+@media (max-width: 380px) {
+  .sidebar {
+    width: min(275px, 88vw);
+
+    padding-inline: 12px;
+  }
+
+  .navItem {
+    min-height: 43px;
+  }
+
+  .streakCard,
+  .userCard {
+    padding: 10px;
+  }
+
+  .inviteCard {
+    padding: 11px;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .navItem,
+  .inviteButton,
+  .sidebarClose {
+    transition: none;
+  }
+}

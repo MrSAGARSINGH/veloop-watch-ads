@@ -1,0 +1,621 @@
+// ============================================
+// VELOOP — RECENT ACTIVITY
+// Premium Responsive Activity History
+// ============================================
+
+.recentActivity {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 30px;
+}
+
+// ============================================
+// HEADER
+// ============================================
+
+.activityHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 14px;
+
+  min-width: 0;
+}
+
+.activityHeaderContent {
+  min-width: 0;
+}
+
+.activityEyebrow {
+  color: #746c91;
+
+  font-size: 8px;
+  font-weight: 850;
+
+  line-height: 1;
+
+  letter-spacing: 1.7px;
+}
+
+.activityHeader h2 {
+  margin: 6px 0 0;
+
+  color: #ffffff;
+
+  font-size: 21px;
+  font-weight: 780;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.5px;
+}
+
+// ============================================
+// VIEW ALL BUTTON
+// ============================================
+
+.viewAllButton {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 7px 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  color: #8995b0;
+
+  font-size: 8px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.02);
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.viewAllButton svg {
+  transition: transform 180ms ease;
+}
+
+.viewAllButton:hover {
+  color: #b59cff;
+
+  border-color: rgba(139, 92, 246, 0.24);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.07),
+      rgba(124, 58, 237, 0.025)
+    );
+
+  transform: translateY(-1px);
+}
+
+.viewAllButton:hover svg {
+  transform: translateX(3px);
+}
+
+.viewAllButton:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.5);
+
+  outline-offset: 3px;
+}
+
+// ============================================
+// ACTIVITY LIST
+// ============================================
+
+.activityList {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.032),
+      rgba(255, 255, 255, 0.016)
+    );
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.13),
+    inset 0 1px rgba(255, 255, 255, 0.02);
+}
+
+// ============================================
+// ACTIVITY ITEM
+// ============================================
+
+.activityItem {
+  position: relative;
+
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    38px
+    minmax(0, 1fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 13px 15px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+
+  background: transparent;
+
+  transition:
+    background 180ms ease,
+    padding 180ms ease;
+}
+
+.activityItem:last-child {
+  border-bottom: 0;
+}
+
+.activityItem:hover {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 58, 237, 0.035),
+      rgba(255, 255, 255, 0.018)
+    );
+}
+
+// ============================================
+// ACTIVITY ICON
+// ============================================
+
+.activityIcon {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(139, 92, 246, 0.14);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.12),
+      rgba(124, 58, 237, 0.045)
+    );
+
+  color: #a78bfa;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.activityItem:hover .activityIcon {
+  transform: translateY(-1px);
+
+  border-color: rgba(139, 92, 246, 0.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.17),
+      rgba(124, 58, 237, 0.06)
+    );
+
+  box-shadow:
+    0 5px 16px rgba(124, 58, 237, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.025);
+}
+
+// ============================================
+// MAIN CONTENT
+// ============================================
+
+.activityMain {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.activityMain strong {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #e9edf7;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  line-height: 1.3;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.activityMeta {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 4px;
+
+  color: #5f6a82;
+
+  font-size: 7px;
+
+  line-height: 1;
+}
+
+.activityMeta span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.activityMeta svg {
+  flex: 0 0 auto;
+}
+
+.metaDot {
+  width: 3px;
+  height: 3px;
+
+  flex: 0 0 3px;
+
+  border-radius: 50%;
+
+  background: #4d5870;
+}
+
+// ============================================
+// STATUS
+// ============================================
+
+.activityStatus {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  color: #4ade80;
+
+  font-size: 7px;
+  font-weight: 650;
+
+  white-space: nowrap;
+}
+
+.activityStatus svg {
+  flex: 0 0 auto;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(74, 222, 128, 0.2)
+    );
+}
+
+// ============================================
+// REWARD
+// ============================================
+
+.activityReward {
+  min-width: 58px;
+
+  color: #a78bfa;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  text-align: right;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 15px rgba(167, 139, 250, 0.08);
+}
+
+// ============================================
+// EMPTY STATE
+// ============================================
+
+.activityEmpty {
+  min-height: 145px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 25px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.012);
+
+  text-align: center;
+
+  color: var(--text-muted);
+}
+
+.activityEmptyIcon {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 3px;
+
+  border: 1px solid rgba(124, 58, 237, 0.12);
+
+  border-radius: 11px;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  color: var(--purple-light);
+}
+
+.activityEmpty strong {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.activityEmpty span {
+  max-width: 320px;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+// ============================================
+// TABLET
+// ============================================
+
+@media (max-width: 850px) {
+  .activityItem {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .activityStatus {
+    display: none;
+  }
+}
+
+// ============================================
+// SMALL TABLET
+// ============================================
+
+@media (max-width: 700px) {
+  .activityItem {
+    gap: 11px;
+  }
+
+  .activityReward {
+    min-width: 52px;
+  }
+}
+
+// ============================================
+// MOBILE
+// ============================================
+
+@media (max-width: 600px) {
+  .recentActivity {
+    margin-top: 24px;
+  }
+
+  .activityHeader {
+    align-items: center;
+
+    margin-bottom: 11px;
+  }
+
+  .activityEyebrow {
+    font-size: 7px;
+
+    letter-spacing: 1.35px;
+  }
+
+  .activityHeader h2 {
+    margin-top: 5px;
+
+    font-size: 18px;
+  }
+
+  .viewAllButton {
+    padding: 6px 8px;
+
+    border-radius: 8px;
+
+    font-size: 7px;
+  }
+
+  .activityList {
+    border-radius: 15px;
+  }
+
+  .activityItem {
+    grid-template-columns:
+      34px
+      minmax(0, 1fr)
+      auto;
+
+    gap: 9px;
+
+    padding: 11px;
+  }
+
+  .activityIcon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+  }
+
+  .activityMain strong {
+    font-size: 9px;
+  }
+
+  .activityMeta {
+    margin-top: 3px;
+
+    font-size: 6.5px;
+  }
+
+  .activityReward {
+    min-width: auto;
+
+    font-size: 9px;
+  }
+}
+
+// ============================================
+// SMALL MOBILE
+// ============================================
+
+@media (max-width: 380px) {
+  .activityHeader h2 {
+    font-size: 17px;
+  }
+
+  .viewAllButton {
+    padding: 5px 7px;
+  }
+
+  .activityItem {
+    grid-template-columns:
+      32px
+      minmax(0, 1fr)
+      auto;
+
+    gap: 8px;
+
+    padding: 10px;
+  }
+
+  .activityIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .activityMain strong {
+    font-size: 8.5px;
+  }
+
+  .activityMeta {
+    font-size: 6px;
+  }
+
+  .activityReward {
+    font-size: 8px;
+  }
+}
+
+// ============================================
+// VERY SMALL PHONES
+// ============================================
+
+@media (max-width: 340px) {
+  .activityItem {
+    grid-template-columns:
+      30px
+      minmax(0, 1fr)
+      auto;
+
+    gap: 7px;
+
+    padding: 9px;
+  }
+
+  .activityIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .activityMain strong {
+    font-size: 8px;
+  }
+
+  .activityReward {
+    font-size: 7.5px;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .viewAllButton,
+  .viewAllButton svg,
+  .activityItem,
+  .activityIcon {
+    transition: none;
+  }
+}

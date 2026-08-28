@@ -1,0 +1,263 @@
+// ============================================
+// VELOOP — SECTION HEADER
+// Premium Reusable Section Header
+// ============================================
+
+.sectionHeader {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+.sectionHeaderContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.sectionHeaderEyebrow {
+  display: block;
+
+  overflow: hidden;
+
+  color: #746c91;
+
+  font-size: 8px;
+  font-weight: 850;
+
+  line-height: 1;
+
+  letter-spacing: 1.7px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sectionHeaderTitle {
+  margin: 5px 0 0;
+
+  color: #f8fafc;
+
+  font-size: 21px;
+  font-weight: 780;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.5px;
+}
+
+.sectionHeaderDescription {
+  max-width: 600px;
+
+  margin: 5px 0 0;
+
+  color: #68748d;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+}
+
+// ============================================
+// ACTION BUTTON
+// ============================================
+
+.sectionHeaderAction {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  color: #8995b0;
+
+  font-size: 8px;
+  font-weight: 650;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.02);
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.sectionHeaderAction:hover {
+  color: #a78bfa;
+
+  border-color: rgba(139, 92, 246, 0.22);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.07),
+      rgba(124, 58, 237, 0.025)
+    );
+
+  transform: translateY(-1px);
+}
+
+.sectionHeaderAction:active {
+  transform: translateY(0);
+}
+
+.sectionHeaderAction:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.5);
+
+  outline-offset: 3px;
+}
+
+// ============================================
+// TABLET
+// ============================================
+
+@media (max-width: 700px) {
+  .sectionHeader {
+    gap: 12px;
+  }
+
+  .sectionHeaderTitle {
+    font-size: 19px;
+  }
+
+  .sectionHeaderDescription {
+    max-width: 500px;
+
+    font-size: 8.5px;
+  }
+}
+
+// ============================================
+// MOBILE
+// ============================================
+
+@media (max-width: 600px) {
+  .sectionHeader {
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 13px;
+  }
+
+  .sectionHeaderEyebrow {
+    font-size: 7px;
+
+    letter-spacing: 1.35px;
+  }
+
+  .sectionHeaderTitle {
+    margin-top: 5px;
+
+    font-size: 18px;
+  }
+
+  .sectionHeaderDescription {
+    max-width: 100%;
+
+    margin-top: 5px;
+
+    font-size: 8px;
+
+    line-height: 1.55;
+  }
+
+  .sectionHeaderAction {
+    min-height: 28px;
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+
+    font-size: 7px;
+  }
+}
+
+// ============================================
+// SMALL MOBILE
+// ============================================
+
+@media (max-width: 380px) {
+  .sectionHeader {
+    gap: 8px;
+  }
+
+  .sectionHeaderTitle {
+    font-size: 17px;
+  }
+
+  .sectionHeaderDescription {
+    font-size: 7px;
+  }
+
+  .sectionHeaderAction {
+    padding: 5px 8px;
+
+    font-size: 6.5px;
+  }
+}
+
+// ============================================
+// VERY SMALL PHONES
+// ============================================
+
+@media (max-width: 340px) {
+  .sectionHeader {
+    gap: 7px;
+  }
+
+  .sectionHeaderEyebrow {
+    font-size: 6.5px;
+  }
+
+  .sectionHeaderTitle {
+    font-size: 16px;
+  }
+
+  .sectionHeaderDescription {
+    font-size: 6.5px;
+  }
+
+  .sectionHeaderAction {
+    padding: 5px 7px;
+
+    font-size: 6px;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionHeaderAction {
+    transition: none;
+  }
+}

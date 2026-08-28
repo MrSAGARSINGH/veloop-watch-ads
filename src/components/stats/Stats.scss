@@ -1,0 +1,620 @@
+// ============================================
+// VELOOP — STATS
+// Premium Responsive Earnings Overview
+// ============================================
+
+.statsSection {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 26px;
+}
+
+// ============================================
+// SECTION INTRO
+// ============================================
+
+.sectionIntro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 14px;
+}
+
+.sectionIntro > div {
+  min-width: 0;
+}
+
+.sectionEyebrow {
+  display: block;
+
+  color: #746c91;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.sectionIntro h2 {
+  margin: 5px 0 0;
+
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.5px;
+}
+
+.updatedText {
+  flex: 0 0 auto;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+
+  white-space: nowrap;
+}
+
+// ============================================
+// GRID
+// ============================================
+
+.statsGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 13px;
+
+  min-width: 0;
+}
+
+// ============================================
+// STAT CARD
+// ============================================
+
+.statCard {
+  position: relative;
+
+  min-width: 0;
+  min-height: 145px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  overflow: hidden;
+
+  padding: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.065);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.14),
+    inset 0 1px rgba(255, 255, 255, 0.018);
+
+  isolation: isolate;
+
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    background 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(139, 92, 246, 0.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.22),
+    0 0 28px rgba(124, 58, 237, 0.025);
+}
+
+.statCard:focus-within {
+  border-color: rgba(139, 92, 246, 0.22);
+}
+
+// ============================================
+// ICON
+// ============================================
+
+.statIcon {
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid transparent;
+
+  border-radius: 12px;
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.statCard:hover .statIcon {
+  transform: translateY(-1px);
+}
+
+// Purple
+
+.statIcon.purple {
+  color: #a78bfa;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(139, 92, 246, 0.13),
+      rgba(139, 92, 246, 0.065)
+    );
+
+  border-color: rgba(167, 139, 250, 0.08);
+}
+
+// Green
+
+.statIcon.green {
+  color: #4ade80;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34, 197, 94, 0.11),
+      rgba(34, 197, 94, 0.045)
+    );
+
+  border-color: rgba(74, 222, 128, 0.07);
+}
+
+// Blue
+
+.statIcon.blue {
+  color: #60a5fa;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(59, 130, 246, 0.12),
+      rgba(59, 130, 246, 0.05)
+    );
+
+  border-color: rgba(96, 165, 250, 0.07);
+}
+
+// Orange
+
+.statIcon.orange {
+  color: #fb923c;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(249, 115, 22, 0.12),
+      rgba(249, 115, 22, 0.05)
+    );
+
+  border-color: rgba(251, 146, 60, 0.07);
+}
+
+// ============================================
+// MAIN CONTENT
+// ============================================
+
+.statMain {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  overflow: hidden;
+
+  color: #7e89a3;
+
+  font-size: 9px;
+  font-weight: 550;
+
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ============================================
+// VALUE
+// ============================================
+
+.statValue {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 5px;
+
+  margin-top: 7px;
+
+  min-width: 0;
+}
+
+.statValue strong {
+  min-width: 0;
+
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -1px;
+
+  white-space: nowrap;
+}
+
+.statValue > span {
+  flex: 0 0 auto;
+
+  color: #8d97ae;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+// ============================================
+// META
+// ============================================
+
+.statMeta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 10px;
+}
+
+.statChange {
+  flex: 0 0 auto;
+
+  padding: 3px 6px;
+
+  border-radius: 6px;
+
+  font-size: 8px;
+  font-weight: 750;
+
+  line-height: 1.2;
+}
+
+.statChange.purple {
+  color: #c4b5fd;
+
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.statChange.green {
+  color: #86efac;
+
+  background: rgba(34, 197, 94, 0.09);
+}
+
+.statChange.blue {
+  color: #93c5fd;
+
+  background: rgba(59, 130, 246, 0.09);
+}
+
+.statChange.orange {
+  color: #fdba74;
+
+  background: rgba(249, 115, 22, 0.09);
+}
+
+.statDescription {
+  min-width: 0;
+
+  color: #59647d;
+
+  font-size: 8px;
+
+  line-height: 1.2;
+}
+
+// ============================================
+// DECORATIVE CIRCLE
+// ============================================
+
+.statDecor {
+  position: absolute;
+
+  right: -30px;
+  bottom: -42px;
+
+  width: 110px;
+  height: 110px;
+
+  border: 1px solid rgba(139, 92, 246, 0.06);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease;
+}
+
+.statCard:hover .statDecor {
+  transform: scale(1.08);
+}
+
+.statCard:nth-child(2) .statDecor {
+  border-color: rgba(34, 197, 94, 0.06);
+}
+
+.statCard:nth-child(3) .statDecor {
+  border-color: rgba(59, 130, 246, 0.06);
+}
+
+.statCard:nth-child(4) .statDecor {
+  border-color: rgba(249, 115, 22, 0.06);
+}
+
+// ============================================
+// LARGE TABLET
+// ============================================
+
+@media (max-width: 1100px) {
+  .statsGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+// ============================================
+// TABLET
+// ============================================
+
+@media (max-width: 850px) {
+  .statsSection {
+    margin-top: 23px;
+  }
+
+  .statCard {
+    min-height: 138px;
+  }
+}
+
+// ============================================
+// MOBILE
+// ============================================
+
+@media (max-width: 600px) {
+  .statsSection {
+    margin-top: 20px;
+  }
+
+  .sectionIntro {
+    align-items: center;
+
+    margin-bottom: 11px;
+  }
+
+  .sectionEyebrow {
+    font-size: 7px;
+
+    letter-spacing: 1.45px;
+  }
+
+  .sectionIntro h2 {
+    margin-top: 5px;
+
+    font-size: 17px;
+  }
+
+  .updatedText {
+    font-size: 8px;
+  }
+
+  .statsGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .statCard {
+    min-height: 128px;
+
+    gap: 9px;
+
+    padding: 13px;
+
+    border-radius: 15px;
+  }
+
+  .statIcon {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+
+    border-radius: 10px;
+  }
+
+  .statLabel {
+    font-size: 8px;
+  }
+
+  .statValue {
+    margin-top: 8px;
+
+    gap: 4px;
+  }
+
+  .statValue strong {
+    font-size: 20px;
+  }
+
+  .statValue > span {
+    font-size: 8px;
+  }
+
+  .statMeta {
+    margin-top: 8px;
+
+    gap: 5px;
+  }
+
+  .statChange {
+    padding: 3px 5px;
+
+    font-size: 7px;
+  }
+
+  .statDescription {
+    display: none;
+  }
+
+  .statDecor {
+    width: 85px;
+    height: 85px;
+
+    right: -27px;
+    bottom: -35px;
+  }
+}
+
+// ============================================
+// SMALL MOBILE
+// ============================================
+
+@media (max-width: 380px) {
+  .sectionIntro {
+    gap: 8px;
+  }
+
+  .sectionIntro h2 {
+    font-size: 16px;
+  }
+
+  .updatedText {
+    font-size: 7px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+  }
+
+  .statCard {
+    min-height: 100px;
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-radius: 14px;
+  }
+
+  .statIcon {
+    width: 35px;
+    height: 35px;
+
+    flex-basis: 35px;
+  }
+
+  .statValue {
+    margin-top: 6px;
+  }
+
+  .statValue strong {
+    font-size: 20px;
+  }
+
+  .statMeta {
+    margin-top: 7px;
+  }
+}
+
+// ============================================
+// VERY SMALL PHONES
+// ============================================
+
+@media (max-width: 340px) {
+  .sectionIntro h2 {
+    font-size: 15px;
+  }
+
+  .updatedText {
+    display: none;
+  }
+
+  .statCard {
+    min-height: 94px;
+
+    padding: 11px;
+  }
+
+  .statLabel {
+    font-size: 7.5px;
+  }
+
+  .statValue strong {
+    font-size: 19px;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .statCard,
+  .statIcon,
+  .statDecor {
+    transition: none;
+  }
+}

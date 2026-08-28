@@ -1,0 +1,765 @@
+// ============================================
+// VELOOP — TOPBAR
+// Premium Responsive Header
+// ============================================
+
+.topbar {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 900;
+
+  width: calc(100% - 250px);
+
+  height: 76px;
+
+  margin-left: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 0 30px;
+
+  overflow: hidden;
+
+  background: rgba(5, 8, 22, 0.82);
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-sizing: border-box;
+}
+
+// ============================================
+// LEFT
+// ============================================
+
+.topbarLeft {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+}
+
+.searchBox {
+  width: min(360px, 32vw);
+
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: var(--text-muted);
+
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.searchBox:focus-within {
+  border-color: rgba(124, 58, 237, 0.55);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+.searchBox svg {
+  flex: 0 0 auto;
+}
+
+.searchBox input {
+  min-width: 0;
+
+  flex: 1;
+
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  font-family: inherit;
+
+  font-size: 12px;
+}
+
+.searchBox input::placeholder {
+  color: var(--text-muted);
+}
+
+.searchBox input::-webkit-search-cancel-button {
+  filter: invert(1);
+  opacity: 0.45;
+}
+
+.searchBox kbd {
+  flex: 0 0 auto;
+
+  padding: 3px 6px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: var(--text-muted);
+
+  font-family: inherit;
+
+  font-size: 9px;
+}
+
+// ============================================
+// RIGHT
+// ============================================
+
+.topbarRight {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  flex: 0 0 auto;
+}
+
+// ============================================
+// BALANCE
+// ============================================
+
+.balancePill {
+  min-width: 190px;
+
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 5px 7px 5px 6px;
+
+  border: 1px solid rgba(124, 58, 237, 0.18);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.11),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.balancePill:hover {
+  border-color: rgba(139, 92, 246, 0.27);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.14),
+      rgba(255, 255, 255, 0.03)
+    );
+}
+
+.balanceIcon {
+  width: 35px;
+  height: 35px;
+
+  flex: 0 0 35px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: rgba(124, 58, 237, 0.16);
+
+  color: #a78bfa;
+}
+
+.balanceInfo {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.balanceInfo span {
+  color: var(--text-muted);
+
+  font-size: 8px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.balanceInfo strong {
+  margin-top: 2px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  line-height: 1;
+}
+
+.balanceInfo small {
+  color: #a78bfa;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.addBalance {
+  width: 27px;
+  height: 27px;
+
+  flex: 0 0 27px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.addBalance:hover {
+  background: rgba(124, 58, 237, 0.18);
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+.addBalance:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.55);
+
+  outline-offset: 2px;
+}
+
+// ============================================
+// NOTIFICATION
+// ============================================
+
+.notificationButton {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.notificationButton:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.065);
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-1px);
+}
+
+.notificationButton:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.55);
+
+  outline-offset: 3px;
+}
+
+.notificationDot {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 6px;
+  height: 6px;
+
+  border: 1px solid var(--bg-primary);
+
+  border-radius: 50%;
+
+  background: #a855f7;
+
+  box-shadow:
+    0 0 9px rgba(168, 85, 247, 0.75);
+}
+
+// ============================================
+// PROFILE
+// ============================================
+
+.profileMenu {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 4px 3px 4px 5px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.profileMenu:hover {
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #ffffff;
+}
+
+.profileMenu:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.55);
+
+  outline-offset: 3px;
+}
+
+.profileAvatar {
+  width: 37px;
+  height: 37px;
+
+  flex: 0 0 37px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid rgba(167, 139, 250, 0.35);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #38bdf8,
+      #6366f1
+    );
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow:
+    0 0 18px rgba(99, 102, 241, 0.18);
+}
+
+.profileInfo {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.profileInfo strong {
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileInfo span {
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+
+  white-space: nowrap;
+}
+
+.profileMenu > svg {
+  flex: 0 0 auto;
+
+  margin-left: 3px;
+
+  transition: transform 180ms ease;
+}
+
+.profileMenu:hover > svg {
+  transform: translateY(2px);
+}
+
+// ============================================
+// MOBILE ELEMENTS
+// ============================================
+
+.mobileMenuButton,
+.mobilePageTitle {
+  display: none;
+}
+
+// ============================================
+// TABLET
+// ============================================
+
+@media (max-width: 1000px) and (min-width: 701px) {
+  .topbar {
+    width: calc(100% - 82px);
+
+    margin-left: 82px;
+
+    padding-inline: 22px;
+  }
+
+  .searchBox {
+    width: min(300px, 30vw);
+  }
+
+  .balancePill {
+    min-width: 175px;
+  }
+
+  .topbarRight {
+    gap: 9px;
+  }
+}
+
+// ============================================
+// SMALL DESKTOP / TABLET
+// ============================================
+
+@media (max-width: 850px) and (min-width: 701px) {
+  .profileInfo {
+    display: none;
+  }
+
+  .profileMenu > svg {
+    display: none;
+  }
+
+  .balancePill {
+    min-width: 145px;
+  }
+}
+
+// ============================================
+// MOBILE
+// ============================================
+
+@media (max-width: 700px) {
+  .topbar {
+    width: 100%;
+
+    height: 68px;
+
+    margin-left: 0;
+
+    padding: 0 15px;
+
+    gap: 10px;
+  }
+
+  // ------------------------------------------
+  // LEFT
+  // ------------------------------------------
+
+  .topbarLeft {
+    min-width: 0;
+
+    flex: 1;
+  }
+
+  .mobileMenuButton {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: grid;
+    place-items: center;
+
+    margin-right: 10px;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    transition:
+      color 180ms ease,
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .mobileMenuButton:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.065);
+
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .mobileMenuButton:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+
+    outline-offset: 2px;
+  }
+
+  .mobilePageTitle {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.1;
+  }
+
+  .mobilePageTitle span {
+    color: var(--text-muted);
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+  }
+
+  .mobilePageTitle strong {
+    margin-top: 4px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+  }
+
+  .searchBox {
+    display: none;
+  }
+
+  // ------------------------------------------
+  // RIGHT
+  // ------------------------------------------
+
+  .topbarRight {
+    gap: 7px;
+  }
+
+  .balancePill {
+    min-width: auto;
+
+    width: auto;
+
+    height: 40px;
+
+    gap: 7px;
+
+    padding: 4px 6px;
+  }
+
+  .balanceIcon {
+    width: 30px;
+    height: 30px;
+
+    flex-basis: 30px;
+  }
+
+  .balanceInfo span,
+  .addBalance,
+  .profileInfo,
+  .profileMenu > svg {
+    display: none;
+  }
+
+  .balanceInfo strong {
+    margin: 0;
+
+    font-size: 11px;
+  }
+
+  .notificationButton {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+
+    border-radius: 10px;
+  }
+
+  .profileMenu {
+    padding: 1px;
+  }
+
+  .profileAvatar {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+}
+
+// ============================================
+// SMALL MOBILE
+// ============================================
+
+@media (max-width: 380px) {
+  .topbar {
+    padding-inline: 10px;
+  }
+
+  .mobilePageTitle {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    margin-right: auto;
+  }
+
+  .topbarRight {
+    gap: 5px;
+  }
+
+  .balancePill {
+    padding-inline: 5px;
+  }
+
+  .balanceInfo strong {
+    font-size: 10px;
+  }
+
+  .notificationButton {
+    width: 35px;
+    height: 35px;
+
+    flex-basis: 35px;
+  }
+
+  .profileAvatar {
+    width: 32px;
+    height: 32px;
+
+    flex-basis: 32px;
+  }
+}
+
+// ============================================
+// VERY SMALL MOBILE
+// ============================================
+
+@media (max-width: 340px) {
+  .topbar {
+    padding-inline: 8px;
+  }
+
+  .balanceIcon {
+    display: none;
+  }
+
+  .balancePill {
+    padding-inline: 8px;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .searchBox,
+  .balancePill,
+  .addBalance,
+  .notificationButton,
+  .profileMenu,
+  .profileMenu > svg,
+  .mobileMenuButton {
+    transition: none;
+  }
+}

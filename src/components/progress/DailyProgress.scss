@@ -1,0 +1,955 @@
+// ============================================
+// VELOOP WATCH ADS — DAILY PROGRESS
+// Premium Responsive Progress Experience
+// ============================================
+
+.dailyProgress {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+
+  gap: 16px;
+
+  margin-top: 16px;
+}
+
+// ============================================
+// MAIN PROGRESS CARD
+// ============================================
+
+.progressMain {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 22px 24px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(124, 58, 237, 0.07),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  box-shadow:
+    0 12px 45px rgba(0, 0, 0, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.025);
+
+  isolation: isolate;
+
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.progressMain::before {
+  content: "";
+
+  position: absolute;
+  top: -120px;
+  right: -90px;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.055);
+
+  filter: blur(35px);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+.progressMain:hover {
+  border-color: rgba(139, 92, 246, 0.14);
+
+  box-shadow:
+    0 16px 55px rgba(0, 0, 0, 0.2),
+    0 0 35px rgba(124, 58, 237, 0.035),
+    inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+// ============================================
+// TOP AREA
+// ============================================
+
+.progressTop {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  min-width: 0;
+}
+
+.progressTitle {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.progressIcon {
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(167, 139, 250, 0.1);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.16),
+      rgba(124, 58, 237, 0.06)
+    );
+
+  color: #a78bfa;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.035),
+    0 7px 20px rgba(124, 58, 237, 0.07);
+
+  transition:
+    transform 220ms ease,
+    background 220ms ease;
+}
+
+.progressMain:hover .progressIcon {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.2),
+      rgba(124, 58, 237, 0.08)
+    );
+}
+
+.progressTitle > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.progressTitle span {
+  color: #746f89;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 1.6px;
+}
+
+.progressTitle h2 {
+  max-width: 100%;
+
+  margin: 5px 0 0;
+
+  color: #f8fafc;
+
+  font-size: 15px;
+  font-weight: 720;
+
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+
+  overflow-wrap: anywhere;
+}
+
+// ============================================
+// AMOUNT
+// ============================================
+
+.progressAmount {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: baseline;
+
+  gap: 4px;
+
+  white-space: nowrap;
+}
+
+.progressAmount strong {
+  color: #ffffff;
+
+  font-size: 27px;
+  font-weight: 820;
+
+  line-height: 1;
+
+  letter-spacing: -1.3px;
+
+  text-shadow:
+    0 0 25px rgba(167, 139, 250, 0.12);
+}
+
+.progressAmount span {
+  color: #707a92;
+
+  font-size: 10px;
+  font-weight: 500;
+}
+
+// ============================================
+// PROGRESS BAR
+// ============================================
+
+.bigProgress {
+  position: relative;
+
+  width: 100%;
+  height: 11px;
+
+  margin-top: 24px;
+
+  overflow: visible;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.28),
+    0 1px rgba(255, 255, 255, 0.015);
+}
+
+.bigProgressFill {
+  position: relative;
+
+  width: 0;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6d28d9 0%,
+      #7c3aed 38%,
+      #8b5cf6 68%,
+      #22d3ee 100%
+    );
+
+  box-shadow:
+    0 0 18px rgba(124, 58, 237, 0.25),
+    0 0 5px rgba(139, 92, 246, 0.2);
+
+  transition:
+    width 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressGlow {
+  position: absolute;
+
+  top: -50%;
+
+  right: -15px;
+
+  width: 55px;
+  height: 200%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 255, 255, 0.48),
+      transparent 68%
+    );
+
+  filter: blur(6px);
+
+  pointer-events: none;
+
+  animation:
+    progressLight 2.8s ease-in-out infinite;
+}
+
+.progressMarker {
+  position: absolute;
+
+  top: 50%;
+
+  width: 20px;
+  height: 20px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid #0a0f24;
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.08),
+    0 0 18px rgba(167, 139, 250, 0.65);
+
+  transition:
+    left 850ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  z-index: 3;
+}
+
+.progressMarker span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #22d3ee
+    );
+
+  box-shadow:
+    0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+// ============================================
+// BOTTOM INFORMATION
+// ============================================
+
+.progressBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 13px;
+
+  min-width: 0;
+}
+
+.progressStatus {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #69748c;
+
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.progressStatus svg {
+  flex: 0 0 auto;
+
+  color: #a78bfa;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(167, 139, 250, 0.25)
+    );
+}
+
+.progressStatus span {
+  min-width: 0;
+}
+
+.progressStatus strong {
+  color: #c4b5fd;
+
+  font-weight: 750;
+}
+
+.remainingText {
+  flex: 0 0 auto;
+
+  color: #6d7890;
+
+  font-size: 9px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   DAILY BONUS BUTTON
+========================= */
+
+.progressReward {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 19px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(251, 191, 36, 0.12);
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(251, 191, 36, 0.11),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(251, 191, 36, 0.035),
+      transparent 45%
+    ),
+    rgba(255, 255, 255, 0.022);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.13),
+    inset 0 1px rgba(255, 255, 255, 0.025);
+
+  color: inherit;
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    background 240ms ease;
+
+  isolation: isolate;
+}
+
+.progressReward::before {
+  content: "";
+
+  position: absolute;
+
+  top: -65px;
+  right: -55px;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 50%;
+
+  background: rgba(251, 191, 36, 0.07);
+
+  filter: blur(22px);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+.progressReward:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(251, 191, 36, 0.24);
+
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.18),
+    0 0 28px rgba(251, 191, 36, 0.045),
+    inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.progressReward:active {
+  transform: translateY(-1px);
+}
+
+.progressReward:focus-visible {
+  outline: 2px solid rgba(251, 191, 36, 0.55);
+  outline-offset: 3px;
+}
+
+/* =========================
+   UNLOCKED STATE
+========================= */
+
+.progressReward.bonusUnlocked {
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.progressReward.bonusUnlocked:hover {
+  border-color: rgba(251, 191, 36, 0.34);
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(251, 191, 36, 0.15),
+      transparent 50%
+    ),
+    rgba(255, 255, 255, 0.028);
+}
+
+/* =========================
+   BONUS ARROW
+========================= */
+
+.rewardArrow {
+  position: relative;
+
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 30px;
+
+  margin-left: auto;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(251, 191, 36, 0.1);
+  border-radius: 9px;
+
+  background: rgba(251, 191, 36, 0.035);
+
+  color: #8d7b58;
+
+  transition:
+    transform 220ms ease,
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.progressReward:hover .rewardArrow {
+  transform: translateX(5px);
+
+  color: #fbbf24;
+
+  border-color: rgba(251, 191, 36, 0.2);
+
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.progressReward:focus-visible .rewardArrow {
+  color: #fbbf24;
+}
+
+// ============================================
+// BONUS CONTENT
+// ============================================
+
+.rewardContent {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.rewardContent span {
+  color: #9d8861;
+
+  font-size: 7px;
+  font-weight: 850;
+
+  line-height: 1;
+
+  letter-spacing: 1.6px;
+}
+
+.rewardContent strong {
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 720;
+
+  line-height: 1.2;
+
+  overflow-wrap: anywhere;
+}
+
+.rewardContent small {
+  margin-top: 4px;
+
+  color: #68748d;
+
+  font-size: 8px;
+
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+// ============================================
+// BONUS ARROW
+// ============================================
+
+.rewardArrow {
+  flex: 0 0 auto;
+
+  margin-left: auto;
+
+  color: #8d7b58;
+
+  transition:
+    transform 220ms ease,
+    color 220ms ease;
+}
+
+.progressReward:hover .rewardArrow {
+  transform: translateX(4px);
+
+  color: #fbbf24;
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+@keyframes progressLight {
+  0% {
+    transform: translateX(-45px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateX(45px);
+    opacity: 0;
+  }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .progressGlow {
+    animation: none;
+  }
+
+  .progressMain,
+  .progressIcon,
+  .progressReward,
+  .rewardBadge,
+  .rewardArrow,
+  .bigProgressFill,
+  .progressMarker {
+    transition: none;
+  }
+}
+
+// ============================================
+// TABLET
+// ============================================
+
+@media (max-width: 1000px) {
+  .dailyProgress {
+    grid-template-columns: minmax(0, 1fr) 235px;
+
+    gap: 13px;
+  }
+
+  .progressMain {
+    padding: 19px 20px;
+  }
+
+  .progressReward {
+    padding: 17px;
+  }
+
+  .progressAmount strong {
+    font-size: 24px;
+  }
+}
+
+// ============================================
+// SMALL TABLET
+// ============================================
+
+@media (max-width: 850px) {
+  .dailyProgress {
+    grid-template-columns: 1fr;
+  }
+
+  .progressReward {
+    min-height: 88px;
+  }
+}
+
+// ============================================
+// MOBILE
+// ============================================
+
+@media (max-width: 600px) {
+  .dailyProgress {
+    width: 100%;
+    max-width: 100%;
+
+    gap: 10px;
+
+    margin-top: 11px;
+  }
+
+  .progressMain {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 17px;
+
+    border-radius: 17px;
+  }
+
+  .progressTop {
+    gap: 10px;
+  }
+
+  .progressTitle {
+    flex: 1;
+
+    gap: 9px;
+  }
+
+  .progressIcon {
+    width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+
+    border-radius: 10px;
+  }
+
+  .progressTitle span {
+    font-size: 7px;
+
+    letter-spacing: 1.25px;
+  }
+
+  .progressTitle h2 {
+    margin-top: 5px;
+
+    font-size: 12px;
+  }
+
+  .progressAmount strong {
+    font-size: 21px;
+  }
+
+  .progressAmount span {
+    font-size: 8px;
+  }
+
+  .bigProgress {
+    height: 9px;
+
+    margin-top: 19px;
+  }
+
+  .progressMarker {
+    width: 17px;
+    height: 17px;
+  }
+
+  .progressMarker span {
+    width: 5px;
+    height: 5px;
+  }
+
+  .progressBottom {
+    margin-top: 10px;
+
+    gap: 8px;
+  }
+
+  .progressStatus {
+    font-size: 8px;
+  }
+
+  .remainingText {
+    font-size: 8px;
+  }
+
+  .progressReward {
+    min-height: 82px;
+
+    padding: 15px;
+
+    border-radius: 17px;
+  }
+
+  .rewardBadge {
+    width: 37px;
+    height: 37px;
+
+    flex-basis: 37px;
+
+    border-radius: 11px;
+  }
+
+  .rewardContent span {
+    font-size: 6px;
+  }
+
+  .rewardContent strong {
+    font-size: 11px;
+  }
+
+  .rewardContent small {
+    font-size: 7px;
+  }
+}
+
+// ============================================
+// VERY SMALL PHONES
+// ============================================
+
+@media (max-width: 380px) {
+  .progressMain {
+    padding: 15px;
+  }
+
+  .progressTop {
+    gap: 7px;
+  }
+
+  .progressTitle {
+    gap: 7px;
+  }
+
+  .progressIcon {
+    width: 33px;
+    height: 33px;
+
+    flex-basis: 33px;
+  }
+
+  .progressTitle span {
+    font-size: 6px;
+
+    letter-spacing: 1px;
+  }
+
+  .progressTitle h2 {
+    font-size: 10px;
+  }
+
+  .progressAmount strong {
+    font-size: 18px;
+  }
+
+  .progressAmount span {
+    display: none;
+  }
+
+  .progressStatus {
+    font-size: 7px;
+  }
+
+  .remainingText {
+    display: none;
+  }
+
+  .progressReward {
+    padding: 13px;
+  }
+
+  .rewardBadge {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+  .rewardContent strong {
+    font-size: 10px;
+  }
+
+  .rewardContent small {
+    font-size: 7px;
+  }
+
+  .rewardArrow {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+// ============================================
+// ULTRA SMALL DEVICES
+// ============================================
+
+@media (max-width: 340px) {
+  .progressMain {
+    padding: 13px;
+  }
+
+  .progressTitle h2 {
+    font-size: 9px;
+  }
+
+  .progressAmount strong {
+    font-size: 17px;
+  }
+
+  .progressStatus span {
+    font-size: 6px;
+  }
+
+  .progressReward {
+    gap: 9px;
+  }
+
+  .rewardContent strong {
+    font-size: 9px;
+  }
+}

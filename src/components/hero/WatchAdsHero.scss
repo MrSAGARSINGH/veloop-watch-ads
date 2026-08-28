@@ -1,0 +1,974 @@
+.watchHero {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 410px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  align-items: center;
+
+  overflow: hidden;
+
+  padding: 42px 44px;
+
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at 80% 35%,
+      rgba(124, 58, 237, 0.2),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 65% 90%,
+      rgba(34, 211, 238, 0.08),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #0d1430 0%,
+      #0a1028 48%,
+      #080b1e 100%
+    );
+
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.28);
+
+  isolation: isolate;
+}
+
+.heroGlow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.heroGlowOne {
+  width: 320px;
+  height: 320px;
+  top: -190px;
+  left: 20%;
+  background: rgba(124, 58, 237, 0.13);
+}
+
+.heroGlowTwo {
+  width: 260px;
+  height: 260px;
+  right: 5%;
+  bottom: -170px;
+  background: rgba(34, 211, 238, 0.08);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 680px;
+}
+
+.heroBadge {
+  width: fit-content;
+  max-width: 100%;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 999px;
+
+  background: rgba(124, 58, 237, 0.09);
+
+  color: #bca9ff;
+
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1.4px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+
+  border-radius: 50%;
+
+  background: #34d399;
+
+  box-shadow:
+    0 0 9px rgba(52, 211, 153, 0.8);
+
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+.heroContent h1 {
+  margin: 19px 0 12px;
+
+  max-width: 100%;
+
+  color: #ffffff;
+
+  font-size: clamp(38px, 4vw, 61px);
+  font-weight: 850;
+  line-height: 0.99;
+  letter-spacing: -2.8px;
+
+  overflow-wrap: break-word;
+}
+
+.heroContent h1 span {
+  background:
+    linear-gradient(
+      100deg,
+      #a78bfa 5%,
+      #8b5cf6 45%,
+      #22d3ee 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.heroDescription {
+  width: 100%;
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #8995b0;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================
+   QUICK STATS
+========================= */
+
+.heroQuickStats {
+  width: fit-content;
+  max-width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 28px;
+  padding: 10px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(12px);
+}
+
+.quickStat {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 9px;
+}
+
+.quickStatIcon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+}
+
+.quickStatIcon.purple {
+  background: rgba(139, 92, 246, 0.12);
+  color: #a78bfa;
+}
+
+.quickStatIcon.green {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+}
+
+.quickStatIcon.blue {
+  background: rgba(59, 130, 246, 0.11);
+  color: #60a5fa;
+}
+
+.quickStat div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.quickStat span {
+  color: #68748f;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.quickStat strong {
+  margin-top: 2px;
+
+  color: #f4f6fb;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.quickStatDivider {
+  width: 1px;
+  height: 28px;
+  flex: 0 0 1px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.heroProgress {
+  width: 100%;
+  max-width: 530px;
+
+  margin-top: 24px;
+}
+
+.progressHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.progressHeader div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.progressHeader span:first-child {
+  color: #7f8aa4;
+  font-size: 9px;
+}
+
+.progressHeader strong {
+  margin-top: 3px;
+
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.progressPercent {
+  flex: 0 0 auto;
+
+  color: #a78bfa;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.progressTrack {
+  position: relative;
+
+  width: 100%;
+  height: 7px;
+
+  margin-top: 10px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.progressFill {
+  position: relative;
+
+  width: 48%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6d28d9,
+      #8b5cf6,
+      #22d3ee
+    );
+
+  box-shadow:
+    0 0 18px rgba(124, 58, 237, 0.35);
+}
+
+.progressShine {
+  position: absolute;
+
+  top: 0;
+  left: -40%;
+
+  width: 40%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  transform: skewX(-20deg);
+
+  animation: progressShine 2.8s linear infinite;
+}
+
+.progressFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-top: 7px;
+
+  color: #59657e;
+  font-size: 8px;
+}
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.heroVisual {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 330px;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+}
+
+.visualOrb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(1px);
+
+  pointer-events: none;
+}
+
+.orbOne {
+  width: min(230px, 70%);
+  aspect-ratio: 1;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.2),
+      rgba(124, 58, 237, 0.02) 68%,
+      transparent 72%
+    );
+}
+
+.orbTwo {
+  width: min(330px, 100%);
+  aspect-ratio: 1;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(34, 211, 238, 0.06),
+      transparent 66%
+    );
+}
+
+/* =========================
+   AD VISUAL
+========================= */
+
+.adVisual {
+  position: relative;
+
+  width: min(205px, 70%);
+  height: 245px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(139, 92, 246, 0.14),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px rgba(255, 255, 255, 0.06);
+
+  transform: rotate(4deg);
+
+  transition: transform 350ms ease;
+}
+
+.heroVisual:hover .adVisual {
+  transform: rotate(0deg) translateY(-5px);
+}
+
+.adVisualGlow {
+  position: absolute;
+  inset: 20px;
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(139, 92, 246, 0.15),
+      transparent 65%
+    );
+}
+
+.playRing {
+  position: relative;
+
+  width: min(104px, 50%);
+  aspect-ratio: 1;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.18),
+      rgba(139, 92, 246, 0.03) 65%,
+      transparent 70%
+    );
+
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.22);
+
+  animation: floatVisual 4s ease-in-out infinite;
+}
+
+.playCircle {
+  width: 64%;
+  aspect-ratio: 1;
+
+  display: grid;
+  place-items: center;
+
+  padding-left: 3px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #6366f1
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 12px 35px rgba(124, 58, 237, 0.42);
+}
+
+.adVisualLines {
+  display: flex;
+  gap: 5px;
+
+  margin-top: 25px;
+}
+
+.adVisualLines span {
+  width: 19px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: rgba(167, 139, 250, 0.28);
+}
+
+.adVisualLines span:nth-child(2) {
+  width: 32px;
+
+  background: rgba(34, 211, 238, 0.3);
+}
+
+.adVisualLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 15px;
+}
+
+.adVisualLabel span {
+  color: #68748f;
+
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.adVisualLabel strong {
+  margin-top: 4px;
+
+  color: #d9d5ff;
+
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+
+/* =========================
+   FLOATING REWARDS
+========================= */
+
+.floatingReward {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  max-width: 110px;
+
+  padding: 9px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 11px;
+
+  background: rgba(12, 17, 40, 0.8);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(12px);
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  white-space: nowrap;
+
+  z-index: 5;
+}
+
+.rewardOne {
+  top: 42px;
+  left: 7%;
+
+  color: #c4b5fd;
+
+  animation: floatingOne 4s ease-in-out infinite;
+}
+
+.rewardTwo {
+  right: 5%;
+  bottom: 70px;
+
+  color: #67e8f9;
+
+  animation: floatingTwo 4.5s ease-in-out infinite;
+}
+
+/* =========================
+   FLOATING CARD
+========================= */
+
+.heroFloatingCard {
+  position: absolute;
+
+  right: 1%;
+  bottom: 10px;
+
+  max-width: 190px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 9px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 13px;
+
+  background: rgba(10, 15, 35, 0.82);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(14px);
+}
+
+.floatingCardIcon {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 8px;
+
+  background: rgba(34, 197, 94, 0.1);
+
+  color: #4ade80;
+}
+
+.heroFloatingCard div:nth-child(2) {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.heroFloatingCard span {
+  color: #68748f;
+  font-size: 7px;
+}
+
+.heroFloatingCard strong {
+  margin-top: 2px;
+
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.heroFloatingCard > svg {
+  flex: 0 0 auto;
+  color: #4ade80;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(0.72);
+  }
+}
+
+@keyframes progressShine {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+
+@keyframes floatVisual {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes floatingOne {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes floatingTwo {
+  0%,
+  100% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  50% {
+    transform: translateY(7px) rotate(-1deg);
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .watchHero {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(250px, 0.75fr);
+
+    padding: 35px;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(36px, 4vw, 50px);
+  }
+}
+
+/* =========================
+   SMALL TABLET
+========================= */
+
+@media (max-width: 850px) {
+  .watchHero {
+    grid-template-columns: minmax(0, 1fr);
+
+    min-height: auto;
+
+    padding: 34px 30px;
+  }
+
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .heroVisual {
+    min-height: 280px;
+
+    margin-top: 10px;
+  }
+
+  .heroQuickStats {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .watchHero {
+    width: 100%;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    padding: 25px 18px;
+
+    border-radius: 22px;
+  }
+
+  .heroContent {
+    width: 100%;
+  }
+
+  .heroContent h1 {
+    margin-top: 16px;
+
+    font-size: clamp(32px, 10vw, 39px);
+    line-height: 1.02;
+
+    letter-spacing: -1.8px;
+  }
+
+  .heroDescription {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  /* Stats automatically fit viewport */
+  .heroQuickStats {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 0;
+
+    padding: 8px;
+
+    overflow: hidden;
+  }
+
+  .quickStat {
+    min-width: 0;
+
+    justify-content: center;
+
+    padding: 0 4px;
+  }
+
+  .quickStatIcon {
+    display: none;
+  }
+
+  .quickStat span {
+    overflow: hidden;
+
+    font-size: 7px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .quickStat strong {
+    overflow: hidden;
+
+    font-size: 9px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .quickStatDivider {
+    display: none;
+  }
+
+  .heroProgress {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .progressFooter span:last-child {
+    display: none;
+  }
+
+  /* Visual stays inside available width */
+  .heroVisual {
+    width: 100%;
+    min-height: 275px;
+
+    margin-top: 5px;
+
+    overflow: hidden;
+  }
+
+  .adVisual {
+    width: 175px;
+    max-width: 70%;
+    height: 215px;
+  }
+
+  .playRing {
+    width: 90px;
+  }
+
+  .floatingReward {
+    max-width: 95px;
+
+    padding: 7px 8px;
+
+    font-size: 8px;
+  }
+
+  .rewardOne {
+    left: 0;
+  }
+
+  .rewardTwo {
+    right: 0;
+  }
+
+  .heroFloatingCard {
+    right: 0;
+    bottom: 0;
+
+    max-width: 165px;
+  }
+}
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 400px) {
+  .watchHero {
+    padding: 22px 14px;
+  }
+
+  .heroContent h1 {
+    font-size: 33px;
+    letter-spacing: -1.5px;
+  }
+
+  .heroBadge {
+    font-size: 8px;
+  }
+
+  .heroQuickStats {
+    padding: 7px 5px;
+  }
+
+  .quickStat strong {
+    font-size: 8px;
+  }
+
+  .heroVisual {
+    min-height: 255px;
+  }
+
+  .adVisual {
+    width: 155px;
+    height: 195px;
+  }
+
+  .floatingReward {
+    padding: 6px 7px;
+    font-size: 7px;
+  }
+
+  .heroFloatingCard {
+    max-width: 145px;
+    padding: 7px 8px;
+  }
+
+  .heroFloatingCard span {
+    font-size: 6px;
+  }
+
+  .heroFloatingCard strong {
+    font-size: 9px;
+  }
+}
