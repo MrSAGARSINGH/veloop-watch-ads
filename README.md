@@ -1,14 +1,49 @@
-# VELOOP Rewards — Watch Ads
+# 🚀 VELOOP Rewards — Watch Ads
+
+### Premium Watch Ads Experience
+
+A modern, responsive reward-based advertising experience built as part of the **VELOOP Rewards Frontend Internship Assignment**.
+
+Users can discover ads, watch them completely, earn **VEs**, track their daily progress, and review their earning activity through a polished dashboard experience.
 
 <p align="center">
-  <strong>A premium, responsive Watch Ads experience built for the VELOOP Rewards frontend internship task.</strong>
+  <a href="https://veloop-watch-ads-kappa.vercel.app/">
+    <strong>🌐 Live Demo</strong>
+  </a>
+  &nbsp; • &nbsp;
+  <a href="https://github.com/MrSAGARSINGH/veloop-watch-ads">
+    <strong>💻 GitHub Repository</strong>
+  </a>
 </p>
 
-<p align="center">
-  <a href="https://veloop-watch-ads-kappa.vercel.app/">Live Demo</a>
-  ·
-  <a href="https://github.com/MrSAGARSINGH/veloop-watch-ads">GitHub Repository</a>
-</p>
+---
+
+## ✨ Overview
+
+**VELOOP Rewards — Watch Ads** is a premium, responsive frontend experience focused on making ad-based rewards feel simple, transparent, and engaging.
+
+The interface was designed with a **dark fintech-inspired visual system**, clear earning information, responsive layouts, and meaningful interaction states.
+
+### 🎯 Built by
+
+**Sagar Singh Khangarot**
+
+Frontend / MERN Stack Developer
+
+---
+
+## 🌟 Key Highlights
+
+- 🎬 Interactive advertisement watching flow
+- 💰 Dynamic VEs earning system
+- 📊 Real-time earnings & progress updates
+- ⏱️ Advertisement countdown & watch progress
+- ✅ Completion and reward-success states
+- 🏆 Daily earning goal & bonus interaction
+- 🧾 Recent earning activity
+- 📱 Fully responsive dashboard
+- ♿ Accessibility-focused UI
+- ✨ Premium hover, transition & interaction states
 
 ---
 
