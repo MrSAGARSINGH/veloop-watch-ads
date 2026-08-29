@@ -1,15 +1,36 @@
-import { ArrowRight, Sparkles, Target } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Sparkles,
+  Target,
+} from "lucide-react";
 
 function KeepEarning({
   earned = 0,
   dailyGoal = 200,
   remainingAds = 0,
 }) {
-  const remaining = Math.max(dailyGoal - earned, 0);
+  const progress = Math.min(
+    Math.round((earned / dailyGoal) * 100),
+    100
+  );
+
+  const remaining = Math.max(
+    dailyGoal - earned,
+    0
+  );
+
   const goalCompleted = earned >= dailyGoal;
 
+  const radius = 58;
+  const circumference = 2 * Math.PI * radius;
+  const offset =
+    circumference -
+    (progress / 100) * circumference;
+
   const handleContinue = () => {
-    const adsSection = document.getElementById("available-ads");
+    const adsSection =
+      document.getElementById("available-ads");
 
     if (adsSection) {
       adsSection.scrollIntoView({
@@ -23,15 +44,15 @@ function KeepEarning({
     <section className="keepEarning">
       <div className="keepEarningGlow" />
 
-      <div className="keepEarningIcon">
-        {goalCompleted ? (
-          <Sparkles size={24} />
-        ) : (
-          <Target size={24} />
-        )}
-      </div>
-
       <div className="keepEarningContent">
+        <div className="keepEarningIcon">
+          {goalCompleted ? (
+            <Sparkles size={23} />
+          ) : (
+            <Target size={23} />
+          )}
+        </div>
+
         <span className="keepEarningEyebrow">
           {goalCompleted
             ? "DAILY GOAL COMPLETED"
@@ -61,23 +82,77 @@ function KeepEarning({
             </span>
           )}
 
-          {remainingAds > 0 && !goalCompleted && (
-            <span>
-              <strong>{remainingAds}</strong> ads available
-            </span>
+          {!goalCompleted &&
+            remainingAds > 0 && (
+              <span>
+                <strong>{remainingAds}</strong>{" "}
+                ads available
+              </span>
+            )}
+        </div>
+
+        {!goalCompleted &&
+          remainingAds > 0 && (
+            <button
+              type="button"
+              className="keepEarningButton"
+              onClick={handleContinue}
+            >
+              Continue Watching
+              <ArrowRight size={18} />
+            </button>
+          )}
+      </div>
+
+      {/* GOAL CIRCLE */}
+
+      <div className="goalCircle">
+        <div className="goalCircleGlow" />
+
+        <svg
+          className="goalCircleSvg"
+          viewBox="0 0 140 140"
+          aria-label={`${progress}% daily goal progress`}
+        >
+          <circle
+            className="goalCircleTrack"
+            cx="70"
+            cy="70"
+            r={radius}
+          />
+
+          <circle
+            className="goalCircleProgress"
+            cx="70"
+            cy="70"
+            r={radius}
+            style={{
+              strokeDasharray: circumference,
+              strokeDashoffset: offset,
+            }}
+          />
+        </svg>
+
+        <div className="goalCircleCenter">
+          {goalCompleted ? (
+            <>
+              <Check size={22} />
+              <strong>100%</strong>
+            </>
+          ) : (
+            <>
+              <strong>{progress}%</strong>
+              <span>complete</span>
+            </>
           )}
         </div>
 
-        {!goalCompleted && remainingAds > 0 && (
-          <button
-            type="button"
-            className="keepEarningButton"
-            onClick={handleContinue}
-          >
-            Continue Watching
-            <ArrowRight size={18} />
-          </button>
-        )}
+        <div className="goalCircleLabel">
+          <strong>
+            {earned} / {dailyGoal}
+          </strong>
+          <span>VEs today</span>
+        </div>
       </div>
     </section>
   );
