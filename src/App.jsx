@@ -14,6 +14,7 @@ import EarningsInfo from "./components/earnings/EarningsInfo";
 import HowItWorks from "./components/earnings/HowItWorks";
 import RecentActivity from "./components/activity/RecentActivity";
 import ScrollReveal from "./components/common/ScrollReveal";
+import KeepEarning from "./components/cta/KeepEarning";
 
 import "./styles/globals.scss";
 
@@ -203,7 +204,9 @@ function App() {
 
         {/* AVAILABLE ADS */}
         <ScrollReveal delay={100}>
-          <AdSection onAdCompleted={handleAdCompleted} />
+          <div id="available-ads">
+            <AdSection onAdCompleted={handleAdCompleted} />
+          </div>
         </ScrollReveal>
 
         {/* EARNINGS INFORMATION */}
@@ -219,6 +222,16 @@ function App() {
         {/* RECENT ACTIVITY */}
         <ScrollReveal delay={100}>
           <RecentActivity activities={activities} />
+        </ScrollReveal>
+
+        {/* KEEP EARNING CTA */}
+
+        <ScrollReveal delay={100}>
+          <KeepEarning
+            earned={todayEarnings}
+            dailyGoal={DAILY_GOAL}
+            remainingAds={remainingAds}
+          />
         </ScrollReveal>
       </main>
     </div>

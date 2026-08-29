@@ -380,3 +380,154 @@ body,
     transition: none;
   }
 }
+
+.keepEarning {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 72px;
+  padding: 42px 46px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(124, 58, 237, 0.18),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(20, 18, 42, 0.96),
+      rgba(10, 13, 29, 0.98)
+    );
+}
+
+.keepEarningGlow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -80px;
+  top: -100px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.16);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.keepEarningIcon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 18px;
+  background: rgba(124, 58, 237, 0.14);
+  color: #a78bfa;
+}
+
+.keepEarningContent {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.keepEarningEyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #a78bfa;
+}
+
+.keepEarning h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.keepEarning p {
+  max-width: 650px;
+  margin: 10px 0 20px;
+  color: #858ba8;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.keepEarningMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.keepEarningMeta span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #858ba8;
+  font-size: 12px;
+}
+
+.keepEarningMeta strong {
+  color: #fff;
+}
+
+.keepEarningButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #6d35d4);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.22);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.keepEarningButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(124, 58, 237, 0.32);
+}
+
+.keepEarningButton svg {
+  transition: transform 0.25s ease;
+}
+
+.keepEarningButton:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .keepEarning {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 48px;
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .keepEarningMeta {
+    gap: 8px;
+  }
+
+  .keepEarningButton {
+    width: 100%;
+  }
+}
