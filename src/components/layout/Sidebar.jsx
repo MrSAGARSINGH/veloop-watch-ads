@@ -13,6 +13,8 @@ import {
   Flame,
   ChevronRight,
   X,
+  Sparkles,
+  Zap,
 } from "lucide-react";
 
 import "./Sidebar.scss";
@@ -38,6 +40,7 @@ const navigation = [
   {
     label: "Refer & Earn",
     icon: Users,
+    badge: "NEW",
   },
   {
     label: "Wallet",
@@ -67,37 +70,42 @@ const navigation = [
 
 function Sidebar({ isOpen = false, onClose }) {
   const handleNavigation = () => {
-    if (onClose) {
-      onClose();
-    }
+    onClose?.();
   };
 
   return (
     <aside
-      className={`sidebar ${isOpen ? "sidebarOpen" : ""}`}
+      className={`sidebar ${
+        isOpen ? "sidebarOpen" : ""
+      }`}
       aria-label="Main navigation"
     >
       {/* =========================
           MOBILE CLOSE
       ========================= */}
+
       <button
         type="button"
         className="sidebarClose"
         onClick={onClose}
         aria-label="Close navigation menu"
       >
-        <X size={18} strokeWidth={1.8} />
+        <X
+          size={18}
+          strokeWidth={1.8}
+        />
       </button>
 
       {/* =========================
           LOGO
       ========================= */}
+
       <div className="logoArea">
         <div
           className="logoMark"
           aria-hidden="true"
         >
-          V
+          <span>V</span>
         </div>
 
         <div className="logoText">
@@ -109,12 +117,17 @@ function Sidebar({ isOpen = false, onClose }) {
       {/* =========================
           NAVIGATION
       ========================= */}
-      <nav className="navigation">
+
+      <nav
+        className="navigation"
+        aria-label="Primary"
+      >
         {navigation.map(
           ({
             label,
             icon: Icon,
             active = false,
+            badge,
           }) => (
             <button
               key={label}
@@ -127,13 +140,23 @@ function Sidebar({ isOpen = false, onClose }) {
                 active ? "page" : undefined
               }
             >
-              <Icon
-                size={19}
-                strokeWidth={1.8}
-                aria-hidden="true"
-              />
+              <span className="navIcon">
+                <Icon
+                  size={19}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
+              </span>
 
-              <span>{label}</span>
+              <span className="navLabel">
+                {label}
+              </span>
+
+              {badge && (
+                <span className="navBadge">
+                  {badge}
+                </span>
+              )}
 
               {active && (
                 <span
@@ -142,7 +165,7 @@ function Sidebar({ isOpen = false, onClose }) {
                 >
                   <ChevronRight
                     size={14}
-                    strokeWidth={1.8}
+                    strokeWidth={2}
                   />
                 </span>
               )}
@@ -154,6 +177,7 @@ function Sidebar({ isOpen = false, onClose }) {
       {/* =========================
           STREAK
       ========================= */}
+
       <div className="streakCard">
         <div
           className="streakIcon"
@@ -166,25 +190,51 @@ function Sidebar({ isOpen = false, onClose }) {
         </div>
 
         <div className="streakContent">
-          <strong>7 Days Streak</strong>
-          <span>Keep it up!</span>
+          <div className="streakHeading">
+            <strong>7 Days Streak</strong>
+
+            <span className="streakLive">
+              <span />
+              ACTIVE
+            </span>
+          </div>
+
+          <span>
+            Keep it up!
+          </span>
+
+          <div className="streakProgress">
+            <div className="streakProgressFill" />
+          </div>
         </div>
       </div>
 
       {/* =========================
           USER PROFILE
       ========================= */}
+
       <div className="userCard">
-        <div
-          className="avatar"
-          aria-hidden="true"
-        >
-          S
+        <div className="avatar">
+          <span>S</span>
+
+          <span
+            className="avatarStatus"
+            aria-label="Online"
+          />
         </div>
 
         <div className="userInfo">
-          <strong>Sagar Singh</strong>
-          <span>Level 8</span>
+          <div className="userNameRow">
+            <strong>Sagar Singh</strong>
+
+            <span className="levelBadge">
+              LVL 8
+            </span>
+          </div>
+
+          <span className="levelText">
+            Reward Explorer
+          </span>
 
           <div
             className="xpTrack"
@@ -196,40 +246,66 @@ function Sidebar({ isOpen = false, onClose }) {
           >
             <div
               className="xpFill"
-              style={{ width: "65%" }}
+              style={{
+                width: "65%",
+              }}
             />
           </div>
 
-          <small>3,250 / 5,000 XP</small>
+          <div className="xpBottom">
+            <small>
+              3,250 / 5,000 XP
+            </small>
+
+            <span>
+              65%
+            </span>
+          </div>
         </div>
       </div>
 
       {/* =========================
           INVITE
       ========================= */}
+
       <div className="inviteCard">
+        <div className="inviteGlow" />
+
         <div className="inviteTop">
-          <div>
-            <strong>Invite Friends</strong>
+          <div className="inviteContent">
+            <div className="inviteLabel">
+              <Sparkles size={12} />
+              REWARDS BOOST
+            </div>
+
+            <strong>
+              Invite Friends
+            </strong>
 
             <span>
               Earn up to 250 bonus VEs
             </span>
           </div>
 
-          <span
+          <div
             className="gift"
             aria-hidden="true"
           >
             🎁
-          </span>
+          </div>
         </div>
 
         <button
           type="button"
           className="inviteButton"
+          onClick={handleNavigation}
         >
-          Invite Now
+          <span>Invite Now</span>
+
+          <Zap
+            size={15}
+            fill="currentColor"
+          />
         </button>
       </div>
     </aside>
