@@ -345,3 +345,38 @@ body,
     display: none;
   }
 }
+
+.scrollReveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.985);
+  filter: blur(2px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s ease;
+
+  transition-delay: var(--reveal-delay);
+  will-change: opacity, transform, filter;
+}
+
+.scrollReveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (max-width: 768px) {
+  .scrollReveal {
+    transform: translate3d(0, 24px, 0) scale(0.99);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollReveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
