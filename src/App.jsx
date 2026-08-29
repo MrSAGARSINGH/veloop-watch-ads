@@ -13,8 +13,10 @@ import AdSection from "./components/ads/AdSection";
 import EarningsInfo from "./components/earnings/EarningsInfo";
 import HowItWorks from "./components/earnings/HowItWorks";
 import RecentActivity from "./components/activity/RecentActivity";
+
 import ScrollReveal from "./components/common/ScrollReveal";
 import KeepEarning from "./components/cta/KeepEarning";
+import Loader from "./components/common/Loader";
 
 import "./styles/globals.scss";
 
@@ -60,41 +62,49 @@ const initialActivities = [
 ];
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   /* =========================
      DAILY USER DATA
   ========================= */
 
-  const [todayEarnings, setTodayEarnings] = useDailyPersistentState(
-    "veloop_today_earnings",
-    INITIAL_TODAY_EARNINGS,
-  );
+  const [todayEarnings, setTodayEarnings] =
+    useDailyPersistentState(
+      "veloop_today_earnings",
+      INITIAL_TODAY_EARNINGS
+    );
 
-  const [adsWatchedToday, setAdsWatchedToday] = useDailyPersistentState(
-    "veloop_ads_watched_today",
-    0,
-  );
+  const [adsWatchedToday, setAdsWatchedToday] =
+    useDailyPersistentState(
+      "veloop_ads_watched_today",
+      0
+    );
 
   /* =========================
      LIFETIME USER DATA
   ========================= */
 
-  const [lifetimeEarnings, setLifetimeEarnings] = usePersistentState(
-    "veloop_lifetime_earnings",
-    INITIAL_LIFETIME_EARNINGS,
-  );
+  const [lifetimeEarnings, setLifetimeEarnings] =
+    usePersistentState(
+      "veloop_lifetime_earnings",
+      INITIAL_LIFETIME_EARNINGS
+    );
 
-  const [activities, setActivities] = usePersistentState(
-    "veloop_recent_activities",
-    initialActivities,
-  );
+  const [activities, setActivities] =
+    usePersistentState(
+      "veloop_recent_activities",
+      initialActivities
+    );
 
   /* =========================
      DERIVED VALUES
   ========================= */
 
-  const remainingAds = Math.max(TOTAL_ADS - adsWatchedToday, 0);
+  const remainingAds = Math.max(
+    TOTAL_ADS - adsWatchedToday,
+    0
+  );
 
   /* =========================
      SIDEBAR
@@ -120,11 +130,21 @@ function App() {
 
       if (reward <= 0) return;
 
-      setTodayEarnings((previous) => previous + reward);
+      setTodayEarnings(
+        (previous) => previous + reward
+      );
 
-      setLifetimeEarnings((previous) => previous + reward);
+      setLifetimeEarnings(
+        (previous) => previous + reward
+      );
 
-      setAdsWatchedToday((previous) => Math.min(previous + 1, TOTAL_ADS));
+      setAdsWatchedToday(
+        (previous) =>
+          Math.min(
+            previous + 1,
+            TOTAL_ADS
+          )
+      );
 
       setActivities((previous) => [
         {
@@ -138,7 +158,12 @@ function App() {
         ...previous,
       ]);
     },
-    [setTodayEarnings, setLifetimeEarnings, setAdsWatchedToday, setActivities],
+    [
+      setTodayEarnings,
+      setLifetimeEarnings,
+      setAdsWatchedToday,
+      setActivities,
+    ]
   );
 
   /* =========================
@@ -146,18 +171,38 @@ function App() {
   ========================= */
 
   const handleBonusClick = useCallback(() => {
-    window.location.assign("/watchAd-bonus");
+    window.location.assign(
+      "/watchAd-bonus"
+    );
   }, []);
+
+  /* =========================
+     INITIAL LOADER
+  ========================= */
+
+  if (loading) {
+    return (
+      <Loader
+        onComplete={() => setLoading(false)}
+      />
+    );
+  }
 
   return (
     <div className="page">
+
       {/* SIDEBAR */}
 
-      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={closeSidebar}
+      />
 
       {/* TOPBAR */}
 
-      <Topbar onMenuClick={toggleSidebar} />
+      <Topbar
+        onMenuClick={toggleSidebar}
+      />
 
       {/* MOBILE OVERLAY */}
 
@@ -173,7 +218,9 @@ function App() {
       {/* MAIN CONTENT */}
 
       <main className="mainContent">
+
         {/* HERO */}
+
         <ScrollReveal>
           <WatchAdsHero
             todayEarnings={todayEarnings}
@@ -185,6 +232,7 @@ function App() {
         </ScrollReveal>
 
         {/* STATS */}
+
         <ScrollReveal delay={80}>
           <Stats
             todayEarnings={todayEarnings}
@@ -195,6 +243,7 @@ function App() {
         </ScrollReveal>
 
         {/* DAILY PROGRESS */}
+
         <ScrollReveal delay={100}>
           <DailyProgress
             earned={todayEarnings}
@@ -203,25 +252,33 @@ function App() {
         </ScrollReveal>
 
         {/* AVAILABLE ADS */}
+
         <ScrollReveal delay={100}>
           <div id="available-ads">
-            <AdSection onAdCompleted={handleAdCompleted} />
+            <AdSection
+              onAdCompleted={handleAdCompleted}
+            />
           </div>
         </ScrollReveal>
 
         {/* EARNINGS INFORMATION */}
+
         <ScrollReveal delay={100}>
           <EarningsInfo />
         </ScrollReveal>
 
         {/* HOW IT WORKS */}
+
         <ScrollReveal delay={100}>
           <HowItWorks />
         </ScrollReveal>
 
         {/* RECENT ACTIVITY */}
+
         <ScrollReveal delay={100}>
-          <RecentActivity activities={activities} />
+          <RecentActivity
+            activities={activities}
+          />
         </ScrollReveal>
 
         {/* KEEP EARNING CTA */}
@@ -233,6 +290,7 @@ function App() {
             remainingAds={remainingAds}
           />
         </ScrollReveal>
+
       </main>
     </div>
   );
