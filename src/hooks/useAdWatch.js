@@ -5,10 +5,19 @@ import {
   useState,
 } from "react";
 
+import usePersistentState from "./usePersistentState";
+
 function useAdWatch() {
   const [watchingAds, setWatchingAds] = useState({});
-  const [completedAds, setCompletedAds] = useState([]);
-  const [rewardEarned, setRewardEarned] = useState(null);
+
+  const [completedAds, setCompletedAds] =
+    usePersistentState(
+      "veloop_completed_ads",
+      []
+    );
+
+  const [rewardEarned, setRewardEarned] =
+    useState(null);
 
   const timersRef = useRef({});
 
@@ -70,17 +79,18 @@ function useAdWatch() {
               return previous;
             }
 
-            return [
-              ...previous,
-              ad.id,
-            ];
+            return [...previous, ad.id];
           });
 
           setRewardEarned(ad);
         }
       }, 1000);
     },
-    [clearTimer, completedAds]
+    [
+      clearTimer,
+      completedAds,
+      setCompletedAds,
+    ]
   );
 
   const isWatching = useCallback(

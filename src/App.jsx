@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
 
+import usePersistentState from "./hooks/usePersistentState";
+
 import Sidebar from "./components/layout/Sidebar";
 import Topbar from "./components/layout/Topbar";
 
@@ -57,19 +59,33 @@ const initialActivities = [
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [todayEarnings, setTodayEarnings] = useState(
-    INITIAL_TODAY_EARNINGS
-  );
+  /* =========================
+     PERSISTENT USER DATA
+  ========================= */
 
-  const [lifetimeEarnings, setLifetimeEarnings] = useState(
-    INITIAL_LIFETIME_EARNINGS
-  );
+  const [todayEarnings, setTodayEarnings] =
+    usePersistentState(
+      "veloop_today_earnings",
+      INITIAL_TODAY_EARNINGS
+    );
 
-  const [adsWatchedToday, setAdsWatchedToday] = useState(0);
+  const [lifetimeEarnings, setLifetimeEarnings] =
+    usePersistentState(
+      "veloop_lifetime_earnings",
+      INITIAL_LIFETIME_EARNINGS
+    );
 
-  const [activities, setActivities] = useState(
-    initialActivities
-  );
+  const [adsWatchedToday, setAdsWatchedToday] =
+    usePersistentState(
+      "veloop_ads_watched_today",
+      0
+    );
+
+  const [activities, setActivities] =
+    usePersistentState(
+      "veloop_recent_activities",
+      initialActivities
+    );
 
   /* =========================
      DERIVED VALUES
@@ -130,18 +146,26 @@ function App() {
       },
       ...previous,
     ]);
-  }, []);
+  }, [
+    setTodayEarnings,
+    setLifetimeEarnings,
+    setAdsWatchedToday,
+    setActivities,
+  ]);
 
   /* =========================
      DAILY BONUS
   ========================= */
 
   const handleBonusClick = useCallback(() => {
-    window.location.assign("/watchAd-bonus");
+    window.location.assign(
+      "/watchAd-bonus"
+    );
   }, []);
 
   return (
     <div className="page">
+
       {/* SIDEBAR */}
 
       <Sidebar
