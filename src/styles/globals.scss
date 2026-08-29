@@ -888,3 +888,143 @@ body,
     animation: none;
   }
 }
+
+/* =========================
+   STICKY EARNING SUMMARY
+========================= */
+
+.stickyEarningSummary {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  margin: 18px 0 28px;
+
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  border-radius: 16px;
+
+  background: rgba(10, 13, 29, 0.82);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.16);
+}
+
+.stickyEarningInner {
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+}
+
+.stickyBrand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #c7cbe0;
+  font-size: 12px;
+}
+
+.stickyDot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #8b5cf6;
+
+  box-shadow:
+    0 0 10px rgba(139, 92, 246, 0.7);
+
+  animation: stickyDotPulse 2s ease-in-out infinite;
+}
+
+.stickyStats {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.stickyStat {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #747a96;
+  font-size: 11px;
+}
+
+.stickyStat svg {
+  color: #8b5cf6;
+}
+
+.stickyStat strong {
+  color: #f3f4f8;
+  font-size: 11px;
+}
+
+.stickyDivider {
+  width: 1px;
+  height: 22px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+@keyframes stickyDotPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 640px) {
+  .stickyEarningSummary {
+    margin: 12px 0 22px;
+  }
+
+  .stickyEarningInner {
+    min-height: 52px;
+    padding: 0 13px;
+  }
+
+  .stickyBrand {
+    display: none;
+  }
+
+  .stickyStats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .stickyStat {
+    gap: 5px;
+    font-size: 10px;
+  }
+
+  .stickyStat strong {
+    font-size: 10px;
+  }
+
+  .stickyDivider {
+    height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stickyDot {
+    animation: none;
+  }
+}
