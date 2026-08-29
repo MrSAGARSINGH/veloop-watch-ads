@@ -5,13 +5,13 @@ import {
   useState,
 } from "react";
 
-import usePersistentState from "./usePersistentState";
+import useDailyPersistentState from "./useDailyPersistentState";
 
 function useAdWatch() {
   const [watchingAds, setWatchingAds] = useState({});
 
   const [completedAds, setCompletedAds] =
-    usePersistentState(
+    useDailyPersistentState(
       "veloop_completed_ads",
       []
     );
@@ -53,38 +53,49 @@ function useAdWatch() {
 
       let remaining = duration;
 
-      timersRef.current[ad.id] = setInterval(() => {
-        remaining -= 1;
+      timersRef.current[ad.id] =
+        setInterval(() => {
+          remaining -= 1;
 
-        setWatchingAds((previous) => ({
-          ...previous,
-          [ad.id]: {
-            timeLeft: Math.max(remaining, 0),
-          },
-        }));
+          setWatchingAds((previous) => ({
+            ...previous,
+            [ad.id]: {
+              timeLeft: Math.max(
+                remaining,
+                0
+              ),
+            },
+          }));
 
-        if (remaining <= 0) {
-          clearTimer(ad.id);
+          if (remaining <= 0) {
+            clearTimer(ad.id);
 
-          setWatchingAds((previous) => {
-            const updated = { ...previous };
+            setWatchingAds((previous) => {
+              const updated = {
+                ...previous,
+              };
 
-            delete updated[ad.id];
+              delete updated[ad.id];
 
-            return updated;
-          });
+              return updated;
+            });
 
-          setCompletedAds((previous) => {
-            if (previous.includes(ad.id)) {
-              return previous;
-            }
+            setCompletedAds((previous) => {
+              if (
+                previous.includes(ad.id)
+              ) {
+                return previous;
+              }
 
-            return [...previous, ad.id];
-          });
+              return [
+                ...previous,
+                ad.id,
+              ];
+            });
 
-          setRewardEarned(ad);
-        }
-      }, 1000);
+            setRewardEarned(ad);
+          }
+        }, 1000);
     },
     [
       clearTimer,
@@ -95,32 +106,38 @@ function useAdWatch() {
 
   const isWatching = useCallback(
     (adId) => {
-      return Boolean(watchingAds[adId]);
+      return Boolean(
+        watchingAds[adId]
+      );
     },
     [watchingAds]
   );
 
   const isCompleted = useCallback(
     (adId) => {
-      return completedAds.includes(adId);
+      return completedAds.includes(
+        adId
+      );
     },
     [completedAds]
   );
 
   const getTimeLeft = useCallback(
     (adId) => {
-      return watchingAds[adId]?.timeLeft ?? 0;
+      return (
+        watchingAds[adId]?.timeLeft ?? 0
+      );
     },
     [watchingAds]
   );
 
   useEffect(() => {
     return () => {
-      Object.keys(timersRef.current).forEach(
-        (adId) => {
-          clearTimer(adId);
-        }
-      );
+      Object.keys(
+        timersRef.current
+      ).forEach((adId) => {
+        clearTimer(adId);
+      });
     };
   }, [clearTimer]);
 
