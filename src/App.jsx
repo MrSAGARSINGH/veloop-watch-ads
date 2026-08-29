@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 
 import usePersistentState from "./hooks/usePersistentState";
+import useDailyPersistentState from "./hooks/useDailyPersistentState";
 
 import Sidebar from "./components/layout/Sidebar";
 import Topbar from "./components/layout/Topbar";
@@ -60,25 +61,29 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   /* =========================
-     PERSISTENT USER DATA
+     DAILY USER DATA
   ========================= */
 
   const [todayEarnings, setTodayEarnings] =
-    usePersistentState(
+    useDailyPersistentState(
       "veloop_today_earnings",
       INITIAL_TODAY_EARNINGS
     );
+
+  const [adsWatchedToday, setAdsWatchedToday] =
+    useDailyPersistentState(
+      "veloop_ads_watched_today",
+      0
+    );
+
+  /* =========================
+     LIFETIME USER DATA
+  ========================= */
 
   const [lifetimeEarnings, setLifetimeEarnings] =
     usePersistentState(
       "veloop_lifetime_earnings",
       INITIAL_LIFETIME_EARNINGS
-    );
-
-  const [adsWatchedToday, setAdsWatchedToday] =
-    usePersistentState(
-      "veloop_ads_watched_today",
-      0
     );
 
   const [activities, setActivities] =
@@ -112,46 +117,49 @@ function App() {
      AD COMPLETION
   ========================= */
 
-  const handleAdCompleted = useCallback((ad) => {
-    if (!ad) return;
+  const handleAdCompleted = useCallback(
+    (ad) => {
+      if (!ad) return;
 
-    const reward = Number(ad.reward) || 0;
+      const reward = Number(ad.reward) || 0;
 
-    if (reward <= 0) return;
+      if (reward <= 0) return;
 
-    setTodayEarnings(
-      (previous) => previous + reward
-    );
+      setTodayEarnings(
+        (previous) => previous + reward
+      );
 
-    setLifetimeEarnings(
-      (previous) => previous + reward
-    );
+      setLifetimeEarnings(
+        (previous) => previous + reward
+      );
 
-    setAdsWatchedToday(
-      (previous) =>
-        Math.min(
-          previous + 1,
-          TOTAL_ADS
-        )
-    );
+      setAdsWatchedToday(
+        (previous) =>
+          Math.min(
+            previous + 1,
+            TOTAL_ADS
+          )
+      );
 
-    setActivities((previous) => [
-      {
-        id: `${ad.id}-${Date.now()}`,
-        title: `${ad.brand} — ${ad.title}`,
-        time: "Just now",
-        duration: `${ad.duration} sec`,
-        reward: `+${reward} VEs`,
-        status: "Completed",
-      },
-      ...previous,
-    ]);
-  }, [
-    setTodayEarnings,
-    setLifetimeEarnings,
-    setAdsWatchedToday,
-    setActivities,
-  ]);
+      setActivities((previous) => [
+        {
+          id: `${ad.id}-${Date.now()}`,
+          title: `${ad.brand} — ${ad.title}`,
+          time: "Just now",
+          duration: `${ad.duration} sec`,
+          reward: `+${reward} VEs`,
+          status: "Completed",
+        },
+        ...previous,
+      ]);
+    },
+    [
+      setTodayEarnings,
+      setLifetimeEarnings,
+      setAdsWatchedToday,
+      setActivities,
+    ]
+  );
 
   /* =========================
      DAILY BONUS

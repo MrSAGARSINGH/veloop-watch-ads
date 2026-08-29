@@ -1,30 +1,54 @@
 import { useEffect, useState } from "react";
 
-function usePersistentState(key, initialValue) {
+function getTodayKey() {
+  return new Date().toISOString().split("T")[0];
+}
+
+function useDailyPersistentState(key, initialValue) {
   const [state, setState] = useState(() => {
     try {
       const savedValue = localStorage.getItem(key);
 
-      if (savedValue !== null) {
-        return JSON.parse(savedValue);
+      if (!savedValue) {
+        return initialValue;
       }
 
-      return initialValue;
+      const parsedValue = JSON.parse(savedValue);
+      const today = getTodayKey();
+
+      if (parsedValue.date !== today) {
+        return initialValue;
+      }
+
+      return parsedValue.value;
     } catch (error) {
-      console.error(`Failed to load ${key}:`, error);
+      console.error(
+        `Failed to load daily ${key}:`,
+        error
+      );
+
       return initialValue;
     }
   });
 
   useEffect(() => {
     try {
-      localStorage.setItem(key, JSON.stringify(state));
+      localStorage.setItem(
+        key,
+        JSON.stringify({
+          date: getTodayKey(),
+          value: state,
+        })
+      );
     } catch (error) {
-      console.error(`Failed to save ${key}:`, error);
+      console.error(
+        `Failed to save daily ${key}:`,
+        error
+      );
     }
   }, [key, state]);
 
   return [state, setState];
 }
 
-export default usePersistentState;
+export default useDailyPersistentState;
