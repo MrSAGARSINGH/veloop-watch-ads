@@ -942,3 +942,354 @@
 
   transition: width 300ms linear;
 }
+
+/* =========================
+   SORT CONTROLS
+========================= */
+
+.adSectionControls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.adSort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adSort span {
+  color: #707692;
+  font-size: 11px;
+}
+
+.adSort select {
+  height: 36px;
+  padding: 0 30px 0 12px;
+
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: #d8daE8;
+
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.adSort select:hover,
+.adSort select:focus {
+  border-color: rgba(139, 92, 246, 0.45);
+  background: rgba(139, 92, 246, 0.07);
+}
+
+.adSort option {
+  background: #101323;
+  color: #fff;
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+.detailsToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-top: 12px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #858ba8;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.detailsToggle:hover {
+  color: #a78bfa;
+}
+
+.detailsChevron {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.detailsChevron.open {
+  transform: rotate(180deg);
+  color: #a78bfa;
+}
+
+.adDetails {
+  display: grid;
+  gap: 8px;
+
+  margin-top: 12px;
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  animation: detailsReveal 0.25s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  font-size: 10px;
+}
+
+.detailRow span {
+  color: #686e89;
+}
+
+.detailRow strong {
+  color: #d9dbea;
+  font-weight: 600;
+}
+
+@keyframes detailsReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .adSectionControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .adSort {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .adSort select {
+    max-width: 155px;
+  }
+}
+
+@media (max-width: 520px) {
+  .adSectionControls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .adSort {
+    justify-content: space-between;
+  }
+
+  .adSort select {
+    flex: 1;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adDetails {
+    animation: none;
+  }
+
+  .detailsChevron {
+    transition: none;
+  }
+}
+
+/* =========================
+   REFRESH BUTTON
+========================= */
+
+.adRefreshButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  height: 36px;
+  padding: 0 12px;
+
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: #858ba8;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.adRefreshButton:hover:not(:disabled) {
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.42);
+  background: rgba(139, 92, 246, 0.07);
+}
+
+.adRefreshButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.adRefreshButton.refreshing svg {
+  animation: refreshSpin 0.8s linear infinite;
+}
+
+@keyframes refreshSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   SKELETON
+========================= */
+
+.adSkeleton {
+  min-height: 500px;
+  padding: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.adSkeleton > div {
+  background: rgba(255, 255, 255, 0.06);
+
+  animation:
+    skeletonPulse 1.2s
+    ease-in-out infinite;
+}
+
+.skeletonTop {
+  width: 55%;
+  height: 20px;
+
+  border-radius: 8px;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 170px;
+
+  margin-top: 22px;
+
+  border-radius: 16px;
+}
+
+.skeletonLine {
+  width: 65%;
+  height: 12px;
+
+  margin-top: 22px;
+
+  border-radius: 6px;
+}
+
+.skeletonLine.large {
+  width: 82%;
+  height: 18px;
+
+  margin-top: 24px;
+}
+
+.skeletonLine.small {
+  width: 45%;
+}
+
+.skeletonButton {
+  width: 100%;
+  height: 46px;
+
+  margin-top: 30px;
+
+  border-radius: 12px;
+}
+
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .adSectionControls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .adRefreshButton {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .adSectionControls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .adRefreshButton {
+    width: 100%;
+  }
+
+  .adSkeleton {
+    min-height: 460px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adRefreshButton.refreshing svg,
+  .adSkeleton > div {
+    animation: none;
+  }
+}

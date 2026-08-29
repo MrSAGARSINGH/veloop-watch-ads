@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+
 import {
   Clock3,
   Play,
@@ -7,6 +8,8 @@ import {
   Zap,
   LoaderCircle,
   CircleCheck,
+  ChevronDown,
+  RefreshCw,
 } from "lucide-react";
 
 import ads from "../../data/ads";
@@ -22,6 +25,16 @@ function AdSection({ onAdCompleted }) {
     isCompleted,
     getTimeLeft,
   } = useAdWatch();
+
+  const [sortBy, setSortBy] = useState(
+    "recommended"
+  );
+
+  const [expandedAd, setExpandedAd] =
+    useState(null);
+
+  const [refreshing, setRefreshing] =
+    useState(false);
 
   /*
    * Notify App when an advertisement
@@ -42,6 +55,61 @@ function AdSection({ onAdCompleted }) {
   const availableAds = ads.filter(
     (ad) => !isCompleted(ad.id)
   );
+
+  /*
+   * Sort advertisements.
+   */
+  const sortedAds = useMemo(() => {
+    const result = [...availableAds];
+
+    if (sortBy === "highestReward") {
+      return result.sort(
+        (a, b) =>
+          Number(b.reward) -
+          Number(a.reward)
+      );
+    }
+
+    if (sortBy === "shortest") {
+      return result.sort(
+        (a, b) =>
+          Number(a.duration) -
+          Number(b.duration)
+      );
+    }
+
+    return result;
+  }, [availableAds, sortBy]);
+
+  /*
+   * Expand / collapse details.
+   */
+  const toggleDetails = (adId) => {
+    setExpandedAd((previous) =>
+      previous === adId
+        ? null
+        : adId
+    );
+  };
+
+  /*
+   * Refresh advertisements.
+   *
+   * Since this is a frontend-only assignment,
+   * refresh simulates a short loading state.
+   */
+  const handleRefresh = () => {
+    if (refreshing) {
+      return;
+    }
+
+    setExpandedAd(null);
+    setRefreshing(true);
+
+    window.setTimeout(() => {
+      setRefreshing(false);
+    }, 700);
+  };
 
   return (
     <section
@@ -66,19 +134,74 @@ function AdSection({ onAdCompleted }) {
           <h2>Watch & earn</h2>
 
           <p>
-            Choose an advertisement, watch it completely
-            and collect your VEs instantly.
+            Choose an advertisement, watch it
+            completely and collect your VEs
+            instantly.
           </p>
         </div>
 
-        <div className="adCount">
-          <strong>{availableAds.length}</strong>
+        <div className="adSectionControls">
 
-          <span>
-            {availableAds.length === 1
-              ? "ad available"
-              : "ads available"}
-          </span>
+          <div className="adCount">
+            <strong>
+              {availableAds.length}
+            </strong>
+
+            <span>
+              {availableAds.length === 1
+                ? "ad available"
+                : "ads available"}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className={`adRefreshButton ${
+              refreshing
+                ? "refreshing"
+                : ""
+            }`}
+            onClick={handleRefresh}
+            disabled={refreshing}
+            aria-label="Refresh advertisements"
+          >
+            <RefreshCw size={14} />
+
+            <span>
+              {refreshing
+                ? "Refreshing..."
+                : "Refresh"}
+            </span>
+          </button>
+
+          {availableAds.length > 1 && (
+            <label className="adSort">
+              <span>Sort by</span>
+
+              <select
+                value={sortBy}
+                onChange={(event) =>
+                  setSortBy(
+                    event.target.value
+                  )
+                }
+                aria-label="Sort advertisements"
+              >
+                <option value="recommended">
+                  Recommended
+                </option>
+
+                <option value="highestReward">
+                  Highest Reward
+                </option>
+
+                <option value="shortest">
+                  Shortest Duration
+                </option>
+              </select>
+            </label>
+          )}
+
         </div>
       </div>
 
@@ -86,7 +209,7 @@ function AdSection({ onAdCompleted }) {
           REWARD SUCCESS
       ========================= */}
 
-      {rewardEarned && (
+      {rewardEarned && !refreshing && (
         <div
           className="rewardSuccess"
           role="status"
@@ -102,7 +225,8 @@ function AdSection({ onAdCompleted }) {
             </strong>
 
             <span>
-              +{rewardEarned.reward} VEs added to your balance
+              +{rewardEarned.reward} VEs
+              added to your balance
             </span>
           </div>
 
@@ -126,66 +250,132 @@ function AdSection({ onAdCompleted }) {
             <CheckCircle2 size={28} />
           </div>
 
-          <h3>All ads completed</h3>
+          <h3>
+            All ads completed
+          </h3>
 
           <p>
-            You've watched all available advertisements
-            for now. Check back later for new
-            opportunities.
+            You've watched all available
+            advertisements for now. Check
+            back later for new opportunities.
           </p>
         </div>
+      ) : refreshing ? (
+
+        /* =========================
+           SKELETON LOADING
+        ========================= */
+
+        <div
+          className="adsGrid"
+          aria-label="Loading advertisements"
+        >
+          {[1, 2, 3, 4, 5, 6].map(
+            (item) => (
+              <div
+                className="adSkeleton"
+                key={item}
+                aria-hidden="true"
+              >
+                <div className="skeletonTop" />
+
+                <div className="skeletonImage" />
+
+                <div className="skeletonLine large" />
+
+                <div className="skeletonLine" />
+
+                <div className="skeletonLine small" />
+
+                <div className="skeletonButton" />
+              </div>
+            )
+          )}
+        </div>
+
       ) : (
+
+        /* =========================
+           ADS
+        ========================= */
+
         <div className="adsGrid">
-          {availableAds.map((ad) => {
-            const watching = isWatching(ad.id);
-            const completed = isCompleted(ad.id);
-            const timeLeft = getTimeLeft(ad.id);
+
+          {sortedAds.map((ad) => {
+            const watching =
+              isWatching(ad.id);
+
+            const completed =
+              isCompleted(ad.id);
+
+            const timeLeft =
+              getTimeLeft(ad.id);
+
+            const isExpanded =
+              expandedAd === ad.id;
 
             const duration = Math.max(
               Number(ad.duration) || 1,
               1
             );
 
-            const watchProgress = watching
-              ? Math.min(
-                  Math.max(
-                    ((duration - timeLeft) /
-                      duration) *
-                      100,
-                    0
-                  ),
-                  100
-                )
-              : 0;
+            const watchProgress =
+              watching
+                ? Math.min(
+                    Math.max(
+                      ((duration -
+                        timeLeft) /
+                        duration) *
+                        100,
+                      0
+                    ),
+                    100
+                  )
+                : 0;
 
             return (
               <article
-                className={`adCard ${ad.accent} ${
-                  completed ? "completed" : ""
+                className={`adCard ${
+                  ad.accent
+                } ${
+                  completed
+                    ? "completed"
+                    : ""
+                } ${
+                  isExpanded
+                    ? "detailsExpanded"
+                    : ""
                 }`}
                 key={ad.id}
               >
                 <div className="cardGlow" />
 
-                {/* =========================
-                    TOP
-                ========================= */}
+                {/* TOP */}
 
                 <div className="adCardTop">
                   <div className="brandInfo">
+
                     <div className="brandIcon">
                       {ad.icon}
                     </div>
 
                     <div>
-                      <strong>{ad.brand}</strong>
-                      <span>{ad.category}</span>
+                      <strong>
+                        {ad.brand}
+                      </strong>
+
+                      <span>
+                        {ad.category}
+                      </span>
                     </div>
+
                   </div>
 
                   <div
                     className={`availableBadge ${
-                      completed ? "done" : ""
+                      completed
+                        ? "done"
+                        : ""
                     }`}
                   >
                     <span />
@@ -198,11 +388,10 @@ function AdSection({ onAdCompleted }) {
                   </div>
                 </div>
 
-                {/* =========================
-                    ILLUSTRATION
-                ========================= */}
+                {/* ILLUSTRATION */}
 
                 <div className="adIllustration">
+
                   <div className="illustrationOrb" />
 
                   <div className="illustrationIcon">
@@ -212,7 +401,9 @@ function AdSection({ onAdCompleted }) {
                         className="loadingIcon"
                       />
                     ) : completed ? (
-                      <CheckCircle2 size={31} />
+                      <CheckCircle2
+                        size={31}
+                      />
                     ) : (
                       ad.icon
                     )}
@@ -222,14 +413,15 @@ function AdSection({ onAdCompleted }) {
                     <Zap size={12} />
                     +{ad.reward} VEs
                   </div>
+
                 </div>
 
-                {/* =========================
-                    CONTENT
-                ========================= */}
+                {/* CONTENT */}
 
                 <div className="adCardContent">
+
                   <div className="adMeta">
+
                     <span>
                       <Clock3 size={12} />
                       {ad.duration} sec
@@ -239,53 +431,137 @@ function AdSection({ onAdCompleted }) {
                       <Sparkles size={12} />
                       +{ad.reward} VEs
                     </span>
+
                   </div>
 
-                  <h3>{ad.title}</h3>
+                  <h3>
+                    {ad.title}
+                  </h3>
 
-                  <p>{ad.description}</p>
+                  <p>
+                    {ad.description}
+                  </p>
+
+                  {/* DETAILS */}
+
+                  <button
+                    type="button"
+                    className="detailsToggle"
+                    onClick={() =>
+                      toggleDetails(
+                        ad.id
+                      )
+                    }
+                    aria-expanded={
+                      isExpanded
+                    }
+                  >
+                    <span>
+                      {isExpanded
+                        ? "Hide Details"
+                        : "View Details"}
+                    </span>
+
+                    <ChevronDown
+                      size={15}
+                      className={
+                        isExpanded
+                          ? "detailsChevron open"
+                          : "detailsChevron"
+                      }
+                    />
+                  </button>
+
+                  {isExpanded && (
+                    <div className="adDetails">
+
+                      <div className="detailRow">
+                        <span>
+                          Campaign
+                        </span>
+
+                        <strong>
+                          {ad.category}
+                        </strong>
+                      </div>
+
+                      <div className="detailRow">
+                        <span>
+                          Watch time
+                        </span>
+
+                        <strong>
+                          {ad.duration} sec
+                        </strong>
+                      </div>
+
+                      <div className="detailRow">
+                        <span>
+                          Reward
+                        </span>
+
+                        <strong>
+                          +{ad.reward} VEs
+                        </strong>
+                      </div>
+
+                    </div>
+                  )}
 
                   {/* WATCH PROGRESS */}
 
                   {watching && (
                     <div className="adWatchProgress">
+
                       <div className="watchProgressTop">
+
                         <span>
-                          Watching advertisement
+                          Watching
+                          advertisement
                         </span>
 
                         <strong>
                           {timeLeft}s
                         </strong>
+
                       </div>
 
                       <div className="watchProgressTrack">
+
                         <div
                           className="watchProgressFill"
                           style={{
                             width: `${watchProgress}%`,
                           }}
                         />
+
                       </div>
+
                     </div>
                   )}
+
                 </div>
 
-                {/* =========================
-                    ACTION
-                ========================= */}
+                {/* ACTION */}
 
                 <button
                   type="button"
                   className={`watchButton ${
-                    watching ? "watching" : ""
+                    watching
+                      ? "watching"
+                      : ""
                   } ${
                     completed
                       ? "completedButton"
                       : ""
                   }`}
-                  onClick={() => startWatching(ad)}
-                  disabled={watching || completed}
+                  onClick={() =>
+                    startWatching(ad)
+                  }
+                  disabled={
+                    watching ||
+                    completed
+                  }
                   aria-label={
                     completed
                       ? `${ad.title} completed`
@@ -294,6 +570,7 @@ function AdSection({ onAdCompleted }) {
                         : `Watch ${ad.title}`
                   }
                 >
+
                   {watching ? (
                     <>
                       <span className="watchIcon">
@@ -304,7 +581,8 @@ function AdSection({ onAdCompleted }) {
                       </span>
 
                       <span>
-                        Watching Advertisement...
+                        Watching
+                        Advertisement...
                       </span>
 
                       <span className="buttonReward">
@@ -314,11 +592,14 @@ function AdSection({ onAdCompleted }) {
                   ) : completed ? (
                     <>
                       <span className="watchIcon">
-                        <CheckCircle2 size={14} />
+                        <CheckCircle2
+                          size={14}
+                        />
                       </span>
 
                       <span>
-                        Advertisement Completed
+                        Advertisement
+                        Completed
                       </span>
                     </>
                   ) : (
@@ -339,37 +620,48 @@ function AdSection({ onAdCompleted }) {
                       </span>
                     </>
                   )}
+
                 </button>
 
-                {/* =========================
-                    FOOTER
-                ========================= */}
+                {/* FOOTER */}
 
                 <div className="adCardFooter">
                   <span>
+
                     {completed ? (
                       <>
-                        <CheckCircle2 size={11} />
+                        <CheckCircle2
+                          size={11}
+                        />
                         Reward received
                       </>
                     ) : watching ? (
                       <>
-                        <Clock3 size={11} />
+                        <Clock3
+                          size={11}
+                        />
                         Please keep watching
                       </>
                     ) : (
                       <>
-                        <CheckCircle2 size={11} />
-                        Reward after completion
+                        <CheckCircle2
+                          size={11}
+                        />
+                        Reward after
+                        completion
                       </>
                     )}
+
                   </span>
                 </div>
+
               </article>
             );
           })}
+
         </div>
       )}
+
     </section>
   );
 }
