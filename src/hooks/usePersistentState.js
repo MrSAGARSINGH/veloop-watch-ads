@@ -1,35 +1,18 @@
 import { useEffect, useState } from "react";
 
-function getTodayKey() {
-  const now = new Date();
-
-  return `${now.getFullYear()}-${String(
-    now.getMonth() + 1
-  ).padStart(2, "0")}-${String(
-    now.getDate()
-  ).padStart(2, "0")}`;
-}
-
-function useDailyPersistentState(key, initialValue) {
+function usePersistentState(key, initialValue) {
   const [state, setState] = useState(() => {
     try {
       const savedValue = localStorage.getItem(key);
 
-      if (!savedValue) {
-        return initialValue;
+      if (savedValue !== null) {
+        return JSON.parse(savedValue);
       }
 
-      const parsedValue = JSON.parse(savedValue);
-      const today = getTodayKey();
-
-      if (parsedValue.date !== today) {
-        return initialValue;
-      }
-
-      return parsedValue.value;
+      return initialValue;
     } catch (error) {
       console.error(
-        `Failed to load daily ${key}:`,
+        `Failed to load ${key} from localStorage:`,
         error
       );
 
@@ -41,14 +24,11 @@ function useDailyPersistentState(key, initialValue) {
     try {
       localStorage.setItem(
         key,
-        JSON.stringify({
-          date: getTodayKey(),
-          value: state,
-        })
+        JSON.stringify(state)
       );
     } catch (error) {
       console.error(
-        `Failed to save daily ${key}:`,
+        `Failed to save ${key} to localStorage:`,
         error
       );
     }
@@ -57,4 +37,4 @@ function useDailyPersistentState(key, initialValue) {
   return [state, setState];
 }
 
-export default useDailyPersistentState;
+export default usePersistentState;
