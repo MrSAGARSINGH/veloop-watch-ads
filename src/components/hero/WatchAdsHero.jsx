@@ -18,57 +18,49 @@ function WatchAdsHero({
   remainingAds = 6,
   dailyGoal = DEFAULT_DAILY_GOAL,
 }) {
-  const safeTodayEarnings = Math.max(
-    0,
-    Number(todayEarnings) || 0
-  );
-
-  const safeLifetimeEarnings = Math.max(
-    0,
-    Number(lifetimeEarnings) || 0
-  );
-
-  const safeAdsWatched = Math.max(
-    0,
-    Number(adsWatchedToday) || 0
-  );
-
-  const safeRemainingAds = Math.max(
-    0,
-    Number(remainingAds) || 0
-  );
-
-  const safeDailyGoal = Math.max(
-    1,
-    Number(dailyGoal) || DEFAULT_DAILY_GOAL
-  );
-
-  const goalPercentage = Math.min(
-    Math.round(
-      (safeTodayEarnings / safeDailyGoal) * 100
-    ),
-    100
-  );
-
-  const remainingGoal = Math.max(
-    safeDailyGoal - safeTodayEarnings,
+  const today = Math.max(Number(todayEarnings) || 0, 0);
+  const lifetime = Math.max(
+    Number(lifetimeEarnings) || 0,
     0
   );
 
-  /*
-   * Potential earning is based on the remaining
-   * amount required to reach today's goal.
-   */
-  const potentialToday =
-    safeRemainingAds > 0
-      ? remainingGoal
-      : 0;
+  const watched = Math.max(
+    Number(adsWatchedToday) || 0,
+    0
+  );
+
+  const available = Math.max(
+    Number(remainingAds) || 0,
+    0
+  );
+
+  const goal = Math.max(
+    Number(dailyGoal) || DEFAULT_DAILY_GOAL,
+    1
+  );
+
+  const percentage = Math.min(
+    Math.round((today / goal) * 100),
+    100
+  );
+
+  const remaining = Math.max(
+    goal - today,
+    0
+  );
+
+  const potential = available > 0
+    ? remaining
+    : 0;
+
+  const goalReached = today >= goal;
 
   return (
     <section
       className="watchHero"
       aria-labelledby="watch-hero-title"
     >
+      {/* Ambient background */}
       <div
         className="heroGlow heroGlowOne"
         aria-hidden="true"
@@ -79,22 +71,25 @@ function WatchAdsHero({
         aria-hidden="true"
       />
 
-      {/* =========================
-          HERO CONTENT
-      ========================= */}
+      <div
+        className="heroGridLines"
+        aria-hidden="true"
+      />
+
+      {/* =================================================
+          LEFT CONTENT
+      ================================================= */}
 
       <div className="heroContent">
+
         <div className="heroBadge">
-          <span
-            className="liveDot"
-            aria-hidden="true"
-          />
+          <span className="liveDot" />
 
           <span>EARNING CENTER</span>
 
           <Sparkles
             size={13}
-            aria-hidden="true"
+            strokeWidth={1.8}
           />
         </div>
 
@@ -110,16 +105,12 @@ function WatchAdsHero({
           VEs and grow your daily earnings.
         </p>
 
-        {/* =========================
-            QUICK STATS
-        ========================= */}
+        {/* Quick stats */}
 
         <div className="heroQuickStats">
+
           <div className="quickStat">
-            <div
-              className="quickStatIcon purple"
-              aria-hidden="true"
-            >
+            <div className="quickStatIcon purple">
               <CircleDollarSign size={17} />
             </div>
 
@@ -127,21 +118,15 @@ function WatchAdsHero({
               <span>Total Earned</span>
 
               <strong>
-                {safeLifetimeEarnings.toLocaleString()} VEs
+                {lifetime.toLocaleString()} VEs
               </strong>
             </div>
           </div>
 
-          <div
-            className="quickStatDivider"
-            aria-hidden="true"
-          />
+          <div className="quickStatDivider" />
 
           <div className="quickStat">
-            <div
-              className="quickStatIcon green"
-              aria-hidden="true"
-            >
+            <div className="quickStatIcon green">
               <TrendingUp size={17} />
             </div>
 
@@ -149,21 +134,15 @@ function WatchAdsHero({
               <span>Today</span>
 
               <strong>
-                +{safeTodayEarnings.toLocaleString()} VEs
+                +{today.toLocaleString()} VEs
               </strong>
             </div>
           </div>
 
-          <div
-            className="quickStatDivider"
-            aria-hidden="true"
-          />
+          <div className="quickStatDivider" />
 
           <div className="quickStat">
-            <div
-              className="quickStatIcon blue"
-              aria-hidden="true"
-            >
+            <div className="quickStatIcon blue">
               <Play size={17} />
             </div>
 
@@ -171,103 +150,105 @@ function WatchAdsHero({
               <span>Available</span>
 
               <strong>
-                {safeRemainingAds}{" "}
-                {safeRemainingAds === 1
-                  ? "Ad"
-                  : "Ads"}
+                {available}{" "}
+                {available === 1 ? "Ad" : "Ads"}
               </strong>
             </div>
           </div>
+
         </div>
 
-        {/* =========================
-            DAILY PROGRESS
-        ========================= */}
+        {/* Daily progress */}
 
         <div className="heroProgress">
+
           <div className="progressHeader">
+
             <div>
               <span>
                 Today's earning goal
               </span>
 
               <strong>
-                {safeTodayEarnings.toLocaleString()} /{" "}
-                {safeDailyGoal.toLocaleString()} VEs
+                {today.toLocaleString()} /{" "}
+                {goal.toLocaleString()} VEs
               </strong>
             </div>
 
             <span className="progressPercent">
-              {goalPercentage}%
+              {percentage}%
             </span>
+
           </div>
 
           <div
             className="progressTrack"
             role="progressbar"
-            aria-valuenow={Math.min(
-              safeTodayEarnings,
-              safeDailyGoal
-            )}
             aria-valuemin={0}
-            aria-valuemax={safeDailyGoal}
-            aria-valuetext={`${goalPercentage}% of today's earning goal completed`}
+            aria-valuemax={goal}
+            aria-valuenow={Math.min(today, goal)}
             aria-label="Today's earning goal"
           >
             <div
               className="progressFill"
               style={{
-                width: `${goalPercentage}%`,
+                width: `${percentage}%`,
               }}
             >
-              <span
-                className="progressShine"
-                aria-hidden="true"
-              />
+              <span className="progressShine" />
             </div>
           </div>
 
           <div className="progressFooter">
+
             <span>
-              {remainingGoal === 0
+              {goalReached
                 ? "Daily goal reached 🎉"
-                : `${remainingGoal.toLocaleString()} VEs remaining`}
+                : `${remaining.toLocaleString()} VEs remaining`}
             </span>
 
             <span>
-              {remainingGoal === 0
+              {goalReached
                 ? "Bonus reward unlocked"
                 : "Keep watching to unlock bonus rewards"}
             </span>
+
           </div>
+
         </div>
       </div>
 
-      {/* =========================
-          HERO VISUAL
-      ========================= */}
+      {/* =================================================
+          RIGHT VISUAL
+      ================================================= */}
 
       <div
         className="heroVisual"
         aria-hidden="true"
       >
+
         <div className="visualOrb orbOne" />
         <div className="visualOrb orbTwo" />
+
+        {/* Reward chip */}
 
         <div className="floatingReward rewardOne">
           <Zap size={14} />
           <span>+38 VEs</span>
         </div>
 
-        <div className="floatingReward rewardTwo">
-          <TrendingUp size={14} />
-          <span>+20 VEs</span>
-        </div>
+        {/* Main ad card */}
 
         <div className="adVisual">
+
+          <div className="adTopLabel">
+            <span>AD • 30 SEC</span>
+          </div>
+
           <div className="adVisualGlow" />
 
           <div className="playRing">
+
             <div className="playCircle">
               <Play
                 size={30}
@@ -275,6 +256,7 @@ function WatchAdsHero({
                 strokeWidth={0}
               />
             </div>
+
           </div>
 
           <div className="adVisualLines">
@@ -285,11 +267,25 @@ function WatchAdsHero({
 
           <div className="adVisualLabel">
             <span>READY TO EARN</span>
-            <strong>WATCH &amp; REWARD</strong>
+
+            <strong>
+              WATCH &amp; REWARD
+            </strong>
           </div>
+
         </div>
 
+        {/* Second reward */}
+
+        <div className="floatingReward rewardTwo">
+          <TrendingUp size={14} />
+          <span>+20 VEs</span>
+        </div>
+
+        {/* Potential earning */}
+
         <div className="heroFloatingCard">
+
           <div className="floatingCardIcon">
             <Zap size={16} />
           </div>
@@ -298,12 +294,14 @@ function WatchAdsHero({
             <span>Potential today</span>
 
             <strong>
-              +{potentialToday.toLocaleString()} VEs
+              +{potential.toLocaleString()} VEs
             </strong>
           </div>
 
           <ArrowUpRight size={17} />
+
         </div>
+
       </div>
     </section>
   );

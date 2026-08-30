@@ -1,164 +1,299 @@
+/* =========================================================
+   VELOOP — WATCH ADS HERO
+========================================================= */
+
 .watchHero {
   position: relative;
 
   width: 100%;
-  min-width: 0;
-  min-height: 410px;
+  min-height: 500px;
 
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(320px, 0.92fr);
+
   align-items: center;
+
+  padding: 52px 54px;
 
   overflow: hidden;
 
-  padding: 42px 44px;
+  border: 1px solid
+    rgba(139, 92, 246, 0.2);
 
-  border: 1px solid rgba(139, 92, 246, 0.16);
-  border-radius: 28px;
+  border-radius: 30px;
 
   background:
     radial-gradient(
-      circle at 80% 35%,
+      circle at 78% 15%,
       rgba(124, 58, 237, 0.2),
-      transparent 28%
+      transparent 30%
     ),
     radial-gradient(
-      circle at 65% 90%,
+      circle at 65% 100%,
       rgba(34, 211, 238, 0.08),
-      transparent 28%
+      transparent 32%
     ),
     linear-gradient(
       135deg,
       #0d1430 0%,
       #0a1028 48%,
-      #080b1e 100%
+      #070a19 100%
     );
 
   box-shadow:
-    0 20px 70px rgba(0, 0, 0, 0.28);
+    0 30px 90px rgba(0, 0, 0, 0.3),
+    inset 0 1px
+      rgba(255, 255, 255, 0.04);
 
   isolation: isolate;
 }
 
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
 .heroGlow {
   position: absolute;
+
   border-radius: 50%;
+
   pointer-events: none;
-  filter: blur(10px);
-  z-index: -1;
+
+  filter: blur(8px);
+
+  z-index: -2;
 }
 
 .heroGlowOne {
-  width: 320px;
-  height: 320px;
-  top: -190px;
+  width: 420px;
+  height: 420px;
+
+  top: -260px;
   left: 20%;
-  background: rgba(124, 58, 237, 0.13);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.22),
+      transparent 70%
+    );
+
+  animation:
+    heroGlowMove
+    9s
+    ease-in-out
+    infinite;
 }
 
 .heroGlowTwo {
-  width: 260px;
-  height: 260px;
-  right: 5%;
-  bottom: -170px;
-  background: rgba(34, 211, 238, 0.08);
+  width: 360px;
+  height: 360px;
+
+  right: -100px;
+  bottom: -220px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(34, 211, 238, 0.09),
+      transparent 70%
+    );
+
+  animation:
+    heroGlowMoveTwo
+    11s
+    ease-in-out
+    infinite;
 }
 
-/* =========================
+.heroGridLines {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(
+      rgba(139, 92, 246, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    70px 70px;
+
+  mask-image:
+    linear-gradient(
+      to right,
+      black,
+      transparent 82%
+    );
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* =========================================================
    CONTENT
-========================= */
+========================================================= */
 
 .heroContent {
   position: relative;
-  z-index: 2;
+
+  z-index: 4;
 
   width: 100%;
+  max-width: 690px;
+
   min-width: 0;
-  max-width: 680px;
 }
+
+/* =========================================================
+   BADGE
+========================================================= */
 
 .heroBadge {
   width: fit-content;
-  max-width: 100%;
 
   display: inline-flex;
   align-items: center;
-  gap: 7px;
 
-  padding: 7px 11px;
+  gap: 8px;
 
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 8px 13px;
+
+  border: 1px solid
+    rgba(139, 92, 246, 0.25);
+
   border-radius: 999px;
 
-  background: rgba(124, 58, 237, 0.09);
+  background:
+    rgba(139, 92, 246, 0.08);
 
   color: #bca9ff;
 
   font-size: 9px;
-  font-weight: 750;
-  letter-spacing: 1.4px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  box-shadow:
+    inset 0 1px
+      rgba(255, 255, 255, 0.04);
+
+  animation:
+    heroReveal
+    0.7s
+    ease
+    both;
 }
 
 .liveDot {
   width: 6px;
   height: 6px;
-  flex: 0 0 6px;
 
   border-radius: 50%;
 
   background: #34d399;
 
   box-shadow:
-    0 0 9px rgba(52, 211, 153, 0.8);
+    0 0 12px
+      rgba(52, 211, 153, 0.9);
 
-  animation: livePulse 2s ease-in-out infinite;
+  animation:
+    livePulse
+    2s
+    ease-in-out
+    infinite;
 }
 
+/* =========================================================
+   TITLE
+========================================================= */
+
 .heroContent h1 {
-  margin: 19px 0 12px;
+  margin: 22px 0 15px;
 
-  max-width: 100%;
+  color: #fff;
 
-  color: #ffffff;
+  font-size:
+    clamp(43px, 4.4vw, 64px);
 
-  font-size: clamp(38px, 4vw, 61px);
-  font-weight: 850;
-  line-height: 0.99;
-  letter-spacing: -2.8px;
+  font-weight: 900;
 
-  overflow-wrap: break-word;
+  line-height: 0.98;
+
+  letter-spacing: -3.5px;
+
+  animation:
+    heroReveal
+    0.8s
+    0.08s
+    ease
+    both;
 }
 
 .heroContent h1 span {
+  display: inline-block;
+
   background:
     linear-gradient(
       100deg,
-      #a78bfa 5%,
-      #8b5cf6 45%,
-      #22d3ee 100%
+      #b9a0ff,
+      #8b5cf6 42%,
+      #6366f1 68%,
+      #22d3ee
     );
+
+  background-size: 200% 100%;
 
   -webkit-background-clip: text;
   background-clip: text;
 
   color: transparent;
+
+  animation:
+    gradientMove
+    5s
+    ease-in-out
+    infinite;
 }
 
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
 .heroDescription {
-  width: 100%;
-  max-width: 520px;
+  max-width: 570px;
 
   margin: 0;
 
   color: #8995b0;
 
   font-size: 13px;
-  line-height: 1.7;
+
+  line-height: 1.75;
+
+  animation:
+    heroReveal
+    0.8s
+    0.16s
+    ease
+    both;
 }
 
-/* =========================
+/* =========================================================
    QUICK STATS
-========================= */
+========================================================= */
 
 .heroQuickStats {
   width: fit-content;
@@ -168,135 +303,159 @@
   align-items: center;
 
   margin-top: 28px;
+
   padding: 10px 13px;
 
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 15px;
+  border: 1px solid
+    rgba(255, 255, 255, 0.075);
 
-  background: rgba(255, 255, 255, 0.035);
+  border-radius: 16px;
 
-  backdrop-filter: blur(12px);
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 18px 50px
+      rgba(0, 0, 0, 0.18);
+
+  animation:
+    heroReveal
+    0.85s
+    0.24s
+    ease
+    both;
 }
 
 .quickStat {
-  min-width: 0;
-
   display: flex;
   align-items: center;
-  gap: 8px;
 
-  padding: 0 9px;
+  gap: 9px;
+
+  padding: 0 10px;
 }
 
 .quickStatIcon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
+  width: 34px;
+  height: 34px;
 
   display: grid;
   place-items: center;
 
-  border-radius: 9px;
+  border-radius: 10px;
 }
 
 .quickStatIcon.purple {
-  background: rgba(139, 92, 246, 0.12);
   color: #a78bfa;
+
+  background:
+    rgba(139, 92, 246, 0.13);
 }
 
 .quickStatIcon.green {
-  background: rgba(34, 197, 94, 0.1);
   color: #4ade80;
+
+  background:
+    rgba(34, 197, 94, 0.1);
 }
 
 .quickStatIcon.blue {
-  background: rgba(59, 130, 246, 0.11);
   color: #60a5fa;
+
+  background:
+    rgba(59, 130, 246, 0.1);
 }
 
 .quickStat div:last-child {
-  min-width: 0;
-
   display: flex;
   flex-direction: column;
 }
 
 .quickStat span {
   color: #68748f;
+
   font-size: 8px;
-  white-space: nowrap;
 }
 
 .quickStat strong {
-  margin-top: 2px;
+  margin-top: 3px;
 
   color: #f4f6fb;
 
   font-size: 11px;
-  font-weight: 700;
+
+  font-weight: 750;
 
   white-space: nowrap;
 }
 
 .quickStatDivider {
   width: 1px;
-  height: 28px;
-  flex: 0 0 1px;
+  height: 29px;
 
-  background: rgba(255, 255, 255, 0.07);
+  background:
+    rgba(255, 255, 255, 0.08);
 }
 
-/* =========================
+/* =========================================================
    PROGRESS
-========================= */
+========================================================= */
 
 .heroProgress {
   width: 100%;
-  max-width: 530px;
+  max-width: 540px;
 
-  margin-top: 24px;
+  margin-top: 25px;
+
+  animation:
+    heroReveal
+    0.85s
+    0.32s
+    ease
+    both;
 }
 
 .progressHeader {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
 
-  gap: 10px;
+  align-items: flex-end;
+
+  justify-content: space-between;
 }
 
 .progressHeader div {
-  min-width: 0;
-
   display: flex;
   flex-direction: column;
 }
 
 .progressHeader span:first-child {
   color: #7f8aa4;
+
   font-size: 9px;
 }
 
 .progressHeader strong {
-  margin-top: 3px;
+  margin-top: 4px;
 
-  color: #ffffff;
+  color: #fff;
+
   font-size: 13px;
 }
 
 .progressPercent {
-  flex: 0 0 auto;
-
   color: #a78bfa;
-  font-size: 12px;
-  font-weight: 800;
+
+  font-size: 13px;
+
+  font-weight: 850;
 }
 
 .progressTrack {
-  position: relative;
-
   width: 100%;
-  height: 7px;
+  height: 8px;
 
   margin-top: 10px;
 
@@ -304,16 +463,18 @@
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.07);
+  background:
+    rgba(255, 255, 255, 0.08);
 }
+
+/* IMPORTANT:
+   JSX controls width dynamically.
+*/
 
 .progressFill {
   position: relative;
 
-  width: 48%;
   height: 100%;
-
-  overflow: hidden;
 
   border-radius: inherit;
 
@@ -321,220 +482,334 @@
     linear-gradient(
       90deg,
       #6d28d9,
-      #8b5cf6,
+      #8b5cf6 42%,
+      #6366f1 70%,
       #22d3ee
     );
 
   box-shadow:
-    0 0 18px rgba(124, 58, 237, 0.35);
+    0 0 20px
+      rgba(124, 58, 237, 0.4);
+
+  transition:
+    width 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .progressShine {
   position: absolute;
 
   top: 0;
-  left: -40%;
+  left: -50%;
 
   width: 40%;
   height: 100%;
 
-  background: rgba(255, 255, 255, 0.35);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
 
   transform: skewX(-20deg);
 
-  animation: progressShine 2.8s linear infinite;
+  animation:
+    progressSweep
+    3s
+    linear
+    infinite;
 }
 
 .progressFooter {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
 
-  margin-top: 7px;
+  justify-content: space-between;
+
+  margin-top: 8px;
 
   color: #59657e;
+
   font-size: 8px;
 }
 
-/* =========================
-   HERO VISUAL
-========================= */
+/* =========================================================
+   RIGHT VISUAL
+========================================================= */
 
 .heroVisual {
   position: relative;
 
   width: 100%;
-  min-width: 0;
-  min-height: 330px;
+  min-height: 370px;
 
   display: grid;
+
   place-items: center;
 
-  overflow: hidden;
+  z-index: 3;
+
+  animation:
+    visualReveal
+    0.9s
+    0.18s
+    ease
+    both;
 }
+
+/* =========================================================
+   ORBS
+========================================================= */
 
 .visualOrb {
   position: absolute;
 
   border-radius: 50%;
 
-  filter: blur(1px);
-
   pointer-events: none;
 }
 
 .orbOne {
-  width: min(230px, 70%);
-  aspect-ratio: 1;
+  width: 290px;
+  height: 290px;
 
   background:
     radial-gradient(
       circle,
-      rgba(124, 58, 237, 0.2),
-      rgba(124, 58, 237, 0.02) 68%,
-      transparent 72%
+      rgba(124, 58, 237, 0.22),
+      transparent 70%
     );
+
+  animation:
+    orbFloat
+    7s
+    ease-in-out
+    infinite;
 }
 
 .orbTwo {
-  width: min(330px, 100%);
-  aspect-ratio: 1;
+  width: 370px;
+  height: 370px;
 
   background:
     radial-gradient(
       circle,
       rgba(34, 211, 238, 0.06),
-      transparent 66%
+      transparent 70%
     );
+
+  animation:
+    orbFloatTwo
+    10s
+    ease-in-out
+    infinite;
 }
 
-/* =========================
-   AD VISUAL
-========================= */
+/* =========================================================
+   AD CARD
+========================================================= */
 
 .adVisual {
   position: relative;
 
-  width: min(205px, 70%);
-  height: 245px;
+  width: 220px;
+  height: 270px;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  border-radius: 28px;
+  border: 1px solid
+    rgba(167, 139, 250, 0.25);
+
+  border-radius: 30px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(139, 92, 246, 0.14),
+      rgba(139, 92, 246, 0.18),
+      rgba(99, 102, 241, 0.07),
       rgba(255, 255, 255, 0.025)
     );
 
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.35),
-    inset 0 1px rgba(255, 255, 255, 0.06);
+    0 35px 80px
+      rgba(0, 0, 0, 0.4),
+    0 0 60px
+      rgba(124, 58, 237, 0.12),
+    inset 0 1px
+      rgba(255, 255, 255, 0.07);
 
   transform: rotate(4deg);
 
-  transition: transform 350ms ease;
+  animation:
+    adFloat
+    5s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.3s ease;
 }
 
 .heroVisual:hover .adVisual {
-  transform: rotate(0deg) translateY(-5px);
+  transform:
+    rotate(0deg)
+    translateY(-7px)
+    scale(1.025);
+
+  border-color:
+    rgba(167, 139, 250, 0.42);
+}
+
+.adTopLabel {
+  position: absolute;
+
+  top: 17px;
+
+  color: #c4b5fd;
+
+  font-size: 9px;
+
+  font-weight: 750;
+
+  letter-spacing: 1px;
 }
 
 .adVisualGlow {
   position: absolute;
-  inset: 20px;
 
-  border-radius: 22px;
+  inset: 35px;
 
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(139, 92, 246, 0.15),
-      transparent 65%
-    );
-}
-
-.playRing {
-  position: relative;
-
-  width: min(104px, 50%);
-  aspect-ratio: 1;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid rgba(167, 139, 250, 0.2);
   border-radius: 50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(139, 92, 246, 0.18),
-      rgba(139, 92, 246, 0.03) 65%,
-      transparent 70%
+      rgba(139, 92, 246, 0.2),
+      transparent 68%
     );
+}
+
+/* =========================================================
+   PLAY
+========================================================= */
+
+.playRing {
+  position: relative;
+
+  width: 110px;
+  height: 110px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 1px solid
+    rgba(167, 139, 250, 0.2);
+
+  border-radius: 50%;
+
+  background:
+    rgba(139, 92, 246, 0.06);
 
   box-shadow:
-    0 0 40px rgba(124, 58, 237, 0.22);
+    0 0 55px
+      rgba(124, 58, 237, 0.24);
+}
 
-  animation: floatVisual 4s ease-in-out infinite;
+.playRing::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -12px;
+
+  border: 1px solid
+    rgba(167, 139, 250, 0.12);
+
+  border-radius: 50%;
+
+  animation:
+    ringPulse
+    3s
+    ease-out
+    infinite;
 }
 
 .playCircle {
-  width: 64%;
+  width: 67%;
   aspect-ratio: 1;
 
   display: grid;
+
   place-items: center;
 
-  padding-left: 3px;
+  padding-left: 4px;
 
   border-radius: 50%;
 
   background:
     linear-gradient(
       135deg,
-      #8b5cf6,
-      #6366f1
+      #9b6cff,
+      #7c3aed
     );
 
-  color: #ffffff;
+  color: #fff;
 
   box-shadow:
-    0 12px 35px rgba(124, 58, 237, 0.42);
+    0 15px 40px
+      rgba(124, 58, 237, 0.5);
+
+  transition:
+    transform 0.3s ease;
 }
+
+.heroVisual:hover .playCircle {
+  transform: scale(1.1);
+}
+
+/* =========================================================
+   CARD DETAILS
+========================================================= */
 
 .adVisualLines {
   display: flex;
+
   gap: 5px;
 
-  margin-top: 25px;
+  margin-top: 27px;
 }
 
 .adVisualLines span {
-  width: 19px;
+  width: 20px;
   height: 3px;
 
   border-radius: 999px;
 
-  background: rgba(167, 139, 250, 0.28);
+  background:
+    rgba(167, 139, 250, 0.3);
 }
 
 .adVisualLines span:nth-child(2) {
-  width: 32px;
+  width: 34px;
 
-  background: rgba(34, 211, 238, 0.3);
+  background:
+    rgba(34, 211, 238, 0.45);
 }
 
 .adVisualLabel {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 
   margin-top: 15px;
@@ -544,168 +819,283 @@
   color: #68748f;
 
   font-size: 7px;
-  font-weight: 700;
+
   letter-spacing: 1.5px;
 }
 
 .adVisualLabel strong {
-  margin-top: 4px;
+  margin-top: 5px;
 
-  color: #d9d5ff;
+  color: #ddd8ff;
 
   font-size: 10px;
-  letter-spacing: 0.8px;
+
+  letter-spacing: 1px;
 }
 
-/* =========================
+/* =========================================================
    FLOATING REWARDS
-========================= */
+========================================================= */
 
 .floatingReward {
   position: absolute;
 
   display: flex;
+
   align-items: center;
+
   gap: 6px;
 
-  max-width: 110px;
+  padding: 10px 12px;
 
-  padding: 9px 11px;
+  border: 1px solid
+    rgba(139, 92, 246, 0.18);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 11px;
+  border-radius: 12px;
 
-  background: rgba(12, 17, 40, 0.8);
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.3);
-
-  backdrop-filter: blur(12px);
-
-  color: #ffffff;
-
-  font-size: 10px;
-  font-weight: 750;
-
-  white-space: nowrap;
-
-  z-index: 5;
-}
-
-.rewardOne {
-  top: 42px;
-  left: 7%;
+  background:
+    rgba(10, 15, 35, 0.85);
 
   color: #c4b5fd;
 
-  animation: floatingOne 4s ease-in-out infinite;
+  font-size: 10px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 18px 45px
+      rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(14px);
+
+  z-index: 8;
+}
+
+.rewardOne {
+  top: 45px;
+  left: 2%;
+
+  animation:
+    rewardFloatOne
+    4s
+    ease-in-out
+    infinite;
 }
 
 .rewardTwo {
-  right: 5%;
-  bottom: 70px;
+  right: 0;
+  bottom: 85px;
 
   color: #67e8f9;
 
-  animation: floatingTwo 4.5s ease-in-out infinite;
+  animation:
+    rewardFloatTwo
+    4.5s
+    ease-in-out
+    infinite;
 }
 
-/* =========================
-   FLOATING CARD
-========================= */
+/* =========================================================
+   POTENTIAL CARD
+========================================================= */
 
 .heroFloatingCard {
   position: absolute;
 
-  right: 1%;
-  bottom: 10px;
-
-  max-width: 190px;
+  right: 0;
+  bottom: 28px;
 
   display: flex;
+
   align-items: center;
-  gap: 9px;
 
-  padding: 9px 11px;
+  gap: 10px;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 13px;
+  padding: 10px 12px;
 
-  background: rgba(10, 15, 35, 0.82);
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 14px;
+
+  background:
+    rgba(10, 15, 35, 0.86);
 
   box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.28);
+    0 18px 45px
+      rgba(0, 0, 0, 0.3);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+
+  z-index: 9;
+
+  animation:
+    potentialFloat
+    4.5s
+    ease-in-out
+    infinite;
 }
 
 .floatingCardIcon {
-  width: 29px;
-  height: 29px;
-  flex: 0 0 29px;
+  width: 31px;
+  height: 31px;
 
   display: grid;
+
   place-items: center;
 
-  border-radius: 8px;
-
-  background: rgba(34, 197, 94, 0.1);
+  border-radius: 9px;
 
   color: #4ade80;
+
+  background:
+    rgba(34, 197, 94, 0.1);
 }
 
-.heroFloatingCard div:nth-child(2) {
-  min-width: 0;
-
+.heroFloatingCard > div:nth-child(2) {
   display: flex;
+
   flex-direction: column;
 }
 
 .heroFloatingCard span {
   color: #68748f;
+
   font-size: 7px;
 }
 
 .heroFloatingCard strong {
-  margin-top: 2px;
+  margin-top: 3px;
 
-  color: #ffffff;
-  font-size: 10px;
+  color: #fff;
+
+  font-size: 11px;
 }
 
 .heroFloatingCard > svg {
-  flex: 0 0 auto;
   color: #4ade80;
 }
 
-/* =========================
+/* =========================================================
    ANIMATIONS
-========================= */
+========================================================= */
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes visualReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(20px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      scale(1);
+  }
+}
+
+@keyframes gradientMove {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
 @keyframes livePulse {
   0%,
   100% {
     opacity: 1;
+
     transform: scale(1);
   }
 
   50% {
     opacity: 0.45;
-    transform: scale(0.72);
+
+    transform: scale(0.75);
   }
 }
 
-@keyframes progressShine {
-  0% {
-    left: -40%;
+@keyframes progressSweep {
+  from {
+    left: -50%;
   }
 
+  to {
+    left: 125%;
+  }
+}
+
+@keyframes adFloat {
+  0%,
   100% {
-    left: 120%;
+    transform:
+      rotate(4deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(2deg)
+      translateY(-9px);
   }
 }
 
-@keyframes floatVisual {
+@keyframes rewardFloatOne {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(-2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-9px)
+      rotate(1deg);
+  }
+}
+
+@keyframes rewardFloatTwo {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(2deg);
+  }
+
+  50% {
+    transform:
+      translateY(8px)
+      rotate(-1deg);
+  }
+}
+
+@keyframes potentialFloat {
   0%,
   100% {
     transform: translateY(0);
@@ -716,124 +1106,121 @@
   }
 }
 
-@keyframes floatingOne {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-2deg);
+@keyframes ringPulse {
+  0% {
+    opacity: 0.65;
+
+    transform: scale(0.8);
   }
 
-  50% {
-    transform: translateY(-8px) rotate(1deg);
+  75%,
+  100% {
+    opacity: 0;
+
+    transform: scale(1.3);
   }
 }
 
-@keyframes floatingTwo {
+@keyframes orbFloat {
   0%,
   100% {
-    transform: translateY(0) rotate(2deg);
+    transform: translate(0, 0);
   }
 
   50% {
-    transform: translateY(7px) rotate(-1deg);
+    transform: translate(-15px, 12px);
   }
 }
 
-/* =========================
+@keyframes orbFloatTwo {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes heroGlowMove {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(30px, 18px);
+  }
+}
+
+@keyframes heroGlowMoveTwo {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-20px, -15px);
+  }
+}
+
+/* =========================================================
    TABLET
-========================= */
+========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 950px) {
   .watchHero {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(250px, 0.75fr);
+    grid-template-columns: 1fr;
 
-    padding: 35px;
-  }
-
-  .heroContent h1 {
-    font-size: clamp(36px, 4vw, 50px);
-  }
-}
-
-/* =========================
-   SMALL TABLET
-========================= */
-
-@media (max-width: 850px) {
-  .watchHero {
-    grid-template-columns: minmax(0, 1fr);
-
-    min-height: auto;
-
-    padding: 34px 30px;
+    padding: 42px 38px;
   }
 
   .heroContent {
-    max-width: 100%;
+    max-width: 700px;
   }
 
   .heroVisual {
-    min-height: 280px;
+    min-height: 340px;
 
     margin-top: 10px;
   }
-
-  .heroQuickStats {
-    width: 100%;
-    justify-content: space-between;
-  }
 }
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 600px) {
   .watchHero {
-    width: 100%;
+    min-height: auto;
 
-    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 18px 24px;
 
-    padding: 25px 18px;
-
-    border-radius: 22px;
-  }
-
-  .heroContent {
-    width: 100%;
+    border-radius: 23px;
   }
 
   .heroContent h1 {
-    margin-top: 16px;
+    margin-top: 17px;
 
-    font-size: clamp(32px, 10vw, 39px);
-    line-height: 1.02;
+    font-size:
+      clamp(34px, 10vw, 43px);
 
-    letter-spacing: -1.8px;
+    letter-spacing: -2px;
   }
 
   .heroDescription {
     font-size: 12px;
-    line-height: 1.65;
   }
 
-  /* Stats automatically fit viewport */
   .heroQuickStats {
     width: 100%;
 
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 0;
-
-    padding: 8px;
-
-    overflow: hidden;
+    padding: 8px 5px;
   }
 
   .quickStat {
-    min-width: 0;
+    flex: 1;
 
     justify-content: center;
 
@@ -844,71 +1231,50 @@
     display: none;
   }
 
+  .quickStatDivider {
+    display: block;
+  }
+
   .quickStat span {
-    overflow: hidden;
-
     font-size: 7px;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .quickStat strong {
-    overflow: hidden;
-
     font-size: 9px;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .quickStatDivider {
-    display: none;
   }
 
   .heroProgress {
-    width: 100%;
-    margin-top: 20px;
+    margin-top: 21px;
   }
 
   .progressFooter span:last-child {
     display: none;
   }
 
-  /* Visual stays inside available width */
   .heroVisual {
-    width: 100%;
-    min-height: 275px;
-
-    margin-top: 5px;
+    min-height: 285px;
 
     overflow: hidden;
   }
 
   .adVisual {
-    width: 175px;
-    max-width: 70%;
-    height: 215px;
+    width: 178px;
+    height: 220px;
   }
 
   .playRing {
     width: 90px;
-  }
-
-  .floatingReward {
-    max-width: 95px;
-
-    padding: 7px 8px;
-
-    font-size: 8px;
+    height: 90px;
   }
 
   .rewardOne {
+    top: 25px;
     left: 0;
   }
 
   .rewardTwo {
     right: 0;
+    bottom: 58px;
   }
 
   .heroFloatingCard {
@@ -919,56 +1285,50 @@
   }
 }
 
-/* =========================
-   VERY SMALL PHONES
-========================= */
+/* =========================================================
+   SMALL PHONE
+========================================================= */
 
 @media (max-width: 400px) {
   .watchHero {
-    padding: 22px 14px;
+    padding: 24px 14px;
   }
 
   .heroContent h1 {
     font-size: 33px;
-    letter-spacing: -1.5px;
-  }
-
-  .heroBadge {
-    font-size: 8px;
   }
 
   .heroQuickStats {
-    padding: 7px 5px;
+    padding: 7px 3px;
   }
 
   .quickStat strong {
     font-size: 8px;
   }
 
-  .heroVisual {
-    min-height: 255px;
-  }
-
   .adVisual {
-    width: 155px;
-    height: 195px;
+    width: 158px;
+    height: 200px;
   }
 
-  .floatingReward {
-    padding: 6px 7px;
-    font-size: 7px;
+  .playRing {
+    width: 82px;
+    height: 82px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .watchHero *,
+  .watchHero::before,
+  .watchHero::after {
+    animation: none !important;
   }
 
-  .heroFloatingCard {
-    max-width: 145px;
-    padding: 7px 8px;
-  }
-
-  .heroFloatingCard span {
-    font-size: 6px;
-  }
-
-  .heroFloatingCard strong {
-    font-size: 9px;
+  .progressFill {
+    transition: none;
   }
 }
