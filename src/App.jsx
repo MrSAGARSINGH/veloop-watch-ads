@@ -19,6 +19,7 @@ import KeepEarning from "./components/cta/KeepEarning";
 import Loader from "./components/common/Loader";
 import StickyEarningSummary from "./components/common/StickyEarningSummary";
 import NavigationPage from "./components/common/NavigationPage";
+import Footer from "./components/layout/Footer";
 
 import "./styles/globals.scss";
 
@@ -350,6 +351,8 @@ function App() {
                 remainingAds={remainingAds}
               />
             </ScrollReveal>
+
+            <Footer />
           </>
         ) : (
           /* =========================
