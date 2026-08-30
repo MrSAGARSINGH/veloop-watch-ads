@@ -332,10 +332,12 @@
 .quickStat {
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  gap: 9px;
+  gap: 6px;
 
-  padding: 0 10px;
+  min-width: 0;
+  padding: 0 4px;
 }
 
 .quickStatIcon {
@@ -1228,8 +1230,21 @@
   }
 
   .quickStatIcon {
-    display: none;
-  }
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 28px;
+
+  border-radius: 8px;
+}
+
+.quickStatIcon svg {
+  width: 14px;
+  height: 14px;
+}
 
   .quickStatDivider {
     display: block;
