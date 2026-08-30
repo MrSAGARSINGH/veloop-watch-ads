@@ -9,12 +9,39 @@ import {
 
 import "./Topbar.scss";
 
-function Topbar({ onMenuClick }) {
+const pageTitles = {
+  "watch-ads": "Watch Ads",
+  dashboard: "Dashboard",
+  tasks: "Tasks",
+  offers: "Offers",
+  refer: "Refer & Earn",
+  wallet: "Wallet",
+  withdraw: "Withdraw",
+  history: "History",
+  profile: "Profile",
+  support: "Support",
+  settings: "Settings",
+};
+
+function Topbar({
+  onMenuClick,
+  activePage = "watch-ads",
+  onNavigate,
+}) {
+  const currentTitle =
+    pageTitles[activePage] ||
+    "Watch Ads";
+
+  const handleNavigate = (page) => {
+    onNavigate?.(page);
+  };
+
   return (
     <header className="topbar">
       {/* =========================
           LEFT
       ========================= */}
+
       <div className="topbarLeft">
         <button
           type="button"
@@ -30,15 +57,20 @@ function Topbar({ onMenuClick }) {
           />
         </button>
 
-        <div
+        <button
+          type="button"
           className="mobilePageTitle"
-          aria-label="Current page: Watch Ads"
+          onClick={() =>
+            handleNavigate(activePage)
+          }
+          aria-label={`Current page: ${currentTitle}`}
         >
           <span>VELOOP</span>
-          <strong>Watch Ads</strong>
-        </div>
+          <strong>{currentTitle}</strong>
+        </button>
 
-        {/* Search */}
+        {/* SEARCH */}
+
         <div className="searchBox">
           <Search
             size={17}
@@ -53,41 +85,63 @@ function Topbar({ onMenuClick }) {
             autoComplete="off"
           />
 
-          <kbd aria-hidden="true">⌘ K</kbd>
+          <kbd aria-hidden="true">
+            ⌘ K
+          </kbd>
         </div>
       </div>
 
       {/* =========================
           RIGHT
       ========================= */}
+
       <div className="topbarRight">
-        {/* Balance */}
+        {/* BALANCE */}
+
         <div
           className="balancePill"
           aria-label="Available balance: 12,450 VEs"
         >
-          <div
+          <button
+            type="button"
             className="balanceIcon"
-            aria-hidden="true"
+            onClick={() =>
+              handleNavigate("wallet")
+            }
+            aria-label="Open wallet"
           >
             <Wallet
               size={16}
               strokeWidth={1.8}
+              aria-hidden="true"
             />
-          </div>
+          </button>
 
-          <div className="balanceInfo">
-            <span>Available Balance</span>
+          <button
+            type="button"
+            className="balanceInfo"
+            onClick={() =>
+              handleNavigate("wallet")
+            }
+            aria-label="Open wallet"
+          >
+            <span>
+              Available Balance
+            </span>
 
             <strong>
-              12,450 <small>VEs</small>
+              12,450{" "}
+              <small>VEs</small>
             </strong>
-          </div>
+          </button>
 
           <button
             type="button"
             className="addBalance"
-            aria-label="Add to balance"
+            onClick={() =>
+              handleNavigate("wallet")
+            }
+            aria-label="Open wallet"
           >
             <Plus
               size={14}
@@ -97,10 +151,14 @@ function Topbar({ onMenuClick }) {
           </button>
         </div>
 
-        {/* Notifications */}
+        {/* NOTIFICATIONS */}
+
         <button
           type="button"
           className="notificationButton"
+          onClick={() =>
+            handleNavigate("history")
+          }
           aria-label="View notifications"
         >
           <Bell
@@ -115,12 +173,15 @@ function Topbar({ onMenuClick }) {
           />
         </button>
 
-        {/* Profile */}
+        {/* PROFILE */}
+
         <button
           type="button"
           className="profileMenu"
-          aria-label="Open profile menu"
-          aria-haspopup="menu"
+          onClick={() =>
+            handleNavigate("profile")
+          }
+          aria-label="Open profile"
         >
           <div
             className="profileAvatar"
@@ -130,8 +191,13 @@ function Topbar({ onMenuClick }) {
           </div>
 
           <div className="profileInfo">
-            <strong>Sagar Singh</strong>
-            <span>Premium Member</span>
+            <strong>
+              Sagar Singh
+            </strong>
+
+            <span>
+              Premium Member
+            </span>
           </div>
 
           <ChevronDown

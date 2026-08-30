@@ -763,3 +763,20 @@
     transition: none;
   }
 }
+
+/* ============================================
+   BUTTON RESET
+============================================ */
+
+.topbar button {
+  font: inherit;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+}
+
+.topbar button:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.55);
+  outline-offset: 3px;
+}

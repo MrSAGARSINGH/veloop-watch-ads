@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import usePersistentState from "./hooks/usePersistentState";
 import useDailyPersistentState from "./hooks/useDailyPersistentState";
@@ -18,6 +18,7 @@ import ScrollReveal from "./components/common/ScrollReveal";
 import KeepEarning from "./components/cta/KeepEarning";
 import Loader from "./components/common/Loader";
 import StickyEarningSummary from "./components/common/StickyEarningSummary";
+import NavigationPage from "./components/common/NavigationPage";
 
 import "./styles/globals.scss";
 
@@ -62,9 +63,17 @@ const initialActivities = [
   },
 ];
 
+const getInitialPage = () => {
+  const hash = window.location.hash.replace(/^#\/?/, "").trim();
+
+  return hash || "watch-ads";
+};
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [activePage, setActivePage] = useState(getInitialPage);
 
   /* =========================
      DAILY USER DATA
@@ -110,6 +119,49 @@ function App() {
 
   const closeSidebar = useCallback(() => {
     setSidebarOpen(false);
+  }, []);
+
+  /* =========================
+     NAVIGATION
+  ========================= */
+
+  const handleNavigation = useCallback((page) => {
+    if (!page) return;
+
+    setActivePage(page);
+
+    window.location.hash = `/${page}`;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setSidebarOpen(false);
+  }, []);
+
+  /* =========================
+     BROWSER BACK / FORWARD
+  ========================= */
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const page =
+        window.location.hash.replace(/^#\/?/, "").trim() || "watch-ads";
+
+      setActivePage(page);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   /* =========================
@@ -163,15 +215,30 @@ function App() {
 
   return (
     <div className="page">
-      {/* SIDEBAR */}
+      {/* =========================
+          SIDEBAR
+      ========================= */}
 
-      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={closeSidebar}
+        activePage={activePage}
+        onNavigate={handleNavigation}
+      />
 
-      {/* TOPBAR */}
+      {/* =========================
+          TOPBAR
+      ========================= */}
 
-      <Topbar onMenuClick={toggleSidebar} />
+      <Topbar
+        onMenuClick={toggleSidebar}
+        activePage={activePage}
+        onNavigate={handleNavigation}
+      />
 
-      {/* MOBILE OVERLAY */}
+      {/* =========================
+          MOBILE OVERLAY
+      ========================= */}
 
       {sidebarOpen && (
         <button
@@ -182,83 +249,115 @@ function App() {
         />
       )}
 
-      {/* MAIN CONTENT */}
+      {/* =========================
+          MAIN CONTENT
+      ========================= */}
 
       <main className="mainContent">
-        {/* HERO */}
+        {activePage === "watch-ads" ? (
+          <>
+            {/* =========================
+                HERO
+            ========================= */}
 
-        <ScrollReveal>
-          <WatchAdsHero
-            todayEarnings={todayEarnings}
-            lifetimeEarnings={lifetimeEarnings}
-            adsWatchedToday={adsWatchedToday}
-            remainingAds={remainingAds}
-            dailyGoal={DAILY_GOAL}
-          />
-        </ScrollReveal>
+            <ScrollReveal>
+              <WatchAdsHero
+                todayEarnings={todayEarnings}
+                lifetimeEarnings={lifetimeEarnings}
+                adsWatchedToday={adsWatchedToday}
+                remainingAds={remainingAds}
+                dailyGoal={DAILY_GOAL}
+              />
+            </ScrollReveal>
 
-        <StickyEarningSummary
-          todayEarnings={todayEarnings}
-          adsWatchedToday={adsWatchedToday}
-          totalAds={TOTAL_ADS}
-          dailyGoal={DAILY_GOAL}
-        />
+            {/* =========================
+                STICKY EARNING SUMMARY
+            ========================= */}
 
-        {/* STATS */}
+            <StickyEarningSummary
+              todayEarnings={todayEarnings}
+              adsWatchedToday={adsWatchedToday}
+              totalAds={TOTAL_ADS}
+              dailyGoal={DAILY_GOAL}
+            />
 
-        <ScrollReveal delay={80}>
-          <Stats
-            todayEarnings={todayEarnings}
-            lifetimeEarnings={lifetimeEarnings}
-            adsWatchedToday={adsWatchedToday}
-            remainingAds={remainingAds}
-          />
-        </ScrollReveal>
+            {/* =========================
+                STATS
+            ========================= */}
 
-        {/* DAILY PROGRESS */}
+            <ScrollReveal delay={80}>
+              <Stats
+                todayEarnings={todayEarnings}
+                lifetimeEarnings={lifetimeEarnings}
+                adsWatchedToday={adsWatchedToday}
+                remainingAds={remainingAds}
+              />
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <DailyProgress
-            earned={todayEarnings}
-            onBonusClick={handleBonusClick}
-          />
-        </ScrollReveal>
+            {/* =========================
+                DAILY PROGRESS
+            ========================= */}
 
-        {/* AVAILABLE ADS */}
+            <ScrollReveal delay={100}>
+              <DailyProgress
+                earned={todayEarnings}
+                onBonusClick={handleBonusClick}
+              />
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <div id="available-ads">
-            <AdSection onAdCompleted={handleAdCompleted} />
-          </div>
-        </ScrollReveal>
+            {/* =========================
+                AVAILABLE ADS
+            ========================= */}
 
-        {/* EARNINGS INFORMATION */}
+            <ScrollReveal delay={100}>
+              <div id="available-ads">
+                <AdSection onAdCompleted={handleAdCompleted} />
+              </div>
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <EarningsInfo />
-        </ScrollReveal>
+            {/* =========================
+                EARNINGS INFORMATION
+            ========================= */}
 
-        {/* HOW IT WORKS */}
+            <ScrollReveal delay={100}>
+              <EarningsInfo />
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <HowItWorks />
-        </ScrollReveal>
+            {/* =========================
+                HOW IT WORKS
+            ========================= */}
 
-        {/* RECENT ACTIVITY */}
+            <ScrollReveal delay={100}>
+              <HowItWorks />
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <RecentActivity activities={activities} />
-        </ScrollReveal>
+            {/* =========================
+                RECENT ACTIVITY
+            ========================= */}
 
-        {/* KEEP EARNING CTA */}
+            <ScrollReveal delay={100}>
+              <RecentActivity activities={activities} />
+            </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <KeepEarning
-            earned={todayEarnings}
-            dailyGoal={DAILY_GOAL}
-            remainingAds={remainingAds}
-          />
-        </ScrollReveal>
+            {/* =========================
+                KEEP EARNING
+            ========================= */}
+
+            <ScrollReveal delay={100}>
+              <KeepEarning
+                earned={todayEarnings}
+                dailyGoal={DAILY_GOAL}
+                remainingAds={remainingAds}
+              />
+            </ScrollReveal>
+          </>
+        ) : (
+          /* =========================
+             OTHER NAVIGATION PAGES
+          ========================= */
+
+          <NavigationPage page={activePage} onNavigate={handleNavigation} />
+        )}
       </main>
     </div>
   );

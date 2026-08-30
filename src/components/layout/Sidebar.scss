@@ -43,12 +43,19 @@
 .logoArea {
   display: flex;
   align-items: center;
-
   gap: 11px;
 
+  width: 100%;
   padding: 4px 10px 24px;
 
   flex: 0 0 auto;
+
+  border: 0;
+  background: transparent;
+  color: inherit;
+
+  text-align: left;
+  cursor: pointer;
 }
 
 .logoMark {

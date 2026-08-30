@@ -22,54 +22,70 @@ import "./Sidebar.scss";
 const navigation = [
   {
     label: "Watch Ads",
+    key: "watch-ads",
     icon: PlaySquare,
-    active: true,
   },
   {
     label: "Dashboard",
+    key: "dashboard",
     icon: LayoutDashboard,
   },
   {
     label: "Tasks",
+    key: "tasks",
     icon: ClipboardList,
   },
   {
     label: "Offers",
+    key: "offers",
     icon: Gift,
   },
   {
     label: "Refer & Earn",
+    key: "refer",
     icon: Users,
     badge: "NEW",
   },
   {
     label: "Wallet",
+    key: "wallet",
     icon: Wallet,
   },
   {
     label: "Withdraw",
+    key: "withdraw",
     icon: ArrowDownToLine,
   },
   {
     label: "History",
+    key: "history",
     icon: History,
   },
   {
     label: "Profile",
+    key: "profile",
     icon: UserRound,
   },
   {
     label: "Support",
+    key: "support",
     icon: Headphones,
   },
   {
     label: "Settings",
+    key: "settings",
     icon: Settings,
   },
 ];
 
-function Sidebar({ isOpen = false, onClose }) {
-  const handleNavigation = () => {
+function Sidebar({
+  isOpen = false,
+  onClose,
+  activePage = "watch-ads",
+  onNavigate,
+}) {
+  const handleNavigation = (key) => {
+    onNavigate?.(key);
     onClose?.();
   };
 
@@ -80,9 +96,7 @@ function Sidebar({ isOpen = false, onClose }) {
       }`}
       aria-label="Main navigation"
     >
-      {/* =========================
-          MOBILE CLOSE
-      ========================= */}
+      {/* MOBILE CLOSE */}
 
       <button
         type="button"
@@ -96,11 +110,16 @@ function Sidebar({ isOpen = false, onClose }) {
         />
       </button>
 
-      {/* =========================
-          LOGO
-      ========================= */}
+      {/* LOGO */}
 
-      <div className="logoArea">
+      <button
+        type="button"
+        className="logoArea"
+        onClick={() =>
+          handleNavigation("watch-ads")
+        }
+        aria-label="Go to Watch Ads"
+      >
         <div
           className="logoMark"
           aria-hidden="true"
@@ -112,11 +131,9 @@ function Sidebar({ isOpen = false, onClose }) {
           <strong>VELOOP</strong>
           <span>REWARDS</span>
         </div>
-      </div>
+      </button>
 
-      {/* =========================
-          NAVIGATION
-      ========================= */}
+      {/* NAVIGATION */}
 
       <nav
         className="navigation"
@@ -125,58 +142,63 @@ function Sidebar({ isOpen = false, onClose }) {
         {navigation.map(
           ({
             label,
+            key,
             icon: Icon,
-            active = false,
             badge,
-          }) => (
-            <button
-              key={label}
-              type="button"
-              className={`navItem ${
-                active ? "active" : ""
-              }`}
-              onClick={handleNavigation}
-              aria-current={
-                active ? "page" : undefined
-              }
-            >
-              <span className="navIcon">
-                <Icon
-                  size={19}
-                  strokeWidth={1.8}
-                  aria-hidden="true"
-                />
-              </span>
+          }) => {
+            const active =
+              activePage === key;
 
-              <span className="navLabel">
-                {label}
-              </span>
-
-              {badge && (
-                <span className="navBadge">
-                  {badge}
-                </span>
-              )}
-
-              {active && (
-                <span
-                  className="activeIndicator"
-                  aria-hidden="true"
-                >
-                  <ChevronRight
-                    size={14}
-                    strokeWidth={2}
+            return (
+              <button
+                key={key}
+                type="button"
+                className={`navItem ${
+                  active ? "active" : ""
+                }`}
+                onClick={() =>
+                  handleNavigation(key)
+                }
+                aria-current={
+                  active ? "page" : undefined
+                }
+              >
+                <span className="navIcon">
+                  <Icon
+                    size={19}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
                   />
                 </span>
-              )}
-            </button>
-          )
+
+                <span className="navLabel">
+                  {label}
+                </span>
+
+                {badge && (
+                  <span className="navBadge">
+                    {badge}
+                  </span>
+                )}
+
+                {active && (
+                  <span
+                    className="activeIndicator"
+                    aria-hidden="true"
+                  >
+                    <ChevronRight
+                      size={14}
+                      strokeWidth={2}
+                    />
+                  </span>
+                )}
+              </button>
+            );
+          }
         )}
       </nav>
 
-      {/* =========================
-          STREAK
-      ========================= */}
+      {/* STREAK */}
 
       <div className="streakCard">
         <div
@@ -199,9 +221,7 @@ function Sidebar({ isOpen = false, onClose }) {
             </span>
           </div>
 
-          <span>
-            Keep it up!
-          </span>
+          <span>Keep it up!</span>
 
           <div className="streakProgress">
             <div className="streakProgressFill" />
@@ -209,9 +229,7 @@ function Sidebar({ isOpen = false, onClose }) {
         </div>
       </div>
 
-      {/* =========================
-          USER PROFILE
-      ========================= */}
+      {/* USER */}
 
       <div className="userCard">
         <div className="avatar">
@@ -257,16 +275,12 @@ function Sidebar({ isOpen = false, onClose }) {
               3,250 / 5,000 XP
             </small>
 
-            <span>
-              65%
-            </span>
+            <span>65%</span>
           </div>
         </div>
       </div>
 
-      {/* =========================
-          INVITE
-      ========================= */}
+      {/* INVITE */}
 
       <div className="inviteCard">
         <div className="inviteGlow" />
@@ -278,9 +292,7 @@ function Sidebar({ isOpen = false, onClose }) {
               REWARDS BOOST
             </div>
 
-            <strong>
-              Invite Friends
-            </strong>
+            <strong>Invite Friends</strong>
 
             <span>
               Earn up to 250 bonus VEs
@@ -298,7 +310,9 @@ function Sidebar({ isOpen = false, onClose }) {
         <button
           type="button"
           className="inviteButton"
-          onClick={handleNavigation}
+          onClick={() =>
+            handleNavigation("refer")
+          }
         >
           <span>Invite Now</span>
 
