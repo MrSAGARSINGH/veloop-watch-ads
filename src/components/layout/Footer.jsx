@@ -196,8 +196,15 @@ function Footer() {
           <span className="footerAuthor">
             Crafted with
             <Sparkles size={11} />
-            by
-            <strong>Sagar Singh Khangarot</strong>
+            by{" "}
+            <a
+              href="https://www.linkedin.com/in/sagarsinghkhangarot"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Sagar Singh Khangarot on LinkedIn"
+            >
+              Sagar Singh Khangarot
+            </a>
           </span>
 
           <div className="footerTrust">
