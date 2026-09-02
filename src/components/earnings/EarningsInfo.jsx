@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Sparkles,
   CheckCircle2,
+  TrendingUp,
 } from "lucide-react";
 
 import "./EarningsInfo.scss";
@@ -40,9 +41,9 @@ function EarningsInfo() {
       className="earningsInfo"
       aria-labelledby="earnings-info-title"
     >
-      {/* =====================================================
+      {/* =========================================
           MAIN EARNINGS CARD
-      ===================================================== */}
+      ========================================= */}
 
       <article className="earningsCard">
         <div
@@ -55,18 +56,24 @@ function EarningsInfo() {
           aria-hidden="true"
         />
 
+        {/* Decorative grid */}
+        <div
+          className="earningsGrid"
+          aria-hidden="true"
+        />
+
         <div className="earningsCardTop">
           <div className="earningsIcon">
             <Wallet
-              size={21}
+              size={22}
               strokeWidth={1.8}
               aria-hidden="true"
             />
           </div>
 
           <div className="earningsLive">
-            <span aria-hidden="true" />
-            REWARDS ACTIVE
+            <span className="earningsLiveDot" />
+            <span>REWARDS ACTIVE</span>
           </div>
         </div>
 
@@ -90,7 +97,8 @@ function EarningsInfo() {
           <div className="earningsTrust">
             <span>
               <CheckCircle2
-                size={13}
+                size={14}
+                strokeWidth={2}
                 aria-hidden="true"
               />
               Instant tracking
@@ -98,7 +106,8 @@ function EarningsInfo() {
 
             <span>
               <ShieldCheck
-                size={13}
+                size={14}
+                strokeWidth={2}
                 aria-hidden="true"
               />
               Secure rewards
@@ -106,7 +115,8 @@ function EarningsInfo() {
 
             <span>
               <Sparkles
-                size={13}
+                size={14}
+                strokeWidth={2}
                 aria-hidden="true"
               />
               Transparent value
@@ -120,16 +130,25 @@ function EarningsInfo() {
           aria-label="View earnings details"
         >
           <ArrowUpRight
-            size={18}
+            size={19}
             strokeWidth={1.9}
             aria-hidden="true"
           />
         </button>
+
+        <div className="earningsCornerBadge">
+          <TrendingUp
+            size={13}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          <span>LIVE</span>
+        </div>
       </article>
 
-      {/* =====================================================
+      {/* =========================================
           INFORMATION CARDS
-      ===================================================== */}
+      ========================================= */}
 
       <div className="earningsCards">
         {earningHighlights.map(
@@ -144,18 +163,29 @@ function EarningsInfo() {
               className={`earningMiniCard ${type}`}
               key={label}
             >
-              <div
-                className={`miniIcon ${type}`}
-                aria-hidden="true"
-              >
-                <Icon
-                  size={18}
-                  strokeWidth={1.8}
-                />
+              <div className="miniCardTop">
+                <div
+                  className={`miniIcon ${type}`}
+                  aria-hidden="true"
+                >
+                  <Icon
+                    size={19}
+                    strokeWidth={1.8}
+                  />
+                </div>
+
+                <span className="miniCardIndex">
+                  0
+                  {earningHighlights.findIndex(
+                    (item) => item.label === label
+                  ) + 1}
+                </span>
               </div>
 
               <div className="miniContent">
-                <span>{label}</span>
+                <span className="miniLabel">
+                  {label}
+                </span>
 
                 <strong>{title}</strong>
 
@@ -164,6 +194,11 @@ function EarningsInfo() {
 
               <div
                 className="miniCardGlow"
+                aria-hidden="true"
+              />
+
+              <div
+                className="miniCardAccent"
                 aria-hidden="true"
               />
             </article>

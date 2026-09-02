@@ -1,7 +1,8 @@
-// ============================================
+// ============================================================
 // VELOOP — EARNINGS INFORMATION
-// Premium Responsive Earnings Section
-// ============================================
+// Premium / Responsive / Readable
+// Final Typography + Visual Polish
+// ============================================================
 
 .earningsInfo {
   width: 100%;
@@ -9,9 +10,9 @@
   margin-top: 30px;
 }
 
-// ============================================
+// ============================================================
 // MAIN EARNINGS CARD
-// ============================================
+// ============================================================
 
 .earningsCard {
   position: relative;
@@ -20,60 +21,59 @@
   min-width: 0;
 
   display: flex;
-  align-items: center;
-
+  align-items: flex-start;
   gap: 18px;
 
-  padding: 22px 24px;
+  padding: 24px 26px;
 
   overflow: hidden;
 
-  border: 1px solid rgba(139, 92, 246, 0.16);
-  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 22px;
 
   background:
     radial-gradient(
       circle at 0% 100%,
-      rgba(124, 58, 237, 0.08),
+      rgba(124, 58, 237, 0.14),
       transparent 38%
     ),
     radial-gradient(
       circle at 100% 0%,
-      rgba(139, 92, 246, 0.045),
-      transparent 34%
+      rgba(139, 92, 246, 0.09),
+      transparent 35%
     ),
     linear-gradient(
-      105deg,
-      rgba(124, 58, 237, 0.1),
-      rgba(255, 255, 255, 0.025)
+      135deg,
+      rgba(124, 58, 237, 0.12),
+      rgba(13, 17, 38, 0.9)
     );
 
   box-shadow:
-    0 14px 45px rgba(0, 0, 0, 0.15),
-    inset 0 1px rgba(255, 255, 255, 0.03);
+    0 18px 55px rgba(0, 0, 0, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.035);
 
   isolation: isolate;
 
   transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
 }
 
 .earningsCard:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 
-  border-color: rgba(139, 92, 246, 0.25);
+  border-color: rgba(167, 139, 250, 0.3);
 
   box-shadow:
-    0 18px 55px rgba(0, 0, 0, 0.18),
-    0 0 30px rgba(124, 58, 237, 0.035),
-    inset 0 1px rgba(255, 255, 255, 0.04);
+    0 24px 65px rgba(0, 0, 0, 0.25),
+    0 0 35px rgba(124, 58, 237, 0.06),
+    inset 0 1px rgba(255, 255, 255, 0.045);
 }
 
-// ============================================
-// CARD GLOWS
-// ============================================
+// ============================================================
+// BACKGROUND EFFECTS
+// ============================================================
 
 .earningsCardGlow {
   position: absolute;
@@ -81,83 +81,121 @@
   border-radius: 50%;
 
   pointer-events: none;
-
-  filter: blur(18px);
-
-  z-index: -1;
+  z-index: -2;
 }
 
 .earningsGlowOne {
-  width: 230px;
-  height: 230px;
+  width: 300px;
+  height: 300px;
 
-  left: -120px;
-  bottom: -150px;
+  top: -180px;
+  right: -100px;
 
-  background: radial-gradient(
-    circle,
-    rgba(124, 58, 237, 0.16),
-    transparent 68%
-  );
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.23),
+      transparent 68%
+    );
+
+  filter: blur(16px);
+
+  animation: earningsGlowFloat 7s ease-in-out infinite;
 }
 
 .earningsGlowTwo {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
 
-  right: -100px;
-  top: -125px;
+  bottom: -170px;
+  left: -110px;
 
-  background: radial-gradient(
-    circle,
-    rgba(139, 92, 246, 0.1),
-    transparent 68%
-  );
+  background:
+    radial-gradient(
+      circle,
+      rgba(34, 211, 238, 0.08),
+      transparent 68%
+    );
+
+  filter: blur(18px);
+
+  animation: earningsGlowFloatTwo 9s ease-in-out infinite;
 }
 
-// ============================================
-// LEFT / TOP AREA
-// ============================================
+.earningsGrid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(
+      rgba(167, 139, 250, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(167, 139, 250, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+
+  mask-image:
+    linear-gradient(
+      135deg,
+      black 0%,
+      transparent 70%
+    );
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+// ============================================================
+// CARD TOP
+// ============================================================
 
 .earningsCardTop {
-  flex: 0 0 auto;
+  align-self: flex-start;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  gap: 8px;
+  gap: 10px;
 
-  width: 176px;
+  flex: 0 0 auto;
 }
 
-// ============================================
+// ============================================================
 // MAIN ICON
-// ============================================
+// ============================================================
 
 .earningsIcon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
 
-  flex: 0 0 48px;
+  flex: 0 0 50px;
 
   display: grid;
   place-items: center;
 
-  border: 1px solid rgba(167, 139, 250, 0.15);
-  border-radius: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.19);
+  border-radius: 15px;
 
-  background: linear-gradient(
-    145deg,
-    rgba(124, 58, 237, 0.19),
-    rgba(124, 58, 237, 0.055)
-  );
+  background:
+    linear-gradient(
+      145deg,
+      rgba(124, 58, 237, 0.22),
+      rgba(124, 58, 237, 0.06)
+    );
 
-  color: #a78bfa;
+  color: #b79cff;
 
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.04),
-    0 8px 24px rgba(124, 58, 237, 0.09);
+    0 9px 28px rgba(124, 58, 237, 0.1);
 
   transition:
     transform 220ms ease,
@@ -165,54 +203,52 @@
 }
 
 .earningsCard:hover .earningsIcon {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
 
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.05),
-    0 11px 30px rgba(124, 58, 237, 0.13);
+    0 13px 34px rgba(124, 58, 237, 0.16);
 }
 
-// ============================================
-// LIVE STATUS
-// ============================================
+// ============================================================
+// LIVE BADGE
+// ============================================================
 
 .earningsLive {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 5px;
 
-  gap: 6px;
+  color: #81799b;
 
-  color: #8c82a8;
-
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 800;
 
   line-height: 1;
 
-  letter-spacing: 1.25px;
+  letter-spacing: 1px;
 
   white-space: nowrap;
 }
 
-.earningsLive span {
-  width: 6px;
-  height: 6px;
-
-  flex: 0 0 6px;
+.earningsLiveDot {
+  width: 5px;
+  height: 5px;
 
   border-radius: 50%;
 
   background: #4ade80;
 
   box-shadow:
-    0 0 0 4px rgba(74, 222, 128, 0.07),
-    0 0 12px rgba(74, 222, 128, 0.3);
+    0 0 0 3px rgba(74, 222, 128, 0.08),
+    0 0 10px rgba(74, 222, 128, 0.5);
+
+  animation: livePulse 2s ease-in-out infinite;
 }
 
-// ============================================
+// ============================================================
 // CONTENT
-// ============================================
+// ============================================================
 
 .earningsContent {
   min-width: 0;
@@ -222,34 +258,36 @@
 .earningsEyebrow {
   display: block;
 
-  color: #81769f;
+  color: #9b8cba;
 
   font-size: 9px;
-  font-weight: 800;
-
-  line-height: 1;
-
-  letter-spacing: 1.6px;
-}
-
-.earningsContent h2 {
-  margin: 6px 0 5px;
-
-  color: #ffffff;
-
-  font-size: 17px;
-  font-weight: 760;
+  font-weight: 850;
 
   line-height: 1.3;
 
-  letter-spacing: -0.35px;
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.earningsContent h2 {
+  margin: 6px 0 8px;
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 820;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.5px;
 }
 
 .earningsContent h2 span {
-  color: #a78bfa;
+  color: #b79aff;
 
   text-shadow:
-    0 0 22px rgba(167, 139, 250, 0.1);
+    0 0 24px rgba(167, 139, 250, 0.15);
 }
 
 .earningsContent p {
@@ -257,26 +295,26 @@
 
   margin: 0;
 
-  color: #737f97;
+  color: #9aa4b8;
 
-  font-size: 10px;
+  font-size: 12.5px;
   font-weight: 500;
 
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
-// ============================================
-// TRUST INDICATORS
-// ============================================
+// ============================================================
+// TRUST POINTS
+// ============================================================
 
 .earningsTrust {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 
-  gap: 12px;
+  gap: 8px 16px;
 
-  margin-top: 10px;
+  margin-top: 13px;
 }
 
 .earningsTrust span {
@@ -285,165 +323,210 @@
 
   gap: 5px;
 
-  color: #65718a;
+  color: #7f899f;
 
-  font-size: 7.5px;
-  font-weight: 650;
+  font-size: 9.5px;
+  font-weight: 600;
 
-  line-height: 1;
+  line-height: 1.35;
 
   white-space: nowrap;
 }
 
 .earningsTrust svg {
   flex: 0 0 auto;
-
-  color: #8270a7;
+  color: #a78bfa;
 }
 
-// ============================================
+// ============================================================
 // ARROW
-// ============================================
+// ============================================================
 
 .earningsArrow {
-  width: 39px;
-  height: 39px;
+  width: 42px;
+  height: 42px;
 
-  flex: 0 0 39px;
+  flex: 0 0 42px;
 
   display: grid;
   place-items: center;
 
   padding: 0;
 
-  border: 1px solid rgba(255, 255, 255, 0.075);
-  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 12px;
 
-  background: rgba(255, 255, 255, 0.022);
+  background: rgba(255, 255, 255, 0.025);
 
-  color: #81749d;
+  color: #917dbb;
 
   cursor: pointer;
 
   transition:
-    transform 250ms ease,
-    color 200ms ease,
-    border-color 200ms ease,
-    background 200ms ease;
+    transform 260ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
 }
 
 .earningsCard:hover .earningsArrow {
-  transform: translateX(6px);
+  transform: translate(5px, -2px);
 
-  border-color: rgba(139, 92, 246, 0.25);
+  border-color: rgba(167, 139, 250, 0.3);
 
-  background: rgba(124, 58, 237, 0.06);
+  background: rgba(124, 58, 237, 0.09);
 
-  color: #a78bfa;
+  color: #c4afff;
 }
 
 .earningsArrow:hover {
-  transform: translateX(9px) !important;
+  transform: translate(8px, -3px) !important;
 
-  color: #c4b5fd;
+  color: #ded3ff;
 
-  border-color: rgba(167, 139, 250, 0.34);
+  border-color: rgba(167, 139, 250, 0.42);
 
-  background: rgba(124, 58, 237, 0.09);
+  background: rgba(124, 58, 237, 0.13);
 }
 
 .earningsArrow:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
+  outline: 2px solid rgba(167, 139, 250, 0.6);
   outline-offset: 3px;
 }
 
-// ============================================
-// INFORMATION CARDS
-// ============================================
+// ============================================================
+// CORNER BADGE
+// ============================================================
+
+.earningsCornerBadge {
+  position: absolute;
+
+  right: 18px;
+  bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 5px 8px;
+
+  border: 1px solid rgba(74, 222, 128, 0.09);
+  border-radius: 7px;
+
+  background: rgba(34, 197, 94, 0.045);
+
+  color: #5eaf7a;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+
+  opacity: 0.75;
+}
+
+// ============================================================
+// MINI CARDS
+// ============================================================
 
 .earningsCards {
   display: grid;
 
-  grid-template-columns: repeat(
-    3,
-    minmax(0, 1fr)
-  );
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
 
-  gap: 12px;
+  gap: 13px;
 
-  margin-top: 12px;
+  margin-top: 13px;
 
   min-width: 0;
 }
-
-// ============================================
-// MINI CARD
-// ============================================
 
 .earningMiniCard {
   position: relative;
 
   min-width: 0;
+  min-height: 142px;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
-  gap: 12px;
-
-  padding: 15px;
+  padding: 18px;
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.065);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 18px;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.034),
-    rgba(255, 255, 255, 0.014)
-  );
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124, 58, 237, 0.05),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.014)
+    );
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.02);
+    0 10px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px rgba(255, 255, 255, 0.018);
 
   transition:
-    transform 220ms ease,
+    transform 240ms ease,
     border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .earningMiniCard:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 
-  border-color: rgba(139, 92, 246, 0.18);
-
-  background: linear-gradient(
-    135deg,
-    rgba(124, 58, 237, 0.05),
-    rgba(255, 255, 255, 0.018)
-  );
+  border-color: rgba(139, 92, 246, 0.22);
 
   box-shadow:
-    0 14px 36px rgba(0, 0, 0, 0.14),
+    0 18px 44px rgba(0, 0, 0, 0.18),
+    0 0 28px rgba(124, 58, 237, 0.045),
     inset 0 1px rgba(255, 255, 255, 0.025);
 }
 
-// ============================================
+// ============================================================
+// MINI CARD TOP
+// ============================================================
+
+.miniCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.miniCardIndex {
+  color: #465066;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+// ============================================================
 // MINI ICON
-// ============================================
+// ============================================================
 
 .miniIcon {
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
 
-  flex: 0 0 40px;
+  flex: 0 0 43px;
 
   display: grid;
   place-items: center;
 
-  border-radius: 11px;
+  border-radius: 12px;
 
   transition:
     transform 220ms ease,
@@ -451,180 +534,255 @@
 }
 
 .earningMiniCard:hover .miniIcon {
-  transform: scale(1.05);
+  transform: scale(1.06) translateY(-1px);
 }
 
 .miniIcon.purple {
-  border: 1px solid rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.12);
 
-  background: rgba(139, 92, 246, 0.1);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(139, 92, 246, 0.16),
+      rgba(139, 92, 246, 0.055)
+    );
 
-  color: #a78bfa;
+  color: #b69aff;
 }
 
 .miniIcon.blue {
-  border: 1px solid rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.12);
 
-  background: rgba(59, 130, 246, 0.1);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(59, 130, 246, 0.16),
+      rgba(59, 130, 246, 0.055)
+    );
 
-  color: #60a5fa;
+  color: #71b2ff;
 }
 
 .miniIcon.green {
-  border: 1px solid rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.11);
 
-  background: rgba(34, 197, 94, 0.09);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34, 197, 94, 0.15),
+      rgba(34, 197, 94, 0.05)
+    );
 
-  color: #4ade80;
+  color: #58e18b;
 }
 
-// ============================================
-// MINI CONTENT — IMPORTANT
-// ============================================
+// ============================================================
+// MINI CONTENT
+// ============================================================
 
 .miniContent {
   min-width: 0;
-  flex: 1;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
-  justify-content: center;
+  margin-top: 15px;
 }
 
-// LABEL
-.miniContent > span {
-  display: block;
+.miniLabel {
+  color: #808aa0;
 
-  max-width: 100%;
-
-  overflow: hidden;
-
-  color: #68748d;
-
-  font-size: 7.5px;
+  font-size: 9px;
   font-weight: 800;
 
-  line-height: 1;
+  line-height: 1.3;
 
-  letter-spacing: 1.2px;
+  letter-spacing: 1.3px;
 
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-transform: uppercase;
 }
 
-// VALUE
 .miniContent strong {
-  display: block;
-
-  max-width: 100%;
-
   margin-top: 5px;
 
-  overflow: hidden;
+  color: #f8fafc;
 
-  color: #f5f7fb;
-
-  font-size: 12px;
-  font-weight: 750;
-
-  line-height: 1.25;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-// DESCRIPTION
-.miniContent small {
-  display: block;
-
-  max-width: 100%;
-
-  margin-top: 4px;
-
-  overflow: hidden;
-
-  color: #59657d;
-
-  font-size: 7.5px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 760;
 
   line-height: 1.35;
 
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  letter-spacing: -0.15px;
 }
 
-// ============================================
+.miniContent small {
+  margin-top: 6px;
+
+  color: #7f899f;
+
+  font-size: 10.5px;
+  font-weight: 500;
+
+  line-height: 1.5;
+}
+
+// ============================================================
 // MINI CARD GLOW
-// ============================================
+// ============================================================
 
 .miniCardGlow {
   position: absolute;
 
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
 
-  right: -55px;
-  bottom: -55px;
+  right: -50px;
+  bottom: -60px;
 
   border-radius: 50%;
 
-  background: radial-gradient(
-    circle,
-    rgba(139, 92, 246, 0.08),
-    transparent 68%
-  );
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.13),
+      transparent 70%
+    );
 
   filter: blur(8px);
 
   pointer-events: none;
+
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
 }
 
-// ============================================
+.earningMiniCard:hover .miniCardGlow {
+  transform: scale(1.35);
+}
+
+// ============================================================
+// BOTTOM ACCENT
+// ============================================================
+
+.miniCardAccent {
+  position: absolute;
+
+  left: 18px;
+  bottom: 13px;
+
+  width: 30px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #22d3ee
+    );
+
+  opacity: 0.72;
+
+  transition:
+    width 240ms ease,
+    opacity 240ms ease;
+}
+
+.earningMiniCard:hover .miniCardAccent {
+  width: 50px;
+  opacity: 1;
+}
+
+.earningMiniCard.blue .miniCardAccent {
+  background:
+    linear-gradient(
+      90deg,
+      #3b82f6,
+      #22d3ee
+    );
+}
+
+.earningMiniCard.green .miniCardAccent {
+  background:
+    linear-gradient(
+      90deg,
+      #22c55e,
+      #4ade80
+    );
+}
+
+// ============================================================
 // TABLET
-// ============================================
-
-@media (max-width: 1000px) {
-  .earningsCardTop {
-    width: 150px;
-  }
-
-  .earningsContent h2 {
-    font-size: 16px;
-  }
-
-  .earningsContent p {
-    font-size: 9.5px;
-  }
-}
+// ============================================================
 
 @media (max-width: 900px) {
   .earningsCards {
-    grid-template-columns: repeat(
-      2,
-      minmax(0, 1fr)
-    );
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
   .earningMiniCard:last-child {
     grid-column: 1 / -1;
   }
+
+  .earningsContent h2 {
+    font-size: 18px;
+  }
+
+  .earningsContent p {
+    font-size: 12px;
+  }
 }
 
-// ============================================
+// ============================================================
 // SMALL TABLET
-// ============================================
+// ============================================================
 
 @media (max-width: 700px) {
   .earningsCard {
-    gap: 14px;
-    padding: 19px;
+    padding: 21px;
+  }
+
+  .earningsContent h2 {
+    font-size: 17px;
+  }
+
+  .earningsContent p {
+    font-size: 11.5px;
+  }
+
+  .earningMiniCard strong {
+    font-size: 13.5px;
+  }
+
+  .miniContent small {
+    font-size: 10px;
+  }
+}
+
+// ============================================================
+// MOBILE
+// ============================================================
+
+@media (max-width: 600px) {
+  .earningsInfo {
+    margin-top: 27px;
+  }
+
+  .earningsCard {
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    border-radius: 19px;
   }
 
   .earningsCardTop {
-    width: 125px;
+    gap: 8px;
   }
 
   .earningsIcon {
@@ -632,58 +790,185 @@
     height: 43px;
 
     flex-basis: 43px;
+
+    border-radius: 12px;
   }
 
   .earningsLive {
-    font-size: 7px;
+    display: none;
+  }
+
+  .earningsEyebrow {
+    font-size: 8px;
+    letter-spacing: 1.45px;
   }
 
   .earningsContent h2 {
-    font-size: 15px;
+    margin: 6px 0 7px;
+
+    font-size: 17px;
+    line-height: 1.35;
   }
 
   .earningsContent p {
-    font-size: 9px;
+    max-width: 100%;
+
+    color: #9aa4b8;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    line-height: 1.7;
   }
 
   .earningsTrust {
-    gap: 8px;
+    gap: 7px 12px;
+
+    margin-top: 12px;
   }
 
   .earningsTrust span {
-    font-size: 7px;
+    font-size: 8.8px;
+  }
+
+  .earningsArrow {
+    display: none;
+  }
+
+  .earningsCornerBadge {
+    display: none;
+  }
+
+  .earningsCards {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 12px;
+  }
+
+  .earningMiniCard {
+    min-height: 130px;
+
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .miniIcon {
+    width: 41px;
+    height: 41px;
+
+    flex-basis: 41px;
+  }
+
+  .miniContent {
+    margin-top: 13px;
+  }
+
+  .miniLabel {
+    font-size: 8.5px;
+  }
+
+  .miniContent strong {
+    font-size: 14px;
+  }
+
+  .miniContent small {
+    margin-top: 5px;
+
+    color: #808ba0;
+
+    font-size: 10.5px;
+    line-height: 1.55;
+  }
+
+  .miniCardAccent {
+    left: 16px;
+    bottom: 12px;
   }
 }
 
-// ============================================
-// MOBILE
-// ============================================
+// ============================================================
+// SMALL MOBILE
+// ============================================================
 
-@media (max-width: 600px) {
+@media (max-width: 430px) {
   .earningsInfo {
-    margin-top: 24px;
+    margin-top: 25px;
   }
 
   .earningsCard {
-    display: grid;
+    gap: 10px;
 
-    grid-template-columns: 42px minmax(0, 1fr);
-
-    align-items: start;
-
-    gap: 12px;
-
-    padding: 17px;
+    padding: 16px;
 
     border-radius: 17px;
   }
 
-  .earningsCardTop {
-    width: auto;
+  .earningsIcon {
+    width: 41px;
+    height: 41px;
 
-    align-items: center;
+    flex-basis: 41px;
+  }
 
-    gap: 6px;
+  .earningsEyebrow {
+    font-size: 7.7px;
+  }
+
+  .earningsContent h2 {
+    font-size: 16px;
+  }
+
+  .earningsContent p {
+    font-size: 11.5px;
+    line-height: 1.7;
+  }
+
+  .earningsTrust {
+    gap: 6px 9px;
+  }
+
+  .earningsTrust span {
+    font-size: 8.3px;
+  }
+
+  .earningMiniCard {
+    min-height: 126px;
+
+    padding: 15px;
+  }
+
+  .miniIcon {
+    width: 40px;
+    height: 40px;
+
+    flex-basis: 40px;
+  }
+
+  .miniLabel {
+    font-size: 8px;
+  }
+
+  .miniContent strong {
+    font-size: 13.5px;
+  }
+
+  .miniContent small {
+    font-size: 10px;
+  }
+}
+
+// ============================================================
+// VERY SMALL PHONES
+// ============================================================
+
+@media (max-width: 360px) {
+  .earningsCard {
+    gap: 9px;
+
+    padding: 15px;
   }
 
   .earningsIcon {
@@ -691,79 +976,91 @@
     height: 39px;
 
     flex-basis: 39px;
-
-    border-radius: 10px;
-  }
-
-  .earningsIcon svg {
-    width: 19px;
-    height: 19px;
-  }
-
-  .earningsLive {
-    display: none;
-  }
-
-  .earningsContent {
-    min-width: 0;
   }
 
   .earningsEyebrow {
-    font-size: 7.5px;
-    letter-spacing: 1.25px;
+    font-size: 7.4px;
   }
 
   .earningsContent h2 {
-    margin-top: 5px;
-
-    font-size: 13px;
-
-    line-height: 1.4;
+    font-size: 15px;
   }
 
   .earningsContent p {
-    max-width: 100%;
-
-    font-size: 8.5px;
-
-    line-height: 1.55;
+    font-size: 11px;
+    line-height: 1.65;
   }
 
   .earningsTrust {
-    gap: 7px;
+    flex-direction: column;
+    align-items: flex-start;
 
-    margin-top: 8px;
+    gap: 5px;
   }
 
   .earningsTrust span {
-    font-size: 6.8px;
-  }
-
-  .earningsTrust svg {
-    width: 10px;
-    height: 10px;
-  }
-
-  .earningsArrow {
-    display: none;
-  }
-
-  .earningsCards {
-    grid-template-columns: 1fr;
-
-    gap: 9px;
+    font-size: 8.2px;
   }
 
   .earningMiniCard {
-    gap: 11px;
+    min-height: 122px;
 
-    padding: 13px;
-
-    border-radius: 14px;
+    padding: 14px;
   }
 
-  .earningMiniCard:last-child {
-    grid-column: auto;
+  .miniIcon {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+  }
+
+  .miniLabel {
+    font-size: 7.7px;
+  }
+
+  .miniContent strong {
+    font-size: 13px;
+  }
+
+  .miniContent small {
+    font-size: 9.5px;
+    line-height: 1.5;
+  }
+
+  .miniCardAccent {
+    left: 14px;
+  }
+}
+
+// ============================================================
+// EXTRA SMALL PHONES
+// ============================================================
+
+@media (max-width: 320px) {
+  .earningsCard {
+    padding: 14px;
+  }
+
+  .earningsIcon {
+    width: 37px;
+    height: 37px;
+
+    flex-basis: 37px;
+  }
+
+  .earningsContent h2 {
+    font-size: 14px;
+  }
+
+  .earningsContent p {
+    font-size: 10.5px;
+  }
+
+  .earningMiniCard {
+    min-height: 118px;
+
+    padding: 13px;
   }
 
   .miniIcon {
@@ -773,143 +1070,91 @@
     flex-basis: 37px;
   }
 
-  .miniContent > span {
-    font-size: 7px;
-  }
-
   .miniContent strong {
-    font-size: 11px;
+    font-size: 12.5px;
   }
 
   .miniContent small {
-    font-size: 7px;
+    font-size: 9.2px;
   }
 }
 
-// ============================================
-// SMALL MOBILE
-// ============================================
+// ============================================================
+// ACCESSIBILITY
+// ============================================================
 
-@media (max-width: 380px) {
-  .earningsCard {
-    grid-template-columns: 36px minmax(0, 1fr);
+.earningsCard:focus-within,
+.earningMiniCard:focus-within {
+  outline: none;
 
-    gap: 9px;
+  border-color: rgba(139, 92, 246, 0.32);
 
-    padding: 14px;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.08),
+    0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+// ============================================================
+// ANIMATIONS
+// ============================================================
+
+@keyframes earningsGlowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 
-  .earningsIcon {
-    width: 35px;
-    height: 35px;
-
-    flex-basis: 35px;
-  }
-
-  .earningsContent h2 {
-    font-size: 11.5px;
-  }
-
-  .earningsContent p {
-    font-size: 7.5px;
-  }
-
-  .earningsTrust {
-    gap: 5px;
-  }
-
-  .earningsTrust span {
-    font-size: 6px;
-  }
-
-  .earningMiniCard {
-    gap: 9px;
-
-    padding: 12px;
-  }
-
-  .miniIcon {
-    width: 35px;
-    height: 35px;
-
-    flex-basis: 35px;
-  }
-
-  .miniContent > span {
-    font-size: 6.5px;
-  }
-
-  .miniContent strong {
-    font-size: 10px;
-  }
-
-  .miniContent small {
-    font-size: 6.5px;
+  50% {
+    transform: translate3d(-12px, 10px, 0);
   }
 }
 
-// ============================================
-// VERY SMALL PHONES
-// ============================================
-
-@media (max-width: 340px) {
-  .earningsCard {
-    grid-template-columns: 33px minmax(0, 1fr);
-
-    gap: 8px;
-
-    padding: 12px;
+@keyframes earningsGlowFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 
-  .earningsIcon {
-    width: 32px;
-    height: 32px;
-
-    flex-basis: 32px;
-  }
-
-  .earningsContent h2 {
-    font-size: 10.5px;
-  }
-
-  .earningsContent p {
-    font-size: 7px;
-  }
-
-  .earningsTrust span {
-    font-size: 5.7px;
-  }
-
-  .earningMiniCard {
-    padding: 10px;
-  }
-
-  .miniIcon {
-    width: 33px;
-    height: 33px;
-
-    flex-basis: 33px;
-  }
-
-  .miniContent strong {
-    font-size: 9px;
-  }
-
-  .miniContent small {
-    font-size: 6px;
+  50% {
+    transform: translate3d(12px, -8px, 0);
   }
 }
 
-// ============================================
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+// ============================================================
 // REDUCED MOTION
-// ============================================
+// ============================================================
 
 @media (prefers-reduced-motion: reduce) {
   .earningsCard,
   .earningsIcon,
   .earningsArrow,
   .earningMiniCard,
-  .miniIcon {
+  .miniIcon,
+  .miniCardAccent {
     transition: none;
+  }
+
+  .earningsGlowOne,
+  .earningsGlowTwo,
+  .earningsLiveDot {
+    animation: none;
+  }
+
+  .earningsCard:hover,
+  .earningMiniCard:hover {
+    transform: none;
   }
 }
