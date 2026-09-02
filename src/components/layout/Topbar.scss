@@ -1,7 +1,7 @@
-// ============================================
-// VELOOP — TOPBAR
-// Premium Responsive Header
-// ============================================
+/* =========================================================
+   VELOOP — TOPBAR
+   Premium Responsive Header
+   ========================================================= */
 
 .topbar {
   position: sticky;
@@ -15,19 +15,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 24px;
+
   padding: 0 30px;
-
   box-sizing: border-box;
-
-  overflow: visible;
 
   background:
     linear-gradient(
       180deg,
-      rgba(6, 9, 24, 0.97),
-      rgba(5, 8, 22, 0.9)
+      rgba(6, 9, 24, 0.98),
+      rgba(5, 8, 22, 0.94)
     );
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -36,57 +33,47 @@
   -webkit-backdrop-filter: blur(22px);
 
   isolation: isolate;
-
-  &::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-
-    height: 1px;
-
-    background:
-      linear-gradient(
-        90deg,
-        transparent,
-        rgba(139, 92, 246, 0.2),
-        transparent
-      );
-
-    pointer-events: none;
-  }
 }
 
-// ============================================
-// LEFT
-// ============================================
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.25),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   LEFT
+   ========================================================= */
 
 .topbarLeft {
   min-width: 0;
+  flex: 1;
 
   display: flex;
   align-items: center;
-
-  flex: 1;
 }
 
-// ============================================
-// SEARCH WRAPPER
-// ============================================
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 .searchWrapper {
   position: relative;
-
   width: min(390px, 34vw);
-
   z-index: 1200;
 }
-
-// ============================================
-// SEARCH
-// ============================================
 
 .searchBox {
   width: 100%;
@@ -94,23 +81,19 @@
 
   display: flex;
   align-items: center;
-
   gap: 11px;
 
   padding: 0 13px;
-
   box-sizing: border-box;
 
   border: 1px solid rgba(255, 255, 255, 0.075);
-
   border-radius: 13px;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.045),
-      rgba(255, 255, 255, 0.018)
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.018)
+  );
 
   color: #858da4;
 
@@ -119,109 +102,79 @@
     0 8px 25px rgba(0, 0, 0, 0.08);
 
   transition:
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+    border-color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+}
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.12);
+.searchBox:hover {
+  border-color: rgba(255, 255, 255, 0.13);
+}
 
-    background:
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.055),
-        rgba(255, 255, 255, 0.022)
-      );
-  }
+.searchBox:focus-within {
+  border-color: rgba(139, 92, 246, 0.52);
 
-  &:focus-within {
-    border-color: rgba(139, 92, 246, 0.52);
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.09),
+    0 10px 30px rgba(0, 0, 0, 0.12);
+}
 
-    background:
-      linear-gradient(
-        135deg,
-        rgba(139, 92, 246, 0.07),
-        rgba(255, 255, 255, 0.025)
-      );
+.searchBox svg {
+  flex: 0 0 auto;
+}
 
-    box-shadow:
-      0 0 0 3px rgba(139, 92, 246, 0.09),
-      0 10px 30px rgba(0, 0, 0, 0.12);
+.searchBox input {
+  width: 100%;
+  min-width: 0;
+  flex: 1;
 
-    transform: translateY(-1px);
-  }
+  border: 0;
+  outline: 0;
+  background: transparent;
 
-  svg {
-    flex: 0 0 auto;
-  }
+  color: #f8fafc;
 
-  input {
-    min-width: 0;
-    width: 100%;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+}
 
-    flex: 1;
+.searchBox input::placeholder {
+  color: #747d95;
+}
 
-    border: 0;
-    outline: 0;
+.searchBox input::-webkit-search-cancel-button {
+  display: none;
+}
 
-    background: transparent;
-    color: #f8fafc;
+.searchBox kbd {
+  flex: 0 0 auto;
 
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 500;
+  min-width: 35px;
+  padding: 5px 7px;
 
-    line-height: 1.2;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
 
-    &::placeholder {
-      color: #747d95;
-    }
+  background: rgba(255, 255, 255, 0.045);
+  color: #858da4;
 
-    &::-webkit-search-cancel-button {
-      display: none;
-    }
-  }
-
-  kbd {
-    min-width: 35px;
-
-    flex: 0 0 auto;
-
-    padding: 5px 7px;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    border-radius: 6px;
-
-    background: rgba(255, 255, 255, 0.045);
-
-    color: #858da4;
-
-    font-family: inherit;
-    font-size: 10px;
-    font-weight: 650;
-
-    line-height: 1;
-
-    text-align: center;
-  }
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1;
+  text-align: center;
 }
 
 .searchBoxActive {
   border-radius: 13px 13px 0 0;
-
   border-color: rgba(139, 92, 246, 0.5);
 }
-
-// ============================================
-// CLEAR SEARCH
-// ============================================
 
 .searchClear {
   width: 23px;
   height: 23px;
-
   flex: 0 0 23px;
 
   display: grid;
@@ -233,63 +186,42 @@
   border-radius: 50%;
 
   background: rgba(255, 255, 255, 0.055);
-
   color: #9da6ba;
 
-  font-family: inherit;
   font-size: 16px;
-  font-weight: 500;
-
   line-height: 1;
 
   cursor: pointer;
-
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
-
-  &:hover {
-    background: rgba(139, 92, 246, 0.16);
-    color: #ffffff;
-
-    transform: scale(1.05);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
-    outline-offset: 2px;
-  }
 }
 
-// ============================================
-// SEARCH SUGGESTIONS
-// ============================================
+.searchClear:hover {
+  background: rgba(139, 92, 246, 0.16);
+  color: #fff;
+}
+
+/* =========================================================
+   SEARCH SUGGESTIONS
+   ========================================================= */
 
 .searchSuggestions {
   position: absolute;
-
   top: calc(100% - 1px);
   left: 0;
   right: 0;
-
   z-index: 1300;
 
   overflow: hidden;
-
   padding: 8px;
 
   border: 1px solid rgba(139, 92, 246, 0.28);
   border-top: 0;
-
   border-radius: 0 0 15px 15px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15, 18, 38, 0.99),
-      rgba(8, 11, 27, 0.995)
-    );
+  background: linear-gradient(
+    145deg,
+    rgba(15, 18, 38, 0.99),
+    rgba(8, 11, 27, 0.995)
+  );
 
   box-shadow:
     0 24px 50px rgba(0, 0, 0, 0.4),
@@ -298,8 +230,7 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 
-  animation:
-    searchDropIn 160ms ease-out;
+  animation: searchDropIn 160ms ease-out;
 }
 
 @keyframes searchDropIn {
@@ -314,49 +245,33 @@
   }
 }
 
-// ============================================
-// SUGGESTIONS HEADER
-// ============================================
-
 .suggestionsHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 8px 9px 7px;
-
-  span {
-    color: #aeb6ca;
-
-    font-size: 10px;
-    font-weight: 750;
-
-    line-height: 1.2;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  small {
-    color: #68738b;
-
-    font-size: 9px;
-    font-weight: 600;
-
-    line-height: 1.2;
-  }
 }
 
-// ============================================
-// SUGGESTION ITEM
-// ============================================
+.suggestionsHeader span {
+  color: #aeb6ca;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.suggestionsHeader small {
+  color: #68738b;
+  font-size: 9px;
+  font-weight: 600;
+}
 
 .suggestionItem {
   width: 100%;
 
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   padding: 10px 9px;
@@ -365,103 +280,70 @@
   border-radius: 10px;
 
   background: transparent;
-
   color: inherit;
 
   text-align: left;
-
   cursor: pointer;
 
   transition:
     background 160ms ease,
     transform 160ms ease;
+}
 
-  &:hover {
-    background: rgba(139, 92, 246, 0.09);
-
-    transform: translateX(2px);
-
-    .suggestionArrow {
-      color: #b69cff;
-
-      transform: translate(2px, -2px);
-    }
-
-    .suggestionIcon {
-      background: rgba(139, 92, 246, 0.16);
-    }
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.45);
-    outline-offset: -2px;
-  }
+.suggestionItem:hover {
+  background: rgba(139, 92, 246, 0.09);
+  transform: translateX(2px);
 }
 
 .suggestionIcon {
   width: 32px;
   height: 32px;
-
   flex: 0 0 32px;
 
   display: grid;
   place-items: center;
 
   border: 1px solid rgba(139, 92, 246, 0.1);
-
   border-radius: 9px;
 
   background: rgba(139, 92, 246, 0.1);
-
   color: #a78bfa;
-
-  transition:
-    background 160ms ease;
 }
 
 .suggestionContent {
   min-width: 0;
-
   flex: 1;
 
   display: flex;
   flex-direction: column;
-
   gap: 3px;
+}
 
-  strong {
-    overflow: hidden;
+.suggestionContent strong {
+  overflow: hidden;
 
-    color: #f5f7fb;
+  color: #f5f7fb;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
 
-    font-size: 11px;
-    font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-    line-height: 1.25;
+.suggestionContent small {
+  color: #747f97;
+  font-size: 9px;
+  font-weight: 550;
+}
 
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  small {
-    color: #747f97;
-
-    font-size: 9px;
-    font-weight: 550;
-
-    line-height: 1.2;
-
-    span {
-      color: #4e5870;
-
-      margin: 0 3px;
-    }
-  }
+.suggestionContent small span {
+  margin: 0 3px;
+  color: #4e5870;
 }
 
 .suggestionArrow {
   flex: 0 0 auto;
-
   color: #5e6880;
 
   transition:
@@ -469,9 +351,10 @@
     transform 160ms ease;
 }
 
-// ============================================
-// SEARCH EMPTY
-// ============================================
+.suggestionItem:hover .suggestionArrow {
+  color: #b69cff;
+  transform: translate(2px, -2px);
+}
 
 .searchEmpty {
   min-height: 125px;
@@ -482,58 +365,51 @@
   justify-content: center;
 
   gap: 5px;
-
   text-align: center;
-
-  .searchEmptyIcon {
-    width: 36px;
-    height: 36px;
-
-    display: grid;
-    place-items: center;
-
-    margin-bottom: 3px;
-
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.04);
-
-    color: #69738a;
-  }
-
-  strong {
-    color: #c7ccda;
-
-    font-size: 11px;
-    font-weight: 700;
-  }
-
-  small {
-    color: #68738b;
-
-    font-size: 9px;
-    font-weight: 550;
-  }
 }
 
-// ============================================
-// RIGHT
-// ============================================
+.searchEmptyIcon {
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 3px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.04);
+  color: #69738a;
+}
+
+.searchEmpty strong {
+  color: #c7ccda;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.searchEmpty small {
+  color: #68738b;
+  font-size: 9px;
+}
+
+/* =========================================================
+   RIGHT
+   ========================================================= */
 
 .topbarRight {
   min-width: 0;
 
   display: flex;
   align-items: center;
-
   gap: 12px;
 
   flex: 0 0 auto;
 }
 
-// ============================================
-// BALANCE
-// ============================================
+/* =========================================================
+   BALANCE
+   ========================================================= */
 
 .balancePill {
   min-width: 205px;
@@ -541,56 +417,28 @@
 
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   padding: 5px 7px 5px 6px;
+  box-sizing: border-box;
 
   border: 1px solid rgba(139, 92, 246, 0.2);
-
   border-radius: 15px;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(124, 58, 237, 0.13),
-      rgba(255, 255, 255, 0.025)
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.13),
+    rgba(255, 255, 255, 0.025)
+  );
 
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.025),
     0 8px 28px rgba(0, 0, 0, 0.12);
-
-  box-sizing: border-box;
-
-  transition:
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
-
-  &:hover {
-    border-color: rgba(167, 139, 250, 0.34);
-
-    background:
-      linear-gradient(
-        135deg,
-        rgba(124, 58, 237, 0.17),
-        rgba(255, 255, 255, 0.035)
-      );
-
-    box-shadow:
-      0 10px 30px rgba(0, 0, 0, 0.16),
-      0 0 24px rgba(124, 58, 237, 0.06);
-
-    transform: translateY(-1px);
-  }
 }
 
 .balanceIcon {
   width: 37px;
   height: 37px;
-
   flex: 0 0 37px;
 
   display: grid;
@@ -599,114 +447,66 @@
   padding: 0;
 
   border: 1px solid rgba(167, 139, 250, 0.12);
-
   border-radius: 11px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(139, 92, 246, 0.2),
-      rgba(139, 92, 246, 0.08)
-    );
+  background: linear-gradient(
+    145deg,
+    rgba(139, 92, 246, 0.2),
+    rgba(139, 92, 246, 0.08)
+  );
 
   color: #b39aff;
-
   cursor: pointer;
-
-  transition:
-    background 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-
-  &:hover {
-    color: #ffffff;
-
-    background:
-      linear-gradient(
-        145deg,
-        rgba(139, 92, 246, 0.3),
-        rgba(139, 92, 246, 0.12)
-      );
-
-    transform: scale(1.04);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.6);
-    outline-offset: 2px;
-  }
 }
 
 .balanceInfo {
   min-width: 0;
-
   flex: 1;
 
   display: flex;
   flex-direction: column;
 
   padding: 0;
-
   border: 0;
-
   background: transparent;
 
   text-align: left;
-
   cursor: pointer;
+}
 
-  span {
-    color: #8992aa;
+.balanceInfo span {
+  color: #8992aa;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
 
-    font-size: 10px;
-    font-weight: 600;
+.balanceInfo strong {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 
-    line-height: 1.25;
+  margin-top: 3px;
 
-    white-space: nowrap;
-  }
+  color: #fff;
 
-  strong {
-    display: flex;
-    align-items: baseline;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
 
-    gap: 4px;
+  white-space: nowrap;
+}
 
-    margin-top: 3px;
-
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 800;
-
-    line-height: 1;
-
-    letter-spacing: -0.25px;
-
-    white-space: nowrap;
-  }
-
-  small {
-    color: #a78bfa;
-
-    font-size: 9px;
-    font-weight: 750;
-
-    letter-spacing: 0.2px;
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
-    outline-offset: 3px;
-
-    border-radius: 5px;
-  }
+.balanceInfo small {
+  color: #a78bfa;
+  font-size: 9px;
+  font-weight: 750;
 }
 
 .addBalance {
   width: 29px;
   height: 29px;
-
   flex: 0 0 29px;
 
   display: grid;
@@ -715,47 +515,23 @@
   padding: 0;
 
   border: 1px solid rgba(255, 255, 255, 0.06);
-
   border-radius: 8px;
 
   background: rgba(255, 255, 255, 0.055);
-
   color: #aab2c5;
 
   cursor: pointer;
-
-  transition:
-    background 180ms ease,
-    color 180ms ease,
-    transform 180ms ease,
-    border-color 180ms ease;
-
-  &:hover {
-    background: rgba(139, 92, 246, 0.18);
-
-    border-color: rgba(167, 139, 250, 0.15);
-
-    color: #ffffff;
-
-    transform: rotate(90deg);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
-    outline-offset: 2px;
-  }
 }
 
-// ============================================
-// NOTIFICATION
-// ============================================
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
 
 .notificationButton {
   position: relative;
 
   width: 44px;
   height: 44px;
-
   flex: 0 0 44px;
 
   display: grid;
@@ -764,54 +540,27 @@
   padding: 0;
 
   border: 1px solid rgba(255, 255, 255, 0.075);
-
   border-radius: 13px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.045),
-      rgba(255, 255, 255, 0.018)
-    );
-
+  background: rgba(255, 255, 255, 0.035);
   color: #9ca5ba;
 
   cursor: pointer;
 
   transition:
-    color 180ms ease,
     background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    color 180ms ease,
+    transform 180ms ease;
+}
 
-  &:hover {
-    color: #ffffff;
-
-    background:
-      linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.075),
-        rgba(255, 255, 255, 0.025)
-      );
-
-    border-color: rgba(255, 255, 255, 0.12);
-
-    transform: translateY(-1px);
-
-    box-shadow:
-      0 8px 22px rgba(0, 0, 0, 0.12);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
-    outline-offset: 3px;
-  }
+.notificationButton:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-1px);
 }
 
 .notificationDot {
   position: absolute;
-
   top: 8px;
   right: 8px;
 
@@ -819,7 +568,6 @@
   height: 7px;
 
   border: 2px solid #080b18;
-
   border-radius: 50%;
 
   background: #a855f7;
@@ -828,8 +576,7 @@
     0 0 0 2px rgba(168, 85, 247, 0.08),
     0 0 10px rgba(168, 85, 247, 0.75);
 
-  animation:
-    notificationPulse 2.2s ease-in-out infinite;
+  animation: notificationPulse 2.2s ease-in-out infinite;
 }
 
 @keyframes notificationPulse {
@@ -847,16 +594,15 @@
   }
 }
 
-// ============================================
-// PROFILE
-// ============================================
+/* =========================================================
+   PROFILE
+   ========================================================= */
 
 .profileMenu {
   min-width: 0;
 
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   padding: 4px 5px;
@@ -865,76 +611,35 @@
   border-radius: 11px;
 
   background: transparent;
-
   color: #a2aabd;
 
   cursor: pointer;
-
-  transition:
-    background 180ms ease,
-    color 180ms ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.045);
-    color: #ffffff;
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
-    outline-offset: 3px;
-  }
-
-  > svg {
-    flex: 0 0 auto;
-
-    margin-left: 2px;
-
-    transition: transform 180ms ease;
-  }
-
-  &:hover > svg {
-    transform: translateY(2px);
-  }
 }
 
 .profileAvatar {
   width: 39px;
   height: 39px;
-
   flex: 0 0 39px;
 
   display: grid;
   place-items: center;
 
   border: 2px solid rgba(167, 139, 250, 0.32);
-
   border-radius: 50%;
 
-  background:
-    linear-gradient(
-      135deg,
-      #38bdf8,
-      #6366f1
-    );
+  background: linear-gradient(
+    135deg,
+    #38bdf8,
+    #6366f1
+  );
 
-  color: #ffffff;
+  color: #fff;
 
   font-size: 14px;
   font-weight: 850;
 
   box-shadow:
     0 0 20px rgba(99, 102, 241, 0.2);
-
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.profileMenu:hover .profileAvatar {
-  transform: scale(1.04);
-
-  box-shadow:
-    0 0 25px rgba(99, 102, 241, 0.28);
 }
 
 .profileInfo {
@@ -942,60 +647,55 @@
 
   display: flex;
   flex-direction: column;
-
   text-align: left;
-
-  strong {
-    max-width: 125px;
-
-    overflow: hidden;
-
-    color: #ffffff;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    line-height: 1.2;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  span {
-    margin-top: 3px;
-
-    color: #7f899f;
-
-    font-size: 9px;
-    font-weight: 600;
-
-    line-height: 1.2;
-
-    white-space: nowrap;
-  }
 }
 
-// ============================================
-// MOBILE ELEMENTS
-// ============================================
+.profileInfo strong {
+  max-width: 125px;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileInfo span {
+  margin-top: 3px;
+
+  color: #7f899f;
+
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   DEFAULT MOBILE ELEMENTS
+   ========================================================= */
 
 .mobileMenuButton,
 .mobilePageTitle {
   display: none;
 }
 
-// ============================================
-// TABLET
-// ============================================
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1100px) and (min-width: 701px) {
   .topbar {
     width: calc(100% - 82px);
-
     margin-left: 82px;
 
     padding-inline: 22px;
-
     gap: 18px;
   }
 
@@ -1012,19 +712,12 @@
   }
 }
 
-// ============================================
-// SMALL TABLET
-// ============================================
-
 @media (max-width: 900px) and (min-width: 701px) {
   .searchWrapper {
     width: min(280px, 29vw);
   }
 
-  .profileInfo {
-    display: none;
-  }
-
+  .profileInfo,
   .profileMenu > svg {
     display: none;
   }
@@ -1038,77 +731,58 @@
   }
 }
 
-// ============================================
-// MOBILE
-// ============================================
+/* =========================================================
+   MOBILE — MAIN FIX
+   ========================================================= */
 
 @media (max-width: 700px) {
   .topbar {
     width: 100%;
     height: 68px;
-
     margin-left: 0;
 
-    padding: 0 15px;
+    padding: 0 14px;
 
     gap: 10px;
   }
 
-  // LEFT
-
   .topbarLeft {
     min-width: 0;
-
     flex: 1;
   }
 
-  .mobileMenuButton {
-    width: 39px;
-    height: 39px;
+  /* MENU */
 
-    flex: 0 0 39px;
+  .mobileMenuButton {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
 
     display: grid;
     place-items: center;
 
-    margin-right: 10px;
-
+    margin-right: 11px;
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, 0.075);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
 
-    border-radius: 11px;
-
-    background: rgba(255, 255, 255, 0.04);
-
-    color: #a1aabd;
+    background: rgba(255, 255, 255, 0.045);
+    color: #b3bbce;
 
     cursor: pointer;
-
-    transition:
-      color 180ms ease,
-      background 180ms ease,
-      border-color 180ms ease,
-      transform 180ms ease;
-
-    &:hover {
-      color: #ffffff;
-
-      background: rgba(255, 255, 255, 0.07);
-
-      border-color: rgba(255, 255, 255, 0.12);
-
-      transform: translateY(-1px);
-    }
-
-    &:focus-visible {
-      outline: 2px solid rgba(167, 139, 250, 0.55);
-      outline-offset: 2px;
-    }
   }
+
+  .mobileMenuButton svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* MOBILE BRAND */
 
   .mobilePageTitle {
     min-width: 0;
+    max-width: 115px;
 
     display: flex;
     flex-direction: column;
@@ -1119,72 +793,79 @@
     margin: 0;
     padding: 0;
 
+    border: 0;
+    background: transparent;
+
     text-align: left;
-
     cursor: pointer;
-
-    span {
-      color: #858da5;
-
-      font-size: 8.5px;
-      font-weight: 850;
-
-      line-height: 1;
-
-      letter-spacing: 2.3px;
-    }
-
-    strong {
-      color: #ffffff;
-
-      font-size: 15px;
-      font-weight: 800;
-
-      line-height: 1.1;
-
-      letter-spacing: -0.25px;
-
-      white-space: nowrap;
-    }
-
-    &:focus-visible {
-      outline: 2px solid rgba(167, 139, 250, 0.5);
-      outline-offset: 4px;
-
-      border-radius: 5px;
-    }
   }
+
+  .mobilePageTitle span {
+    display: block;
+
+    color: #9ca4b8;
+
+    font-size: 8px;
+    font-weight: 850;
+    line-height: 1;
+
+    letter-spacing: 2.2px;
+  }
+
+  .mobilePageTitle strong {
+    display: block;
+
+    overflow: hidden;
+
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.1;
+
+    letter-spacing: -0.3px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* HIDE SEARCH */
 
   .searchWrapper {
     display: none;
   }
 
-  // RIGHT
+  /* RIGHT */
 
   .topbarRight {
-    gap: 7px;
+    gap: 8px;
   }
 
-  .balancePill {
-    min-width: auto;
-    width: auto;
+  /* BALANCE */
 
-    height: 41px;
+  .balancePill {
+    min-width: 0;
+    width: auto;
+    height: 42px;
 
     gap: 7px;
 
-    padding: 4px 6px;
+    padding: 4px 7px 4px 5px;
 
-    border-radius: 11px;
+    border-radius: 12px;
   }
 
   .balanceIcon {
-    width: 31px;
-    height: 31px;
-
-    flex-basis: 31px;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
 
     border-radius: 9px;
+  }
+
+  .balanceIcon svg {
+    width: 15px;
+    height: 15px;
   }
 
   .balanceInfo span,
@@ -1199,72 +880,149 @@
 
     font-size: 12px;
     font-weight: 800;
+    line-height: 1;
   }
 
   .balanceInfo small {
     font-size: 8px;
   }
 
+  /* NOTIFICATION */
+
   .notificationButton {
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
 
-    flex-basis: 39px;
+    border-radius: 12px;
+  }
 
-    border-radius: 11px;
+  .notificationButton svg {
+    width: 18px;
+    height: 18px;
   }
 
   .notificationDot {
-    top: 7px;
-    right: 7px;
+    top: 6px;
+    right: 6px;
 
     width: 6px;
     height: 6px;
   }
+
+  /* PROFILE */
 
   .profileMenu {
     padding: 1px;
   }
 
   .profileAvatar {
-    width: 35px;
-    height: 35px;
-
-    flex-basis: 35px;
+    width: 37px;
+    height: 37px;
+    flex-basis: 37px;
 
     font-size: 13px;
   }
 }
 
-// ============================================
-// SMALL MOBILE
-// ============================================
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .topbar {
+    height: 64px;
     padding-inline: 11px;
+    gap: 8px;
+  }
+
+  .topbarRight {
+    gap: 6px;
   }
 
   .mobileMenuButton {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+
+    margin-right: 9px;
+  }
+
+  .mobilePageTitle {
+    max-width: 105px;
+    gap: 4px;
+  }
+
+  .mobilePageTitle span {
+    font-size: 7.5px;
+    letter-spacing: 2px;
+  }
+
+  .mobilePageTitle strong {
+    font-size: 15px;
+  }
+
+  .balancePill {
+    height: 39px;
+    padding: 4px 6px 4px 5px;
+  }
+
+  .balanceIcon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .balanceInfo strong {
+    font-size: 11.5px;
+  }
+
+  .balanceInfo small {
+    font-size: 7.5px;
+  }
+
+  .notificationButton {
     width: 37px;
     height: 37px;
-
     flex-basis: 37px;
+  }
+
+  .profileAvatar {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .topbar {
+    padding-inline: 9px;
+    gap: 6px;
+  }
+
+  .mobileMenuButton {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
 
     margin-right: 8px;
   }
 
   .mobilePageTitle {
-    gap: 3px;
+    max-width: 88px;
+  }
 
-    span {
-      font-size: 7.5px;
-      letter-spacing: 2px;
-    }
+  .mobilePageTitle span {
+    font-size: 7px;
+    letter-spacing: 1.8px;
+  }
 
-    strong {
-      font-size: 14px;
-    }
+  .mobilePageTitle strong {
+    font-size: 14px;
   }
 
   .topbarRight {
@@ -1272,84 +1030,18 @@
   }
 
   .balancePill {
-    height: 38px;
-
-    padding-inline: 5px;
+    height: 37px;
+    padding: 4px 6px;
   }
 
   .balanceIcon {
-    width: 29px;
-    height: 29px;
-
-    flex-basis: 29px;
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
   }
 
   .balanceInfo strong {
-    font-size: 11px;
-  }
-
-  .notificationButton {
-    width: 36px;
-    height: 36px;
-
-    flex-basis: 36px;
-  }
-
-  .profileAvatar {
-    width: 32px;
-    height: 32px;
-
-    flex-basis: 32px;
-
-    font-size: 12px;
-  }
-}
-
-// ============================================
-// VERY SMALL MOBILE
-// ============================================
-
-@media (max-width: 350px) {
-  .topbar {
-    padding-inline: 8px;
-
-    gap: 6px;
-  }
-
-  .mobileMenuButton {
-    width: 35px;
-    height: 35px;
-
-    flex-basis: 35px;
-
-    margin-right: 7px;
-  }
-
-  .mobilePageTitle {
-    min-width: 60px;
-
-    span {
-      font-size: 7px;
-      letter-spacing: 1.7px;
-    }
-
-    strong {
-      font-size: 13px;
-    }
-  }
-
-  .balanceIcon {
-    display: none;
-  }
-
-  .balancePill {
-    height: 36px;
-
-    padding-inline: 8px;
-  }
-
-  .balanceInfo strong {
-    font-size: 10px;
+    font-size: 10.5px;
   }
 
   .balanceInfo small {
@@ -1357,49 +1049,101 @@
   }
 
   .notificationButton {
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+  }
+
+  .profileAvatar {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL
+   ========================================================= */
+
+@media (max-width: 340px) {
+  .topbar {
+    padding-inline: 7px;
+    gap: 5px;
+  }
+
+  .mobileMenuButton {
     width: 34px;
     height: 34px;
-
     flex-basis: 34px;
+
+    margin-right: 7px;
+  }
+
+  .mobilePageTitle {
+    max-width: 78px;
+  }
+
+  .mobilePageTitle span {
+    font-size: 6.5px;
+    letter-spacing: 1.6px;
+  }
+
+  .mobilePageTitle strong {
+    font-size: 13px;
+  }
+
+  .balancePill {
+    height: 35px;
+    padding-inline: 7px;
+  }
+
+  .balanceIcon {
+    display: none;
+  }
+
+  .balanceInfo strong {
+    font-size: 10px;
+  }
+
+  .balanceInfo small {
+    font-size: 6.5px;
+  }
+
+  .notificationButton {
+    width: 33px;
+    height: 33px;
+    flex-basis: 33px;
   }
 
   .profileAvatar {
     width: 30px;
     height: 30px;
-
     flex-basis: 30px;
+
+    font-size: 12px;
   }
 }
 
-// ============================================
-// BUTTON RESET
-// ============================================
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
 
 .topbar button {
   font: inherit;
-
   outline: none;
-
   color: inherit;
 }
 
-.topbar button:focus:not(:focus-visible) {
-  outline: none;
+.topbar button:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.6);
+  outline-offset: 3px;
 }
-
-// ============================================
-// REDUCED MOTION
-// ============================================
 
 @media (prefers-reduced-motion: reduce) {
   .topbar *,
   .topbar *::before,
   .topbar *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
-
-    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
