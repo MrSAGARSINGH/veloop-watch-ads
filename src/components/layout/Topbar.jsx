@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   Search,
   Bell,
@@ -5,6 +6,7 @@ import {
   Wallet,
   Plus,
   Menu,
+  ArrowUpRight,
 } from "lucide-react";
 
 import "./Topbar.scss";
@@ -23,24 +25,150 @@ const pageTitles = {
   settings: "Settings",
 };
 
+const searchSuggestions = [
+  {
+    id: 1,
+    title: "Adidas Summer Campaign",
+    category: "Fashion",
+    type: "Ad",
+    page: "watch-ads",
+  },
+  {
+    id: 2,
+    title: "Amazon Rewards Offer",
+    category: "Shopping",
+    type: "Offer",
+    page: "offers",
+  },
+  {
+    id: 3,
+    title: "Apple Premium Ad",
+    category: "Technology",
+    type: "Ad",
+    page: "watch-ads",
+  },
+  {
+    id: 4,
+    title: "Flipkart Mega Rewards",
+    category: "Shopping",
+    type: "Offer",
+    page: "offers",
+  },
+  {
+    id: 5,
+    title: "Gaming Rewards",
+    category: "Gaming",
+    type: "Ad",
+    page: "watch-ads",
+  },
+  {
+    id: 6,
+    title: "Refer & Earn",
+    category: "Rewards",
+    type: "Feature",
+    page: "refer",
+  },
+  {
+    id: 7,
+    title: "Wallet & Earnings",
+    category: "Account",
+    type: "Feature",
+    page: "wallet",
+  },
+];
+
 function Topbar({
   onMenuClick,
   activePage = "watch-ads",
   onNavigate,
+  lifetimeEarnings = 12450,
 }) {
+  const [searchValue, setSearchValue] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const searchRef = useRef(null);
+
   const currentTitle =
-    pageTitles[activePage] ||
-    "Watch Ads";
+    pageTitles[activePage] || "Watch Ads";
+
+  const formattedBalance = Number(
+    lifetimeEarnings || 0
+  ).toLocaleString("en-IN");
 
   const handleNavigate = (page) => {
     onNavigate?.(page);
+    setSearchValue("");
+    setShowSuggestions(false);
   };
+
+  const filteredSuggestions = searchSuggestions.filter(
+    (item) => {
+      const query = searchValue.trim().toLowerCase();
+
+      if (!query) return false;
+
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query) ||
+        item.type.toLowerCase().includes(query)
+      );
+    }
+  );
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+
+    setSearchValue(value);
+    setShowSuggestions(value.trim().length > 0);
+  };
+
+  const handleSuggestionClick = (item) => {
+    handleNavigate(item.page);
+  };
+
+  const handleSearchKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setSearchValue("");
+      setShowSuggestions(false);
+      return;
+    }
+
+    if (
+      event.key === "Enter" &&
+      filteredSuggestions.length > 0
+    ) {
+      handleSuggestionClick(
+        filteredSuggestions[0]
+      );
+    }
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleOutsideClick
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleOutsideClick
+      );
+    };
+  }, []);
 
   return (
     <header className="topbar">
-      {/* =========================
-          LEFT
-      ========================= */}
+      {/* LEFT */}
 
       <div className="topbarLeft">
         <button
@@ -71,36 +199,152 @@ function Topbar({
 
         {/* SEARCH */}
 
-        <div className="searchBox">
-          <Search
-            size={17}
-            strokeWidth={1.8}
-            aria-hidden="true"
-          />
+        <div
+          className="searchWrapper"
+          ref={searchRef}
+        >
+          <div
+            className={`searchBox ${
+              showSuggestions
+                ? "searchBoxActive"
+                : ""
+            }`}
+          >
+            <Search
+              size={17}
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
 
-          <input
-            type="search"
-            placeholder="Search ads, offers..."
-            aria-label="Search ads and offers"
-            autoComplete="off"
-          />
+            <input
+              type="search"
+              value={searchValue}
+              onChange={handleSearchChange}
+              onFocus={() => {
+                if (searchValue.trim()) {
+                  setShowSuggestions(true);
+                }
+              }}
+              onKeyDown={handleSearchKeyDown}
+              placeholder="Search ads, offers..."
+              aria-label="Search ads and offers"
+              aria-expanded={showSuggestions}
+              aria-autocomplete="list"
+              autoComplete="off"
+            />
 
-          <kbd aria-hidden="true">
-            ⌘ K
-          </kbd>
+            {searchValue ? (
+              <button
+                type="button"
+                className="searchClear"
+                onClick={() => {
+                  setSearchValue("");
+                  setShowSuggestions(false);
+                }}
+                aria-label="Clear search"
+              >
+                ×
+              </button>
+            ) : (
+              <kbd aria-hidden="true">
+                ⌘ K
+              </kbd>
+            )}
+          </div>
+
+          {showSuggestions && (
+            <div
+              className="searchSuggestions"
+              role="listbox"
+              aria-label="Search suggestions"
+            >
+              {filteredSuggestions.length > 0 ? (
+                <>
+                  <div className="suggestionsHeader">
+                    <span>Suggestions</span>
+
+                    <small>
+                      {filteredSuggestions.length}{" "}
+                      result
+                      {filteredSuggestions.length !== 1
+                        ? "s"
+                        : ""}
+                    </small>
+                  </div>
+
+                  {filteredSuggestions
+                    .slice(0, 6)
+                    .map((item) => (
+                      <button
+                        type="button"
+                        key={item.id}
+                        className="suggestionItem"
+                        onClick={() =>
+                          handleSuggestionClick(item)
+                        }
+                        role="option"
+                      >
+                        <span className="suggestionIcon">
+                          <Search
+                            size={15}
+                            strokeWidth={1.8}
+                            aria-hidden="true"
+                          />
+                        </span>
+
+                        <span className="suggestionContent">
+                          <strong>
+                            {item.title}
+                          </strong>
+
+                          <small>
+                            {item.category}
+                            <span>•</span>
+                            {item.type}
+                          </small>
+                        </span>
+
+                        <ArrowUpRight
+                          className="suggestionArrow"
+                          size={15}
+                          strokeWidth={1.8}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    ))}
+                </>
+              ) : (
+                <div className="searchEmpty">
+                  <span className="searchEmptyIcon">
+                    <Search
+                      size={18}
+                      strokeWidth={1.7}
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                  <strong>
+                    No results found
+                  </strong>
+
+                  <small>
+                    Try another keyword
+                  </small>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* =========================
-          RIGHT
-      ========================= */}
+      {/* RIGHT */}
 
       <div className="topbarRight">
         {/* BALANCE */}
 
         <div
           className="balancePill"
-          aria-label="Available balance: 12,450 VEs"
+          aria-label={`Available balance: ${formattedBalance} VEs`}
         >
           <button
             type="button"
@@ -125,12 +369,10 @@ function Topbar({
             }
             aria-label="Open wallet"
           >
-            <span>
-              Available Balance
-            </span>
+            <span>Available Balance</span>
 
             <strong>
-              12,450{" "}
+              {formattedBalance}
               <small>VEs</small>
             </strong>
           </button>
@@ -191,13 +433,8 @@ function Topbar({
           </div>
 
           <div className="profileInfo">
-            <strong>
-              Sagar Singh
-            </strong>
-
-            <span>
-              Premium Member
-            </span>
+            <strong>Sagar Singh</strong>
+            <span>Premium Member</span>
           </div>
 
           <ChevronDown

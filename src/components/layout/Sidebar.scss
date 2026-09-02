@@ -41,27 +41,40 @@
 // ============================================
 
 .logoArea {
+  width: 100%;
+  margin: 0;
+  padding: 4px 10px 24px;
+
   display: flex;
   align-items: center;
   gap: 11px;
 
-  width: 100%;
-  padding: 4px 10px 24px;
-
-  flex: 0 0 auto;
-
   border: 0;
+  outline: none;
   background: transparent;
   color: inherit;
 
+  font: inherit;
   text-align: left;
+
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:hover {
+    background: transparent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(139, 92, 246, 0.55);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
 }
 
 .logoMark {
   width: 39px;
   height: 39px;
-
   flex: 0 0 39px;
 
   display: grid;
@@ -69,15 +82,13 @@
 
   border-radius: 12px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #8b5cf6,
-      #6d28d9
-    );
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #6d28d9
+  );
 
   color: #ffffff;
-
   font-size: 20px;
   font-weight: 900;
 
@@ -87,12 +98,15 @@
   transform: skew(-7deg);
 }
 
+.logoMark span {
+  display: block;
+  transform: skew(7deg);
+}
+
 .logoText {
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-
   line-height: 1;
 }
 

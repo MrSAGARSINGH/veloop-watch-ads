@@ -5,35 +5,58 @@
 
 .topbar {
   position: sticky;
-
   top: 0;
-
   z-index: 900;
 
   width: calc(100% - 250px);
-
   height: 76px;
-
   margin-left: 250px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  gap: 20px;
-
+  gap: 24px;
   padding: 0 30px;
 
-  overflow: hidden;
-
-  background: rgba(5, 8, 22, 0.82);
-
-  border-bottom: 1px solid var(--border);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
   box-sizing: border-box;
+
+  overflow: visible;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 9, 24, 0.97),
+      rgba(5, 8, 22, 0.9)
+    );
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  isolation: isolate;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(139, 92, 246, 0.2),
+        transparent
+      );
+
+    pointer-events: none;
+  }
 }
 
 // ============================================
@@ -49,89 +72,448 @@
   flex: 1;
 }
 
-.searchBox {
-  width: min(360px, 32vw);
+// ============================================
+// SEARCH WRAPPER
+// ============================================
 
-  height: 42px;
+.searchWrapper {
+  position: relative;
+
+  width: min(390px, 34vw);
+
+  z-index: 1200;
+}
+
+// ============================================
+// SEARCH
+// ============================================
+
+.searchBox {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  color: #858da4;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.025),
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.055),
+        rgba(255, 255, 255, 0.022)
+      );
+  }
+
+  &:focus-within {
+    border-color: rgba(139, 92, 246, 0.52);
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.07),
+        rgba(255, 255, 255, 0.025)
+      );
+
+    box-shadow:
+      0 0 0 3px rgba(139, 92, 246, 0.09),
+      0 10px 30px rgba(0, 0, 0, 0.12);
+
+    transform: translateY(-1px);
+  }
+
+  svg {
+    flex: 0 0 auto;
+  }
+
+  input {
+    min-width: 0;
+    width: 100%;
+
+    flex: 1;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: #f8fafc;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    &::placeholder {
+      color: #747d95;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  kbd {
+    min-width: 35px;
+
+    flex: 0 0 auto;
+
+    padding: 5px 7px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 6px;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    color: #858da4;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 650;
+
+    line-height: 1;
+
+    text-align: center;
+  }
+}
+
+.searchBoxActive {
+  border-radius: 13px 13px 0 0;
+
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+// ============================================
+// CLEAR SEARCH
+// ============================================
+
+.searchClear {
+  width: 23px;
+  height: 23px;
+
+  flex: 0 0 23px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: #9da6ba;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+
+  &:hover {
+    background: rgba(139, 92, 246, 0.16);
+    color: #ffffff;
+
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+    outline-offset: 2px;
+  }
+}
+
+// ============================================
+// SEARCH SUGGESTIONS
+// ============================================
+
+.searchSuggestions {
+  position: absolute;
+
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
+
+  z-index: 1300;
+
+  overflow: hidden;
+
+  padding: 8px;
+
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-top: 0;
+
+  border-radius: 0 0 15px 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 18, 38, 0.99),
+      rgba(8, 11, 27, 0.995)
+    );
+
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(124, 58, 237, 0.06);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  animation:
+    searchDropIn 160ms ease-out;
+}
+
+@keyframes searchDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// SUGGESTIONS HEADER
+// ============================================
+
+.suggestionsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 9px 7px;
+
+  span {
+    color: #aeb6ca;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  small {
+    color: #68738b;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    line-height: 1.2;
+  }
+}
+
+// ============================================
+// SUGGESTION ITEM
+// ============================================
+
+.suggestionItem {
+  width: 100%;
 
   display: flex;
   align-items: center;
 
   gap: 10px;
 
-  padding: 0 13px;
+  padding: 10px 9px;
 
-  border: 1px solid var(--border);
+  border: 0;
+  border-radius: 10px;
 
-  border-radius: 12px;
+  background: transparent;
 
-  background: rgba(255, 255, 255, 0.035);
+  color: inherit;
 
-  color: var(--text-muted);
+  text-align: left;
+
+  cursor: pointer;
 
   transition:
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
+    background 160ms ease,
+    transform 160ms ease;
+
+  &:hover {
+    background: rgba(139, 92, 246, 0.09);
+
+    transform: translateX(2px);
+
+    .suggestionArrow {
+      color: #b69cff;
+
+      transform: translate(2px, -2px);
+    }
+
+    .suggestionIcon {
+      background: rgba(139, 92, 246, 0.16);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.45);
+    outline-offset: -2px;
+  }
 }
 
-.searchBox:focus-within {
-  border-color: rgba(124, 58, 237, 0.55);
+.suggestionIcon {
+  width: 32px;
+  height: 32px;
 
-  background: rgba(255, 255, 255, 0.05);
+  flex: 0 0 32px;
 
-  box-shadow:
-    0 0 0 3px rgba(124, 58, 237, 0.08);
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(139, 92, 246, 0.1);
+
+  border-radius: 9px;
+
+  background: rgba(139, 92, 246, 0.1);
+
+  color: #a78bfa;
+
+  transition:
+    background 160ms ease;
 }
 
-.searchBox svg {
-  flex: 0 0 auto;
-}
-
-.searchBox input {
+.suggestionContent {
   min-width: 0;
 
   flex: 1;
 
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 
-  border: 0;
-  outline: 0;
+  gap: 3px;
 
-  background: transparent;
+  strong {
+    overflow: hidden;
 
-  color: var(--text-primary);
+    color: #f5f7fb;
 
-  font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
 
-  font-size: 12px;
+    line-height: 1.25;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  small {
+    color: #747f97;
+
+    font-size: 9px;
+    font-weight: 550;
+
+    line-height: 1.2;
+
+    span {
+      color: #4e5870;
+
+      margin: 0 3px;
+    }
+  }
 }
 
-.searchBox input::placeholder {
-  color: var(--text-muted);
-}
-
-.searchBox input::-webkit-search-cancel-button {
-  filter: invert(1);
-  opacity: 0.45;
-}
-
-.searchBox kbd {
+.suggestionArrow {
   flex: 0 0 auto;
 
-  padding: 3px 6px;
+  color: #5e6880;
 
-  border: 1px solid var(--border);
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
 
-  border-radius: 5px;
+// ============================================
+// SEARCH EMPTY
+// ============================================
 
-  background: rgba(255, 255, 255, 0.04);
+.searchEmpty {
+  min-height: 125px;
 
-  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  font-family: inherit;
+  gap: 5px;
 
-  font-size: 9px;
+  text-align: center;
+
+  .searchEmptyIcon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 3px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #69738a;
+  }
+
+  strong {
+    color: #c7ccda;
+
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  small {
+    color: #68738b;
+
+    font-size: 9px;
+    font-weight: 550;
+  }
 }
 
 // ============================================
@@ -154,60 +536,105 @@
 // ============================================
 
 .balancePill {
-  min-width: 190px;
-
-  height: 48px;
+  min-width: 205px;
+  height: 50px;
 
   display: flex;
   align-items: center;
 
-  gap: 9px;
+  gap: 10px;
 
   padding: 5px 7px 5px 6px;
 
-  border: 1px solid rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.2);
 
-  border-radius: 14px;
+  border-radius: 15px;
 
   background:
     linear-gradient(
       135deg,
-      rgba(124, 58, 237, 0.11),
+      rgba(124, 58, 237, 0.13),
       rgba(255, 255, 255, 0.025)
     );
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.025),
+    0 8px 28px rgba(0, 0, 0, 0.12);
 
   box-sizing: border-box;
 
   transition:
-    border-color 200ms ease,
-    background 200ms ease;
-}
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 
-.balancePill:hover {
-  border-color: rgba(139, 92, 246, 0.27);
+  &:hover {
+    border-color: rgba(167, 139, 250, 0.34);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(124, 58, 237, 0.14),
-      rgba(255, 255, 255, 0.03)
-    );
+    background:
+      linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.17),
+        rgba(255, 255, 255, 0.035)
+      );
+
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.16),
+      0 0 24px rgba(124, 58, 237, 0.06);
+
+    transform: translateY(-1px);
+  }
 }
 
 .balanceIcon {
-  width: 35px;
-  height: 35px;
+  width: 37px;
+  height: 37px;
 
-  flex: 0 0 35px;
+  flex: 0 0 37px;
 
   display: grid;
   place-items: center;
 
-  border-radius: 10px;
+  padding: 0;
 
-  background: rgba(124, 58, 237, 0.16);
+  border: 1px solid rgba(167, 139, 250, 0.12);
 
-  color: #a78bfa;
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(139, 92, 246, 0.2),
+      rgba(139, 92, 246, 0.08)
+    );
+
+  color: #b39aff;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  &:hover {
+    color: #ffffff;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(139, 92, 246, 0.3),
+        rgba(139, 92, 246, 0.12)
+      );
+
+    transform: scale(1.04);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.6);
+    outline-offset: 2px;
+  }
 }
 
 .balanceInfo {
@@ -217,74 +644,106 @@
 
   display: flex;
   flex-direction: column;
-}
 
-.balanceInfo span {
-  color: var(--text-muted);
+  padding: 0;
 
-  font-size: 8px;
-  font-weight: 500;
+  border: 0;
 
-  white-space: nowrap;
-}
+  background: transparent;
 
-.balanceInfo strong {
-  margin-top: 2px;
+  text-align: left;
 
-  color: #ffffff;
+  cursor: pointer;
 
-  font-size: 13px;
-  font-weight: 750;
+  span {
+    color: #8992aa;
 
-  line-height: 1;
-}
+    font-size: 10px;
+    font-weight: 600;
 
-.balanceInfo small {
-  color: #a78bfa;
+    line-height: 1.25;
 
-  font-size: 8px;
-  font-weight: 700;
+    white-space: nowrap;
+  }
+
+  strong {
+    display: flex;
+    align-items: baseline;
+
+    gap: 4px;
+
+    margin-top: 3px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -0.25px;
+
+    white-space: nowrap;
+  }
+
+  small {
+    color: #a78bfa;
+
+    font-size: 9px;
+    font-weight: 750;
+
+    letter-spacing: 0.2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+    outline-offset: 3px;
+
+    border-radius: 5px;
+  }
 }
 
 .addBalance {
-  width: 27px;
-  height: 27px;
+  width: 29px;
+  height: 29px;
 
-  flex: 0 0 27px;
+  flex: 0 0 29px;
 
   display: grid;
   place-items: center;
 
   padding: 0;
 
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 
   border-radius: 8px;
 
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.055);
 
-  color: var(--text-secondary);
+  color: #aab2c5;
 
   cursor: pointer;
 
   transition:
     background 180ms ease,
     color 180ms ease,
-    transform 180ms ease;
-}
+    transform 180ms ease,
+    border-color 180ms ease;
 
-.addBalance:hover {
-  background: rgba(124, 58, 237, 0.18);
+  &:hover {
+    background: rgba(139, 92, 246, 0.18);
 
-  color: #ffffff;
+    border-color: rgba(167, 139, 250, 0.15);
 
-  transform: rotate(90deg);
-}
+    color: #ffffff;
 
-.addBalance:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
+    transform: rotate(90deg);
+  }
 
-  outline-offset: 2px;
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+    outline-offset: 2px;
+  }
 }
 
 // ============================================
@@ -294,23 +753,28 @@
 .notificationButton {
   position: relative;
 
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
 
-  flex: 0 0 42px;
+  flex: 0 0 44px;
 
   display: grid;
   place-items: center;
 
   padding: 0;
 
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.075);
 
-  border-radius: 12px;
+  border-radius: 13px;
 
-  background: rgba(255, 255, 255, 0.035);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
 
-  color: var(--text-secondary);
+  color: #9ca5ba;
 
   cursor: pointer;
 
@@ -318,23 +782,31 @@
     color 180ms ease,
     background 180ms ease,
     border-color 180ms ease,
-    transform 180ms ease;
-}
+    transform 180ms ease,
+    box-shadow 180ms ease;
 
-.notificationButton:hover {
-  color: #ffffff;
+  &:hover {
+    color: #ffffff;
 
-  background: rgba(255, 255, 255, 0.065);
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.025)
+      );
 
-  border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
 
-  transform: translateY(-1px);
-}
+    transform: translateY(-1px);
 
-.notificationButton:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.12);
+  }
 
-  outline-offset: 3px;
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+    outline-offset: 3px;
+  }
 }
 
 .notificationDot {
@@ -343,17 +815,36 @@
   top: 8px;
   right: 8px;
 
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 
-  border: 1px solid var(--bg-primary);
+  border: 2px solid #080b18;
 
   border-radius: 50%;
 
   background: #a855f7;
 
   box-shadow:
-    0 0 9px rgba(168, 85, 247, 0.75);
+    0 0 0 2px rgba(168, 85, 247, 0.08),
+    0 0 10px rgba(168, 85, 247, 0.75);
+
+  animation:
+    notificationPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes notificationPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(168, 85, 247, 0.08),
+      0 0 10px rgba(168, 85, 247, 0.7);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(168, 85, 247, 0.04),
+      0 0 16px rgba(168, 85, 247, 0.9);
+  }
 }
 
 // ============================================
@@ -366,47 +857,56 @@
   display: flex;
   align-items: center;
 
-  gap: 9px;
+  gap: 10px;
 
-  padding: 4px 3px 4px 5px;
+  padding: 4px 5px;
 
   border: 0;
-
-  border-radius: 10px;
+  border-radius: 11px;
 
   background: transparent;
 
-  color: var(--text-secondary);
+  color: #a2aabd;
 
   cursor: pointer;
 
   transition:
     background 180ms ease,
     color 180ms ease;
-}
 
-.profileMenu:hover {
-  background: rgba(255, 255, 255, 0.035);
+  &:hover {
+    background: rgba(255, 255, 255, 0.045);
+    color: #ffffff;
+  }
 
-  color: #ffffff;
-}
+  &:focus-visible {
+    outline: 2px solid rgba(167, 139, 250, 0.55);
+    outline-offset: 3px;
+  }
 
-.profileMenu:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
+  > svg {
+    flex: 0 0 auto;
 
-  outline-offset: 3px;
+    margin-left: 2px;
+
+    transition: transform 180ms ease;
+  }
+
+  &:hover > svg {
+    transform: translateY(2px);
+  }
 }
 
 .profileAvatar {
-  width: 37px;
-  height: 37px;
+  width: 39px;
+  height: 39px;
 
-  flex: 0 0 37px;
+  flex: 0 0 39px;
 
   display: grid;
   place-items: center;
 
-  border: 2px solid rgba(167, 139, 250, 0.35);
+  border: 2px solid rgba(167, 139, 250, 0.32);
 
   border-radius: 50%;
 
@@ -419,11 +919,22 @@
 
   color: #ffffff;
 
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 850;
 
   box-shadow:
-    0 0 18px rgba(99, 102, 241, 0.18);
+    0 0 20px rgba(99, 102, 241, 0.2);
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.profileMenu:hover .profileAvatar {
+  transform: scale(1.04);
+
+  box-shadow:
+    0 0 25px rgba(99, 102, 241, 0.28);
 }
 
 .profileInfo {
@@ -433,40 +944,35 @@
   flex-direction: column;
 
   text-align: left;
-}
 
-.profileInfo strong {
-  overflow: hidden;
+  strong {
+    max-width: 125px;
 
-  color: #ffffff;
+    overflow: hidden;
 
-  font-size: 11px;
-  font-weight: 650;
+    color: #ffffff;
 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+    font-size: 12px;
+    font-weight: 700;
 
-.profileInfo span {
-  margin-top: 2px;
+    line-height: 1.2;
 
-  color: var(--text-muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-  font-size: 8px;
+  span {
+    margin-top: 3px;
 
-  white-space: nowrap;
-}
+    color: #7f899f;
 
-.profileMenu > svg {
-  flex: 0 0 auto;
+    font-size: 9px;
+    font-weight: 600;
 
-  margin-left: 3px;
+    line-height: 1.2;
 
-  transition: transform 180ms ease;
-}
-
-.profileMenu:hover > svg {
-  transform: translateY(2px);
+    white-space: nowrap;
+  }
 }
 
 // ============================================
@@ -482,21 +988,23 @@
 // TABLET
 // ============================================
 
-@media (max-width: 1000px) and (min-width: 701px) {
+@media (max-width: 1100px) and (min-width: 701px) {
   .topbar {
     width: calc(100% - 82px);
 
     margin-left: 82px;
 
     padding-inline: 22px;
+
+    gap: 18px;
   }
 
-  .searchBox {
-    width: min(300px, 30vw);
+  .searchWrapper {
+    width: min(330px, 30vw);
   }
 
   .balancePill {
-    min-width: 175px;
+    min-width: 185px;
   }
 
   .topbarRight {
@@ -505,10 +1013,14 @@
 }
 
 // ============================================
-// SMALL DESKTOP / TABLET
+// SMALL TABLET
 // ============================================
 
-@media (max-width: 850px) and (min-width: 701px) {
+@media (max-width: 900px) and (min-width: 701px) {
+  .searchWrapper {
+    width: min(280px, 29vw);
+  }
+
   .profileInfo {
     display: none;
   }
@@ -518,7 +1030,11 @@
   }
 
   .balancePill {
-    min-width: 145px;
+    min-width: 165px;
+  }
+
+  .balanceInfo strong {
+    font-size: 14px;
   }
 }
 
@@ -529,7 +1045,6 @@
 @media (max-width: 700px) {
   .topbar {
     width: 100%;
-
     height: 68px;
 
     margin-left: 0;
@@ -539,9 +1054,7 @@
     gap: 10px;
   }
 
-  // ------------------------------------------
   // LEFT
-  // ------------------------------------------
 
   .topbarLeft {
     min-width: 0;
@@ -550,10 +1063,10 @@
   }
 
   .mobileMenuButton {
-    width: 38px;
-    height: 38px;
+    width: 39px;
+    height: 39px;
 
-    flex: 0 0 38px;
+    flex: 0 0 39px;
 
     display: grid;
     place-items: center;
@@ -562,34 +1075,36 @@
 
     padding: 0;
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.075);
 
-    border-radius: 10px;
+    border-radius: 11px;
 
-    background: rgba(255, 255, 255, 0.035);
+    background: rgba(255, 255, 255, 0.04);
 
-    color: var(--text-secondary);
+    color: #a1aabd;
 
     cursor: pointer;
 
     transition:
       color 180ms ease,
       background 180ms ease,
-      border-color 180ms ease;
-  }
+      border-color 180ms ease,
+      transform 180ms ease;
 
-  .mobileMenuButton:hover {
-    color: #ffffff;
+    &:hover {
+      color: #ffffff;
 
-    background: rgba(255, 255, 255, 0.065);
+      background: rgba(255, 255, 255, 0.07);
 
-    border-color: rgba(255, 255, 255, 0.08);
-  }
+      border-color: rgba(255, 255, 255, 0.12);
 
-  .mobileMenuButton:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.55);
+      transform: translateY(-1px);
+    }
 
-    outline-offset: 2px;
+    &:focus-visible {
+      outline: 2px solid rgba(167, 139, 250, 0.55);
+      outline-offset: 2px;
+    }
   }
 
   .mobilePageTitle {
@@ -597,37 +1112,54 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    line-height: 1.1;
+    gap: 4px;
+
+    margin: 0;
+    padding: 0;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    span {
+      color: #858da5;
+
+      font-size: 8.5px;
+      font-weight: 850;
+
+      line-height: 1;
+
+      letter-spacing: 2.3px;
+    }
+
+    strong {
+      color: #ffffff;
+
+      font-size: 15px;
+      font-weight: 800;
+
+      line-height: 1.1;
+
+      letter-spacing: -0.25px;
+
+      white-space: nowrap;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(167, 139, 250, 0.5);
+      outline-offset: 4px;
+
+      border-radius: 5px;
+    }
   }
 
-  .mobilePageTitle span {
-    color: var(--text-muted);
-
-    font-size: 7px;
-    font-weight: 800;
-
-    letter-spacing: 2px;
-  }
-
-  .mobilePageTitle strong {
-    margin-top: 4px;
-
-    color: #ffffff;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    white-space: nowrap;
-  }
-
-  .searchBox {
+  .searchWrapper {
     display: none;
   }
 
-  // ------------------------------------------
   // RIGHT
-  // ------------------------------------------
 
   .topbarRight {
     gap: 7px;
@@ -635,21 +1167,24 @@
 
   .balancePill {
     min-width: auto;
-
     width: auto;
 
-    height: 40px;
+    height: 41px;
 
     gap: 7px;
 
     padding: 4px 6px;
+
+    border-radius: 11px;
   }
 
   .balanceIcon {
-    width: 30px;
-    height: 30px;
+    width: 31px;
+    height: 31px;
 
-    flex-basis: 30px;
+    flex-basis: 31px;
+
+    border-radius: 9px;
   }
 
   .balanceInfo span,
@@ -662,16 +1197,29 @@
   .balanceInfo strong {
     margin: 0;
 
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .balanceInfo small {
+    font-size: 8px;
   }
 
   .notificationButton {
-    width: 38px;
-    height: 38px;
+    width: 39px;
+    height: 39px;
 
-    flex-basis: 38px;
+    flex-basis: 39px;
 
-    border-radius: 10px;
+    border-radius: 11px;
+  }
+
+  .notificationDot {
+    top: 7px;
+    right: 7px;
+
+    width: 6px;
+    height: 6px;
   }
 
   .profileMenu {
@@ -679,10 +1227,12 @@
   }
 
   .profileAvatar {
-    width: 34px;
-    height: 34px;
+    width: 35px;
+    height: 35px;
 
-    flex-basis: 34px;
+    flex-basis: 35px;
+
+    font-size: 13px;
   }
 }
 
@@ -690,17 +1240,31 @@
 // SMALL MOBILE
 // ============================================
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .topbar {
-    padding-inline: 10px;
-  }
-
-  .mobilePageTitle {
-    display: none;
+    padding-inline: 11px;
   }
 
   .mobileMenuButton {
-    margin-right: auto;
+    width: 37px;
+    height: 37px;
+
+    flex-basis: 37px;
+
+    margin-right: 8px;
+  }
+
+  .mobilePageTitle {
+    gap: 3px;
+
+    span {
+      font-size: 7.5px;
+      letter-spacing: 2px;
+    }
+
+    strong {
+      font-size: 14px;
+    }
   }
 
   .topbarRight {
@@ -708,18 +1272,27 @@
   }
 
   .balancePill {
+    height: 38px;
+
     padding-inline: 5px;
   }
 
+  .balanceIcon {
+    width: 29px;
+    height: 29px;
+
+    flex-basis: 29px;
+  }
+
   .balanceInfo strong {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .notificationButton {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
 
-    flex-basis: 35px;
+    flex-basis: 36px;
   }
 
   .profileAvatar {
@@ -727,6 +1300,8 @@
     height: 32px;
 
     flex-basis: 32px;
+
+    font-size: 12px;
   }
 }
 
@@ -734,9 +1309,33 @@
 // VERY SMALL MOBILE
 // ============================================
 
-@media (max-width: 340px) {
+@media (max-width: 350px) {
   .topbar {
     padding-inline: 8px;
+
+    gap: 6px;
+  }
+
+  .mobileMenuButton {
+    width: 35px;
+    height: 35px;
+
+    flex-basis: 35px;
+
+    margin-right: 7px;
+  }
+
+  .mobilePageTitle {
+    min-width: 60px;
+
+    span {
+      font-size: 7px;
+      letter-spacing: 1.7px;
+    }
+
+    strong {
+      font-size: 13px;
+    }
   }
 
   .balanceIcon {
@@ -744,8 +1343,48 @@
   }
 
   .balancePill {
+    height: 36px;
+
     padding-inline: 8px;
   }
+
+  .balanceInfo strong {
+    font-size: 10px;
+  }
+
+  .balanceInfo small {
+    font-size: 7px;
+  }
+
+  .notificationButton {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+  .profileAvatar {
+    width: 30px;
+    height: 30px;
+
+    flex-basis: 30px;
+  }
+}
+
+// ============================================
+// BUTTON RESET
+// ============================================
+
+.topbar button {
+  font: inherit;
+
+  outline: none;
+
+  color: inherit;
+}
+
+.topbar button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 // ============================================
@@ -753,30 +1392,14 @@
 // ============================================
 
 @media (prefers-reduced-motion: reduce) {
-  .searchBox,
-  .balancePill,
-  .addBalance,
-  .notificationButton,
-  .profileMenu,
-  .profileMenu > svg,
-  .mobileMenuButton {
-    transition: none;
+  .topbar *,
+  .topbar *::before,
+  .topbar *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
   }
-}
-
-/* ============================================
-   BUTTON RESET
-============================================ */
-
-.topbar button {
-  font: inherit;
-  border: 0;
-  outline: none;
-  background: transparent;
-  color: inherit;
-}
-
-.topbar button:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
-  outline-offset: 3px;
 }
