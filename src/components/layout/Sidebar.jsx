@@ -136,6 +136,7 @@ function Sidebar({
       {/* NAVIGATION */}
 
       <nav
+        id="main-navigation"
         className="navigation"
         aria-label="Primary"
       >

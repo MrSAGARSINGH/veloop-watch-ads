@@ -7,7 +7,7 @@ import {
 
 import "./RecentActivity.scss";
 
-function RecentActivity({ activities = [] }) {
+function RecentActivity({ activities = [], onViewAll }) {
   return (
     <section
       className="recentActivity"
@@ -29,6 +29,7 @@ function RecentActivity({ activities = [] }) {
           type="button"
           className="viewAllButton"
           aria-label="View all reward activity"
+          onClick={() => onViewAll?.()}
         >
           <span>View all</span>
 

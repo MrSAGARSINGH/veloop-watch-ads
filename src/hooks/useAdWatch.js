@@ -7,13 +7,13 @@ import {
 
 import useDailyPersistentState from "./useDailyPersistentState";
 
-function useAdWatch() {
+function useAdWatch(initialCompletedAds = []) {
   const [watchingAds, setWatchingAds] = useState({});
 
   const [completedAds, setCompletedAds] =
     useDailyPersistentState(
       "veloop_completed_ads",
-      []
+      initialCompletedAds
     );
 
   const [rewardEarned, setRewardEarned] =

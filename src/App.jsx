@@ -26,40 +26,40 @@ import "./styles/globals.scss";
 const TOTAL_ADS = 6;
 const DAILY_GOAL = 200;
 
-const INITIAL_TODAY_EARNINGS = 96;
+const INITIAL_TODAY_EARNINGS = 101;
 const INITIAL_LIFETIME_EARNINGS = 12450;
 
 const initialActivities = [
   {
     id: 1,
-    title: "TechNova — Product Ad",
+    title: "AdRocket — Discover smarter digital tools",
     time: "Just now",
     duration: "30 sec",
-    reward: "+25 VEs",
+    reward: "+38 VEs",
     status: "Completed",
   },
   {
     id: 2,
-    title: "FinEdge — Finance",
+    title: "SoundMax — Feel every beat",
     time: "12 min ago",
     duration: "45 sec",
-    reward: "+35 VEs",
+    reward: "+20 VEs",
     status: "Completed",
   },
   {
     id: 3,
-    title: "UrbanCart — Shopping",
+    title: "StepUp — Move more. Feel better.",
     time: "28 min ago",
     duration: "20 sec",
-    reward: "+18 VEs",
+    reward: "+15 VEs",
     status: "Completed",
   },
   {
     id: 4,
-    title: "Learnly — Education",
+    title: "BrewCoffee — Your perfect coffee moment",
     time: "1 hour ago",
-    duration: "60 sec",
-    reward: "+42 VEs",
+    duration: "30 sec",
+    reward: "+28 VEs",
     status: "Completed",
   },
 ];
@@ -87,7 +87,7 @@ function App() {
 
   const [adsWatchedToday, setAdsWatchedToday] = useDailyPersistentState(
     "veloop_ads_watched_today",
-    0,
+    4,
   );
 
   /* =========================
@@ -192,7 +192,7 @@ function App() {
           reward: `+${reward} VEs`,
           status: "Completed",
         },
-        ...previous,
+        ...(Array.isArray(previous) ? previous : initialActivities),
       ]);
     },
     [setTodayEarnings, setLifetimeEarnings, setAdsWatchedToday, setActivities],
@@ -235,6 +235,7 @@ function App() {
         onMenuClick={toggleSidebar}
         activePage={activePage}
         onNavigate={handleNavigation}
+        lifetimeEarnings={lifetimeEarnings}
       />
 
       {/* =========================
@@ -337,7 +338,10 @@ function App() {
             ========================= */}
 
             <ScrollReveal delay={100}>
-              <RecentActivity activities={activities} />
+              <RecentActivity
+                activities={activities}
+                onViewAll={() => handleNavigation("history")}
+              />
             </ScrollReveal>
 
             {/* =========================
@@ -352,7 +356,7 @@ function App() {
               />
             </ScrollReveal>
 
-            <Footer />
+            <Footer onNavigate={handleNavigation} />
           </>
         ) : (
           /* =========================

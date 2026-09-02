@@ -87,6 +87,7 @@ function Topbar({
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   const currentTitle =
     pageTitles[activePage] || "Watch Ads";
@@ -142,6 +143,22 @@ function Topbar({
       );
     }
   };
+
+  useEffect(() => {
+    const handleShortcut = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+        setShowSuggestions(searchInputRef.current?.value.trim().length > 0);
+      }
+    };
+
+    window.addEventListener("keydown", handleShortcut);
+
+    return () => {
+      window.removeEventListener("keydown", handleShortcut);
+    };
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -217,6 +234,7 @@ function Topbar({
             />
 
             <input
+              ref={searchInputRef}
               type="search"
               value={searchValue}
               onChange={handleSearchChange}

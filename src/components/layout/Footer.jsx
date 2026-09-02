@@ -15,7 +15,7 @@ const liveActivities = [
   "Reward session completed",
 ];
 
-function Footer() {
+function Footer({ onNavigate }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -154,17 +154,17 @@ function Footer() {
               <ArrowRight size={12} />
             </button>
 
-            <button type="button" onClick={scrollToTop}>
+            <button type="button" onClick={() => onNavigate?.("dashboard")}>
               Dashboard
               <ArrowRight size={12} />
             </button>
 
-            <button type="button">
+            <button type="button" onClick={() => onNavigate?.("offers")}>
               Offers
               <ArrowRight size={12} />
             </button>
 
-            <button type="button">
+            <button type="button" onClick={() => onNavigate?.("support")}>
               Support
               <ArrowRight size={12} />
             </button>

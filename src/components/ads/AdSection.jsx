@@ -17,14 +17,14 @@ import useAdWatch from "../../hooks/useAdWatch";
 
 import "./AdSection.scss";
 
-function AdSection({ onAdCompleted }) {
+function AdSection({ onAdCompleted, initialCompletedAds = [1, 2, 3, 4] }) {
   const {
     rewardEarned,
     startWatching,
     isWatching,
     isCompleted,
     getTimeLeft,
-  } = useAdWatch();
+  } = useAdWatch(initialCompletedAds);
 
   const [sortBy, setSortBy] = useState("recommended");
   const [expandedAd, setExpandedAd] = useState(null);
