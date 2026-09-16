@@ -37,33 +37,31 @@ function Footer({
   onNavigate,
   recentActivities = [],
 }) {
-  const currentYear =
-    new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
+
+  const validActivities = Array.isArray(
+    recentActivities,
+  )
+    ? recentActivities
+    : [];
 
   const activityUpdates =
-    recentActivities.length > 0
-      ? recentActivities
+    validActivities.length > 0
+      ? validActivities
           .slice(0, 4)
-          .map((activity) => ({
-            id: activity.id,
-            text: `${activity.title} · ${activity.reward}`,
+          .map((activity, index) => ({
+            id:
+              activity.id ??
+              `footer-activity-${index}`,
+            text: [
+              activity.title,
+              activity.reward,
+            ]
+              .filter(Boolean)
+              .join(" · "),
             icon: CheckCircle2,
           }))
       : defaultUpdates;
-
-  const handleNavigate = (page) => {
-    if (onNavigate) {
-      onNavigate(page);
-      return;
-    }
-
-    window.location.hash = `/${page}`;
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -72,12 +70,23 @@ function Footer({
     });
   };
 
+  const handleNavigate = (page) => {
+    if (typeof onNavigate === "function") {
+      onNavigate(page);
+      scrollToTop();
+      return;
+    }
+
+    window.location.hash = `/${page}`;
+    scrollToTop();
+  };
+
   const scrollToAds = () => {
-    const section =
+    const adsSection =
       document.getElementById("available-ads");
 
-    if (section) {
-      section.scrollIntoView({
+    if (adsSection) {
+      adsSection.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -90,7 +99,7 @@ function Footer({
 
   return (
     <footer className="siteFooter">
-      {/* Background decoration */}
+      {/* Background decorations */}
 
       <div
         className="footerAmbient footerAmbientOne"
@@ -118,7 +127,7 @@ function Footer({
       />
 
       <div className="footerInner">
-        {/* Footer top */}
+        {/* Footer header */}
 
         <div className="footerTop">
           <button
@@ -129,21 +138,24 @@ function Footer({
             }
             aria-label="Go to Watch Ads"
           >
-            <div
+            <span
               className="footerLogo"
               aria-hidden="true"
             >
               <span>V</span>
               <i />
-            </div>
+            </span>
 
-            <div className="footerBrandText">
+            <span className="footerBrandText">
               <strong>VELOOP</strong>
               <span>REWARDS</span>
-            </div>
+            </span>
           </button>
 
-          <div className="footerStatus">
+          <div
+            className="footerStatus"
+            role="status"
+          >
             <span
               className="footerStatusPulse"
               aria-hidden="true"
@@ -155,29 +167,33 @@ function Footer({
           </div>
         </div>
 
-        {/* Main footer content */}
+        {/* Main footer */}
 
         <div className="footerMain">
-          <div className="footerMessage">
+          <section
+            className="footerMessage"
+            aria-labelledby="footer-heading"
+          >
             <div className="footerEyebrow">
               <Sparkles
-                size={12}
+                size={14}
                 aria-hidden="true"
               />
 
               YOUR TIME, REWARDED
             </div>
 
-            <h3>
+            <h2 id="footer-heading">
               Watch.
               <span> Earn.</span>
               <br />
               Keep growing.
-            </h3>
+            </h2>
 
             <p>
-              Discover campaigns, complete them and
-              keep every reward organized in one place.
+              Discover available campaigns, complete
+              them and keep every reward organized in
+              one convenient place.
             </p>
 
             <button
@@ -185,34 +201,41 @@ function Footer({
               className="footerPrimaryButton"
               onClick={scrollToAds}
             >
-              <span className="footerPrimaryIcon">
+              <span
+                className="footerPrimaryIcon"
+                aria-hidden="true"
+              >
                 <Zap
-                  size={14}
+                  size={16}
                   fill="currentColor"
-                  aria-hidden="true"
                 />
               </span>
 
-              Explore available ads
+              <span>Explore available ads</span>
 
               <ArrowRight
-                size={16}
+                size={17}
                 aria-hidden="true"
               />
             </button>
-          </div>
+          </section>
 
-          {/* Activity updates */}
+          {/* Platform updates */}
 
-          <div className="footerLive">
+          <section
+            className="footerLive"
+            aria-labelledby="footer-updates-title"
+          >
             <div className="footerLiveHeader">
               <div>
                 <Activity
-                  size={13}
+                  size={15}
                   aria-hidden="true"
                 />
 
-                <span>PLATFORM UPDATES</span>
+                <span id="footer-updates-title">
+                  PLATFORM UPDATES
+                </span>
               </div>
 
               <span className="liveIndicator">
@@ -241,7 +264,7 @@ function Footer({
                       className="footerActivityIcon"
                       aria-hidden="true"
                     >
-                      <Icon size={12} />
+                      <Icon size={14} />
                     </span>
 
                     <span>{text}</span>
@@ -249,9 +272,9 @@ function Footer({
                 ),
               )}
             </div>
-          </div>
+          </section>
 
-          {/* Quick links */}
+          {/* Quick navigation */}
 
           <nav
             className="footerLinks"
@@ -266,7 +289,11 @@ function Footer({
               onClick={scrollToAds}
             >
               <span>Watch ads</span>
-              <ArrowRight size={13} />
+
+              <ArrowRight
+                size={14}
+                aria-hidden="true"
+              />
             </button>
 
             <button
@@ -276,7 +303,11 @@ function Footer({
               }
             >
               <span>Dashboard</span>
-              <ArrowRight size={13} />
+
+              <ArrowRight
+                size={14}
+                aria-hidden="true"
+              />
             </button>
 
             <button
@@ -286,7 +317,11 @@ function Footer({
               }
             >
               <span>Offers</span>
-              <ArrowRight size={13} />
+
+              <ArrowRight
+                size={14}
+                aria-hidden="true"
+              />
             </button>
 
             <button
@@ -296,11 +331,15 @@ function Footer({
               }
             >
               <span>Support</span>
-              <ArrowRight size={13} />
+
+              <ArrowRight
+                size={14}
+                aria-hidden="true"
+              />
             </button>
           </nav>
 
-          {/* Scroll to top */}
+          {/* Back to top */}
 
           <button
             type="button"
@@ -309,7 +348,7 @@ function Footer({
             aria-label="Back to top"
           >
             <ArrowUp
-              size={16}
+              size={17}
               strokeWidth={2}
               aria-hidden="true"
             />
@@ -345,7 +384,7 @@ function Footer({
           <div className="footerTrust">
             <span>
               <ShieldCheck
-                size={13}
+                size={15}
                 aria-hidden="true"
               />
 
@@ -354,7 +393,7 @@ function Footer({
 
             <span>
               <Sparkles
-                size={13}
+                size={15}
                 aria-hidden="true"
               />
 
