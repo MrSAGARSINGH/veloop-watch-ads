@@ -1669,3 +1669,557 @@
     transition: none;
   }
 }
+
+// =========================================================
+// PREMIUM AD SECTION UPDATE
+// =========================================================
+
+.adSection {
+  margin-top: 42px;
+}
+
+// =========================================================
+// SECTION HEADER
+// =========================================================
+
+.adSectionHeader {
+  margin-bottom: 21px;
+}
+
+.adSectionHeader h2 {
+  margin-top: 7px;
+
+  font-size: clamp(24px, 2.5vw, 31px);
+  font-weight: 780;
+
+  letter-spacing: -1px;
+}
+
+.adSectionHeader p {
+  max-width: 520px;
+
+  color: #7f8aa0;
+
+  line-height: 1.65;
+}
+
+.adEyebrow {
+  color: #9d8cff;
+}
+
+.eyebrowDot {
+  background: #57ddcc;
+
+  box-shadow:
+    0 0 12px
+    rgba(87, 221, 204, 0.75);
+}
+
+// =========================================================
+// CONTROLS
+// =========================================================
+
+.adCount,
+.adRefreshButton,
+.adSort {
+  border-color:
+    rgba(255, 255, 255, 0.075);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(12px);
+}
+
+.adCount strong {
+  color: #b7a9ff;
+}
+
+.adRefreshButton:hover:not(:disabled) {
+  border-color:
+    rgba(139, 116, 255, 0.3);
+
+  background:
+    rgba(128, 104, 255, 0.08);
+}
+
+.adSort select:focus-visible {
+  outline: 2px solid
+    rgba(92, 224, 207, 0.35);
+
+  outline-offset: 2px;
+}
+
+// =========================================================
+// AD GRID
+// =========================================================
+
+.adsGrid {
+  gap: 18px;
+}
+
+// =========================================================
+// PREMIUM CARD
+// =========================================================
+
+.adCard {
+  padding: 18px;
+
+  border-color:
+    rgba(255, 255, 255, 0.075);
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124, 93, 255, 0.07),
+      transparent 31%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(18, 25, 50, 0.96),
+      rgba(9, 14, 31, 0.97)
+    );
+
+  box-shadow:
+    0 17px 46px
+    rgba(0, 0, 0, 0.21),
+    inset 0 1px
+    rgba(255, 255, 255, 0.035);
+}
+
+.adCard:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(137, 113, 255, 0.25);
+
+  box-shadow:
+    0 25px 65px
+    rgba(0, 0, 0, 0.31),
+    0 0 35px
+    rgba(105, 82, 235, 0.05),
+    inset 0 1px
+    rgba(255, 255, 255, 0.045);
+}
+
+.adCard::after {
+  position: absolute;
+
+  top: 0;
+  left: 22px;
+  right: 22px;
+
+  height: 2px;
+
+  border-radius:
+    0 0 999px 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(156, 133, 255, 0.65),
+      transparent
+    );
+
+  opacity: 0.55;
+
+  content: "";
+}
+
+.adCard.blue::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #60a5fa,
+      transparent
+    );
+}
+
+.adCard.green::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #4ade80,
+      transparent
+    );
+}
+
+.adCard.orange::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #fb923c,
+      transparent
+    );
+}
+
+.adCard.pink::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #f472b6,
+      transparent
+    );
+}
+
+.adCard.cyan::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #22d3ee,
+      transparent
+    );
+}
+
+// =========================================================
+// BRAND AND STATUS
+// =========================================================
+
+.brandIcon {
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    inset 0 1px
+    rgba(255, 255, 255, 0.04);
+}
+
+.availableBadge {
+  border:
+    1px solid
+    rgba(74, 222, 128, 0.09);
+
+  background:
+    rgba(74, 222, 128, 0.055);
+}
+
+.watchingCard .availableBadge {
+  color: #b8a8ff;
+
+  border-color:
+    rgba(155, 129, 255, 0.18);
+
+  background:
+    rgba(124, 92, 255, 0.1);
+}
+
+.watchingCard .availableBadge span {
+  background: #9c83ff;
+
+  box-shadow:
+    0 0 10px
+    rgba(156, 131, 255, 0.75);
+}
+
+// =========================================================
+// ILLUSTRATION
+// =========================================================
+
+.adIllustration {
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(125, 97, 255, 0.16),
+      transparent 37%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.012)
+    );
+}
+
+.illustrationIcon {
+  box-shadow:
+    0 16px 36px
+    rgba(0, 0, 0, 0.2),
+    inset 0 1px
+    rgba(255, 255, 255, 0.06);
+}
+
+.rewardFloating {
+  border:
+    1px solid
+    rgba(251, 191, 36, 0.13);
+
+  background:
+    rgba(20, 23, 39, 0.78);
+
+  backdrop-filter: blur(12px);
+
+  color: #f9c84b;
+}
+
+// =========================================================
+// WATCH PROGRESS
+// =========================================================
+
+.watchingCard {
+  border-color:
+    rgba(139, 112, 255, 0.34);
+
+  box-shadow:
+    0 20px 58px
+    rgba(0, 0, 0, 0.28),
+    0 0 35px
+    rgba(111, 85, 241, 0.08);
+}
+
+.watchProgressTrack {
+  height: 7px;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+.watchProgressFill {
+  background:
+    linear-gradient(
+      90deg,
+      #6549e7,
+      #8f72ff 58%,
+      #52decf
+    );
+
+  box-shadow:
+    0 0 16px
+    rgba(124, 92, 255, 0.4);
+}
+
+// =========================================================
+// WATCH BUTTON
+// =========================================================
+
+.watchButton {
+  min-height: 49px;
+
+  margin-top: 17px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #6449e7,
+      #8067f4
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(91, 69, 218, 0.22);
+}
+
+.watchButton:hover:not(:disabled) {
+  border-color:
+    rgba(188, 174, 255, 0.42);
+
+  box-shadow:
+    0 17px 38px
+    rgba(91, 69, 218, 0.34);
+}
+
+// =========================================================
+// TEMPORARILY LOCKED CARD
+// =========================================================
+
+.adCard.temporarilyLocked {
+  opacity: 0.68;
+
+  border-color:
+    rgba(255, 255, 255, 0.055);
+
+  filter: saturate(0.65);
+
+  transition:
+    opacity 220ms ease,
+    filter 220ms ease,
+    border-color 220ms ease;
+}
+
+.adCard.temporarilyLocked:hover {
+  transform: none;
+
+  opacity: 0.83;
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+}
+
+.temporarilyLocked .illustrationIcon {
+  color: #7f899d;
+
+  border-color:
+    rgba(255, 255, 255, 0.06);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  animation: none;
+}
+
+.temporarilyLocked .availableBadge {
+  color: #8993a5;
+
+  border-color:
+    rgba(255, 255, 255, 0.06);
+
+  background:
+    rgba(255, 255, 255, 0.03);
+}
+
+.temporarilyLocked .availableBadge span {
+  background: #687286;
+
+  box-shadow: none;
+}
+
+.watchButton.busyButton {
+  cursor: not-allowed;
+
+  border-color:
+    rgba(255, 255, 255, 0.06);
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(63, 70, 91, 0.62),
+      rgba(45, 52, 72, 0.58)
+    );
+
+  color: #8f99ab;
+
+  box-shadow: none;
+}
+
+.watchButton.busyButton .watchIcon {
+  background:
+    rgba(255, 255, 255, 0.055);
+}
+
+// =========================================================
+// SUCCESS MESSAGE
+// =========================================================
+
+.rewardSuccess {
+  border-color:
+    rgba(74, 222, 128, 0.2);
+
+  border-radius: 17px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(74, 222, 128, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(20, 50, 39, 0.55),
+      rgba(11, 27, 25, 0.72)
+    );
+
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.18);
+}
+
+// =========================================================
+// COMPLETED ADS
+// =========================================================
+
+.completedAdsSection {
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 25, 48, 0.82),
+      rgba(9, 14, 29, 0.88)
+    );
+}
+
+.completedAdItem {
+  border-color:
+    rgba(255, 255, 255, 0.06);
+
+  background:
+    rgba(255, 255, 255, 0.022);
+}
+
+.completedAdItem:hover {
+  border-color:
+    rgba(74, 222, 128, 0.15);
+
+  background:
+    rgba(74, 222, 128, 0.035);
+}
+
+// =========================================================
+// RESPONSIVE
+// =========================================================
+
+@media (max-width: 700px) {
+  .adSection {
+    margin-top: 34px;
+  }
+
+  .adSectionHeader {
+    align-items: flex-start;
+  }
+
+  .adsGrid {
+    gap: 14px;
+  }
+
+  .adCard {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .adCard {
+    padding: 15px;
+  }
+
+  .adIllustration {
+    border-radius: 16px;
+  }
+
+  .watchButton {
+    min-height: 47px;
+
+    font-size: 9px;
+  }
+}
+
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .adCard.temporarilyLocked {
+    transition: none;
+  }
+}

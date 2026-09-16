@@ -619,3 +619,564 @@
     transition: none;
   }
 }
+
+// =========================================================
+// PREMIUM RECENT ACTIVITY UPDATE
+// =========================================================
+
+.recentActivity {
+  margin-top: 38px;
+}
+
+// =========================================================
+// HEADER
+// =========================================================
+
+.activityHeader {
+  align-items: flex-end;
+
+  margin-bottom: 18px;
+}
+
+.activityEyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #9d8cff;
+}
+
+.activityEyebrow svg {
+  color: #57dfcd;
+}
+
+.activityHeader h2 {
+  margin-top: 7px;
+
+  font-size: clamp(23px, 2.5vw, 29px);
+
+  letter-spacing: -0.85px;
+}
+
+.activityHeaderContent p {
+  margin: 6px 0 0;
+
+  color: #758096;
+
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+
+.activityHeaderActions {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+.activityCount {
+  min-height: 35px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 6px 10px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #778297;
+
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.activityCount svg {
+  color: #8f78f6;
+}
+
+.viewAllButton {
+  min-height: 35px;
+
+  border-color:
+    rgba(145, 120, 255, 0.16);
+
+  background:
+    rgba(113, 86, 229, 0.07);
+
+  color: #ad9df1;
+}
+
+// =========================================================
+// ACTIVITY LIST
+// =========================================================
+
+.activityList {
+  overflow: hidden;
+
+  border-color:
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17, 24, 48, 0.9),
+      rgba(9, 14, 29, 0.94)
+    );
+
+  box-shadow:
+    0 17px 48px
+    rgba(0, 0, 0, 0.19),
+    inset 0 1px
+    rgba(255, 255, 255, 0.025);
+}
+
+.activityItem {
+  position: relative;
+
+  grid-template-columns:
+    16px
+    42px
+    minmax(0, 1fr)
+    auto
+    minmax(78px, auto)
+    18px;
+
+  gap: 13px;
+
+  min-height: 78px;
+
+  padding: 14px 17px;
+
+  border-bottom-color:
+    rgba(255, 255, 255, 0.055);
+
+  background: transparent;
+}
+
+.activityItem:hover {
+  transform: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(116, 88, 236, 0.075),
+      rgba(255, 255, 255, 0.018)
+    );
+}
+
+// =========================================================
+// TIMELINE
+// =========================================================
+
+.activityTimeline {
+  position: relative;
+
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.activityTimeline span {
+  position: relative;
+  z-index: 2;
+
+  width: 7px;
+  height: 7px;
+
+  margin-top: 17px;
+
+  border: 2px solid #9a83ff;
+
+  border-radius: 50%;
+
+  background: #171d37;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(136, 108, 255, 0.08),
+    0 0 10px
+    rgba(136, 108, 255, 0.36);
+}
+
+.activityTimeline i {
+  position: absolute;
+
+  top: 29px;
+  bottom: -32px;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      #745ae4,
+      rgba(116, 90, 228, 0.08)
+    );
+}
+
+// =========================================================
+// ACTIVITY ICON
+// =========================================================
+
+.activityIcon {
+  width: 42px;
+  height: 42px;
+
+  border-color:
+    rgba(154, 130, 255, 0.16);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(126, 96, 244, 0.19),
+      rgba(82, 65, 184, 0.05)
+    );
+
+  color: #b3a2ff;
+}
+
+.activityItem:hover .activityIcon {
+  transform: scale(1.04);
+
+  border-color:
+    rgba(164, 142, 255, 0.3);
+
+  box-shadow:
+    0 10px 25px
+    rgba(94, 71, 209, 0.12);
+}
+
+// =========================================================
+// ACTIVITY CONTENT
+// =========================================================
+
+.activityMain strong {
+  color: #e9edf5;
+
+  font-size: 11px;
+}
+
+.activityMeta {
+  margin-top: 5px;
+
+  color: #667187;
+
+  font-size: 8px;
+}
+
+.activityStatus {
+  padding: 5px 8px;
+
+  border:
+    1px solid
+    rgba(74, 222, 128, 0.09);
+
+  border-radius: 999px;
+
+  background:
+    rgba(74, 222, 128, 0.045);
+
+  color: #68cc88;
+}
+
+.activityRewardWrap {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.activityRewardWrap > span {
+  color: #626d82;
+
+  font-size: 7px;
+  font-weight: 650;
+
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.activityReward {
+  min-width: auto;
+
+  color: #77e1a0;
+
+  font-size: 11px;
+}
+
+.activityItemArrow {
+  color: #4e596e;
+
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.activityItem:hover
+  .activityItemArrow {
+  color: #a695ed;
+
+  transform: translateX(3px);
+}
+
+// =========================================================
+// MORE ACTIVITIES BUTTON
+// =========================================================
+
+.activityMoreButton {
+  width: 100%;
+  min-height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  background:
+    rgba(255, 255, 255, 0.018);
+
+  color: #8d7fd0;
+
+  cursor: pointer;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  transition:
+    color 200ms ease,
+    background 200ms ease;
+}
+
+.activityMoreButton:hover {
+  color: #bcaff7;
+
+  background:
+    rgba(115, 88, 226, 0.06);
+}
+
+.activityMoreButton svg {
+  transition:
+    transform 200ms ease;
+}
+
+.activityMoreButton:hover svg {
+  transform: translateX(3px);
+}
+
+// =========================================================
+// EMPTY STATE
+// =========================================================
+
+.activityEmpty {
+  position: relative;
+
+  min-height: 230px;
+
+  overflow: hidden;
+
+  border-color:
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17, 24, 48, 0.92),
+      rgba(9, 14, 29, 0.95)
+    );
+}
+
+.activityEmptyGlow {
+  position: absolute;
+
+  top: -80px;
+  left: 50%;
+
+  width: 190px;
+  height: 190px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(112, 84, 231, 0.1);
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+.activityEmptyIcon,
+.activityEmpty strong,
+.activityEmpty > span,
+.activityEmptyButton {
+  position: relative;
+  z-index: 2;
+}
+
+.activityEmptyButton {
+  min-height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+  padding: 8px 13px;
+
+  border:
+    1px solid
+    rgba(151, 128, 255, 0.2);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(109, 81, 230, 0.24),
+      rgba(76, 62, 170, 0.1)
+    );
+
+  color: #c1b4fa;
+
+  cursor: pointer;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.activityEmptyButton:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(170, 151, 255, 0.36);
+
+  background:
+    rgba(112, 85, 230, 0.16);
+}
+
+// =========================================================
+// RESPONSIVE
+// =========================================================
+
+@media (max-width: 850px) {
+  .activityItem {
+    grid-template-columns:
+      12px
+      40px
+      minmax(0, 1fr)
+      auto
+      minmax(70px, auto);
+  }
+
+  .activityItemArrow {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .activityHeader {
+    align-items: flex-start;
+  }
+
+  .activityHeaderActions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .activityItem {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .activityTimeline,
+  .activityStatus {
+    display: none;
+  }
+
+  .activityRewardWrap {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .recentActivity {
+    margin-top: 30px;
+  }
+
+  .activityHeaderContent p,
+  .activityCount {
+    display: none;
+  }
+
+  .activityHeaderActions {
+    display: block;
+  }
+
+  .activityItem {
+    min-height: 68px;
+
+    padding: 12px;
+  }
+
+  .activityRewardWrap > span {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .activityItem {
+    grid-template-columns:
+      34px
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .activityMeta .metaDot,
+  .activityMeta span:last-child {
+    display: none;
+  }
+}
+
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .activityItemArrow,
+  .activityMoreButton,
+  .activityMoreButton svg,
+  .activityEmptyButton {
+    transition: none;
+  }
+}

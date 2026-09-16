@@ -1,46 +1,61 @@
 import {
   ArrowRight,
   Check,
+  Clock3,
   Sparkles,
   Target,
+  Trophy,
   Zap,
 } from "lucide-react";
+
 import "./KeepEarning.scss";
+
+const DEFAULT_DAILY_GOAL = 200;
+const ESTIMATED_REWARD_PER_AD = 25;
 
 function KeepEarning({
   earned = 0,
-  dailyGoal = 200,
+  dailyGoal = DEFAULT_DAILY_GOAL,
   remainingAds = 0,
 }) {
   const safeEarned = Math.max(
+    Number(earned) || 0,
     0,
-    Number(earned) || 0
   );
 
   const safeDailyGoal = Math.max(
+    Number(dailyGoal) || DEFAULT_DAILY_GOAL,
     1,
-    Number(dailyGoal) || 200
   );
 
   const safeRemainingAds = Math.max(
+    Number(remainingAds) || 0,
     0,
-    Number(remainingAds) || 0
   );
 
   const progress = Math.min(
     Math.round(
-      (safeEarned / safeDailyGoal) * 100
+      (safeEarned / safeDailyGoal) * 100,
     ),
-    100
+    100,
   );
 
   const remaining = Math.max(
     safeDailyGoal - safeEarned,
-    0
+    0,
   );
 
   const goalCompleted =
     safeEarned >= safeDailyGoal;
+
+  const hasAvailableAds =
+    safeRemainingAds > 0;
+
+  const estimatedPotential = Math.min(
+    safeRemainingAds *
+      ESTIMATED_REWARD_PER_AD,
+    remaining,
+  );
 
   const radius = 58;
   const circumference =
@@ -51,15 +66,12 @@ function KeepEarning({
     (progress / 100) * circumference;
 
   const handleContinue = () => {
-    const adsSection =
-      document.getElementById("available-ads");
-
-    if (adsSection) {
-      adsSection.scrollIntoView({
+    document
+      .getElementById("available-ads")
+      ?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-    }
   };
 
   return (
@@ -71,9 +83,7 @@ function KeepEarning({
       }`}
       aria-labelledby="keep-earning-title"
     >
-      {/* =========================
-          AMBIENT BACKGROUND
-      ========================= */}
+      {/* Background effects */}
 
       <div
         className="keepEarningGlow keepGlowOne"
@@ -95,19 +105,15 @@ function KeepEarning({
         aria-hidden="true"
       />
 
-      {/* =========================
-          CONTENT
-      ========================= */}
+      {/* Main content */}
 
       <div className="keepEarningContent">
-        {/* ICON */}
-
         <div
           className="keepEarningIcon"
           aria-hidden="true"
         >
           {goalCompleted ? (
-            <Sparkles size={23} />
+            <Trophy size={23} />
           ) : (
             <Target size={23} />
           )}
@@ -115,61 +121,69 @@ function KeepEarning({
           <span className="iconPulse" />
         </div>
 
-        {/* EYEBROW */}
-
         <span className="keepEarningEyebrow">
-          <span className="eyebrowLine" />
+          <span
+            className="eyebrowLine"
+            aria-hidden="true"
+          />
 
           {goalCompleted
             ? "DAILY GOAL COMPLETED"
-            : "KEEP YOUR MOMENTUM"}
+            : hasAvailableAds
+              ? "KEEP YOUR MOMENTUM"
+              : "TODAY’S PROGRESS"}
 
           <Sparkles
             size={13}
             className="eyebrowSparkle"
+            aria-hidden="true"
           />
         </span>
-
-        {/* HEADING */}
 
         <h2 id="keep-earning-title">
           {goalCompleted ? (
             <>
-              You’ve earned
-              <span> today’s reward.</span>
+              You crushed
+              <span> today’s goal.</span>
+            </>
+          ) : hasAvailableAds ? (
+            <>
+              You’re closer than
+              <span> you think.</span>
             </>
           ) : (
             <>
-              Ready to
-              <span> earn more?</span>
+              Great progress,
+              <span> more coming soon.</span>
             </>
           )}
         </h2>
 
-        {/* DESCRIPTION */}
-
         <p className="keepEarningDescription">
           {goalCompleted
-            ? "Amazing work! Come back tomorrow to keep your streak going."
-            : `You've made ${safeEarned} VEs today. Keep watching to reach your ${safeDailyGoal} VEs daily goal.`}
+            ? `Amazing work! You earned ${safeEarned.toLocaleString()} VEs today and unlocked your daily reward.`
+            : hasAvailableAds
+              ? `You’ve earned ${safeEarned.toLocaleString()} VEs today. Keep watching to reach your ${safeDailyGoal.toLocaleString()} VEs goal.`
+              : `You’ve earned ${safeEarned.toLocaleString()} VEs today. New earning opportunities will appear here when available.`}
         </p>
 
-        {/* =========================
-            META STATS
-        ========================= */}
+        {/* Summary stats */}
 
         <div className="keepEarningMeta">
           <span className="metaItem">
             <span className="metaIcon">
-              <Target size={13} />
+              <Target
+                size={13}
+                aria-hidden="true"
+              />
             </span>
 
             <strong>
-              {safeEarned}
+              {safeEarned.toLocaleString()}
             </strong>
 
             <small>
-              / {safeDailyGoal} VEs
+              / {safeDailyGoal.toLocaleString()} VEs
             </small>
           </span>
 
@@ -182,18 +196,16 @@ function KeepEarning({
 
               <span className="metaItem">
                 <strong>
-                  {remaining}
+                  {remaining.toLocaleString()}
                 </strong>
 
-                <small>
-                  VEs to goal
-                </small>
+                <small>VEs to goal</small>
               </span>
             </>
           )}
 
           {!goalCompleted &&
-            safeRemainingAds > 0 && (
+            hasAvailableAds && (
               <>
                 <span
                   className="metaDivider"
@@ -215,64 +227,92 @@ function KeepEarning({
             )}
         </div>
 
-        {/* =========================
-            CTA
-        ========================= */}
+        {/* Available ads CTA */}
 
-        {!goalCompleted &&
-          safeRemainingAds > 0 && (
-            <button
-              type="button"
-              className="keepEarningButton"
-              onClick={handleContinue}
-            >
-              <span>
-                Continue Watching
-              </span>
+        {!goalCompleted && hasAvailableAds && (
+          <button
+            type="button"
+            className="keepEarningButton"
+            onClick={handleContinue}
+          >
+            <span>Continue watching</span>
 
-              <span className="buttonIcon">
-                <ArrowRight size={18} />
-              </span>
-
-              <span
-                className="buttonShine"
+            <span className="buttonIcon">
+              <ArrowRight
+                size={18}
                 aria-hidden="true"
               />
-            </button>
-          )}
+            </span>
+
+            <span
+              className="buttonShine"
+              aria-hidden="true"
+            />
+          </button>
+        )}
+
+        {/* No ads message */}
+
+        {!goalCompleted && !hasAvailableAds && (
+          <div
+            className="noAdsMessage"
+            role="status"
+          >
+            <Clock3
+              size={15}
+              aria-hidden="true"
+            />
+
+            <span>
+              New campaigns will be available soon
+            </span>
+          </div>
+        )}
+
+        {/* Completed state */}
 
         {goalCompleted && (
           <div
             className="goalSuccessMessage"
             role="status"
           >
-            <Check size={15} />
-            <span>
-              Daily reward unlocked
-            </span>
+            <Check
+              size={15}
+              aria-hidden="true"
+            />
+
+            <span>Daily reward unlocked</span>
+
             <Zap
               size={13}
               fill="currentColor"
+              aria-hidden="true"
             />
           </div>
         )}
       </div>
 
-      {/* =========================
-          GOAL CIRCLE
-      ========================= */}
+      {/* Circular progress */}
 
       <div
         className="goalCircle"
-        aria-hidden="true"
+        role="img"
+        aria-label={`${progress}% of daily earning goal completed`}
       >
-        <div className="goalCircleGlow" />
+        <div
+          className="goalCircleGlow"
+          aria-hidden="true"
+        />
 
-        <div className="goalCirclePulse" />
+        <div
+          className="goalCirclePulse"
+          aria-hidden="true"
+        />
 
         <svg
           className="goalCircleSvg"
           viewBox="0 0 140 140"
+          aria-hidden="true"
         >
           <circle
             className="goalCircleTrack"
@@ -294,69 +334,60 @@ function KeepEarning({
         </svg>
 
         <div className="goalCircleCenter">
-          {goalCompleted ? (
-            <>
-              <Check
-                size={22}
-                className="successIcon"
-              />
-
-              <strong>100%</strong>
-
-              <span>COMPLETE</span>
-            </>
-          ) : (
-            <>
-              <strong>
-                {progress}%
-              </strong>
-
-              <span>COMPLETE</span>
-            </>
+          {goalCompleted && (
+            <Check
+              size={21}
+              className="successIcon"
+              aria-hidden="true"
+            />
           )}
+
+          <strong>{progress}%</strong>
+
+          <span>
+            {goalCompleted
+              ? "COMPLETE"
+              : "PROGRESS"}
+          </span>
         </div>
 
         <div className="goalCircleLabel">
           <strong>
-            {safeEarned} / {safeDailyGoal}
+            {safeEarned.toLocaleString()} /{" "}
+            {safeDailyGoal.toLocaleString()}
           </strong>
 
-          <span>
-            VEs today
-          </span>
+          <span>VEs today</span>
         </div>
       </div>
 
-      {/* =========================
-          FLOATING REWARD SIGNALS
-      ========================= */}
+      {/* Floating reward signals */}
 
-      {!goalCompleted && (
-        <>
-          <div
-            className="keepRewardSignal rewardSignalLeft"
-            aria-hidden="true"
-          >
-            <Zap size={12} />
-            <span>
-              +{Math.min(
-                safeRemainingAds * 5,
-                remaining
-              )} VEs
-            </span>
-          </div>
+      {!goalCompleted &&
+        hasAvailableAds && (
+          <>
+            <div
+              className="keepRewardSignal rewardSignalLeft"
+              aria-hidden="true"
+            >
+              <Zap size={12} />
 
-          <div
-            className="keepRewardSignal rewardSignalRight"
-            aria-hidden="true"
-          >
-            <Sparkles size={12} />
-            <span>
-              Keep going
-            </span>
-          </div>
-        </>
-      )}
+              <span>
+                Up to +
+                {estimatedPotential.toLocaleString()} VEs
+              </span>
+            </div>
+
+            <div
+              className="keepRewardSignal rewardSignalRight"
+              aria-hidden="true"
+            >
+              <Sparkles size={12} />
+
+              <span>Keep going</span>
+            </div>
+          </>
+        )}
     </section>
   );
 }

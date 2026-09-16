@@ -1,121 +1,256 @@
 import {
-  Play,
   CheckCircle2,
-  Clock3,
   ChevronRight,
+  Clock3,
+  History,
+  Play,
+  Sparkles,
 } from "lucide-react";
 
 import "./RecentActivity.scss";
 
-function RecentActivity({ activities = [], onViewAll }) {
+const MAX_VISIBLE_ACTIVITIES = 5;
+
+function RecentActivity({
+  activities = [],
+  onViewAll,
+}) {
+  const safeActivities = Array.isArray(activities)
+    ? activities
+    : [];
+
+  const visibleActivities = safeActivities.slice(
+    0,
+    MAX_VISIBLE_ACTIVITIES,
+  );
+
+  const handleViewAll = () => {
+    if (onViewAll) {
+      onViewAll();
+      return;
+    }
+
+    window.location.hash = "/history";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section
       className="recentActivity"
-      aria-label="Recent reward activity"
+      aria-labelledby="recent-activity-title"
     >
-      {/* =========================
-          HEADER
-      ========================= */}
+      {/* Header */}
+
       <div className="activityHeader">
         <div className="activityHeaderContent">
           <span className="activityEyebrow">
+            <Sparkles
+              size={12}
+              aria-hidden="true"
+            />
+
             REWARD HISTORY
           </span>
 
-          <h2>Recent activity</h2>
+          <h2 id="recent-activity-title">
+            Recent activity
+          </h2>
+
+          <p>
+            Your latest completed campaigns and earned
+            rewards.
+          </p>
         </div>
 
-        <button
-          type="button"
-          className="viewAllButton"
-          aria-label="View all reward activity"
-          onClick={() => onViewAll?.()}
-        >
-          <span>View all</span>
+        <div className="activityHeaderActions">
+          <div className="activityCount">
+            <History
+              size={14}
+              aria-hidden="true"
+            />
 
-          <ChevronRight
-            size={14}
-            strokeWidth={1.8}
-            aria-hidden="true"
-          />
-        </button>
+            <span>
+              {safeActivities.length}{" "}
+              {safeActivities.length === 1
+                ? "activity"
+                : "activities"}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className="viewAllButton"
+            aria-label="View all reward activity"
+            onClick={handleViewAll}
+          >
+            <span>View all</span>
+
+            <ChevronRight
+              size={15}
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </div>
 
-      {/* =========================
-          ACTIVITY LIST
-      ========================= */}
-      {activities.length > 0 ? (
+      {/* Activity list */}
+
+      {visibleActivities.length > 0 ? (
         <div className="activityList">
-          {activities.map((activity) => (
-            <article
-              className="activityItem"
-              key={activity.id}
-            >
-              {/* ICON */}
-              <div className="activityIcon">
-                <Play
-                  size={15}
-                  fill="currentColor"
-                  strokeWidth={1.8}
-                />
-              </div>
+          {visibleActivities.map(
+            (activity, index) => (
+              <article
+                className="activityItem"
+                key={activity.id}
+              >
+                <div
+                  className="activityTimeline"
+                  aria-hidden="true"
+                >
+                  <span />
 
-              {/* MAIN INFO */}
-              <div className="activityMain">
-                <strong title={activity.title}>
-                  {activity.title}
-                </strong>
+                  {index <
+                    visibleActivities.length - 1 && (
+                    <i />
+                  )}
+                </div>
 
-                <div className="activityMeta">
-                  <span>{activity.time}</span>
+                <div
+                  className="activityIcon"
+                  aria-hidden="true"
+                >
+                  <Play
+                    size={14}
+                    fill="currentColor"
+                    strokeWidth={0}
+                  />
+                </div>
 
-                  <span
-                    className="metaDot"
+                <div className="activityMain">
+                  <strong title={activity.title}>
+                    {activity.title}
+                  </strong>
+
+                  <div className="activityMeta">
+                    <span>
+                      {activity.time || "Recently"}
+                    </span>
+
+                    <span
+                      className="metaDot"
+                      aria-hidden="true"
+                    />
+
+                    <span>
+                      <Clock3
+                        size={11}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
+
+                      {activity.duration ||
+                        "Completed"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="activityStatus">
+                  <CheckCircle2
+                    size={14}
+                    strokeWidth={1.8}
                     aria-hidden="true"
                   />
 
                   <span>
-                    <Clock3
-                      size={10}
-                      strokeWidth={1.8}
-                    />
-                    {activity.duration}
+                    {activity.status ||
+                      "Completed"}
                   </span>
                 </div>
-              </div>
 
-              {/* STATUS */}
-              <div className="activityStatus">
-                <CheckCircle2
-                  size={13}
-                  strokeWidth={1.8}
+                <div className="activityRewardWrap">
+                  <span>Reward</span>
+
+                  <strong className="activityReward">
+                    {activity.reward}
+                  </strong>
+                </div>
+
+                <ChevronRight
+                  className="activityItemArrow"
+                  size={16}
+                  aria-hidden="true"
                 />
+              </article>
+            ),
+          )}
 
-                <span>{activity.status}</span>
-              </div>
+          {safeActivities.length >
+            MAX_VISIBLE_ACTIVITIES && (
+            <button
+              type="button"
+              className="activityMoreButton"
+              onClick={handleViewAll}
+            >
+              View{" "}
+              {safeActivities.length -
+                MAX_VISIBLE_ACTIVITIES}{" "}
+              more activities
 
-              {/* REWARD */}
-              <strong className="activityReward">
-                {activity.reward}
-              </strong>
-            </article>
-          ))}
+              <ChevronRight
+                size={14}
+                aria-hidden="true"
+              />
+            </button>
+          )}
         </div>
       ) : (
-        /* =========================
-           EMPTY STATE
-        ========================= */
+        // Empty state
+
         <div className="activityEmpty">
-          <div className="activityEmptyIcon">
-            <Clock3 size={18} />
+          <div
+            className="activityEmptyGlow"
+            aria-hidden="true"
+          />
+
+          <div
+            className="activityEmptyIcon"
+            aria-hidden="true"
+          >
+            <Clock3 size={20} />
           </div>
 
           <strong>No recent activity</strong>
 
           <span>
-            Complete an advertisement to see your
-            reward history here.
+            Complete your first advertisement to see
+            your reward history here.
           </span>
+
+          <button
+            type="button"
+            className="activityEmptyButton"
+            onClick={() =>
+              document
+                .getElementById("available-ads")
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+            }
+          >
+            <Play
+              size={13}
+              fill="currentColor"
+              aria-hidden="true"
+            />
+
+            Explore available ads
+          </button>
         </div>
       )}
     </section>

@@ -13,133 +13,203 @@ function useAdWatch(initialCompletedAds = []) {
   const [completedAds, setCompletedAds] =
     useDailyPersistentState(
       "veloop_completed_ads",
-      initialCompletedAds
+      initialCompletedAds,
     );
 
   const [rewardEarned, setRewardEarned] =
     useState(null);
 
   const timersRef = useRef({});
+  const activeAdIdRef = useRef(null);
+  const completedAdsRef = useRef(completedAds);
+
+  // Keep the latest completed ads available inside timers
+
+  useEffect(() => {
+    completedAdsRef.current = completedAds;
+  }, [completedAds]);
+
+  // Clear a particular advertisement timer
 
   const clearTimer = useCallback((adId) => {
-    if (timersRef.current[adId]) {
-      clearInterval(timersRef.current[adId]);
+    const timer = timersRef.current[adId];
 
-      delete timersRef.current[adId];
-    }
+    if (!timer) return;
+
+    window.clearInterval(timer);
+    delete timersRef.current[adId];
   }, []);
 
-  const startWatching = useCallback(
+  // Complete advertisement and issue reward once
+
+  const completeAd = useCallback(
     (ad) => {
-      if (!ad || completedAds.includes(ad.id)) {
-        return;
-      }
+      if (!ad) return;
 
       clearTimer(ad.id);
 
-      setRewardEarned(null);
+      activeAdIdRef.current = null;
+
+      setWatchingAds((previous) => {
+        const updated = { ...previous };
+
+        delete updated[ad.id];
+
+        return updated;
+      });
+
+      let rewardShouldBeIssued = false;
+
+      setCompletedAds((previous) => {
+        const safePrevious = Array.isArray(previous)
+          ? previous
+          : [];
+
+        if (safePrevious.includes(ad.id)) {
+          return safePrevious;
+        }
+
+        rewardShouldBeIssued = true;
+
+        const updated = [
+          ...safePrevious,
+          ad.id,
+        ];
+
+        completedAdsRef.current = updated;
+
+        return updated;
+      });
+
+      if (rewardShouldBeIssued) {
+        setRewardEarned({
+          ...ad,
+          completedAt: Date.now(),
+        });
+      }
+    },
+    [clearTimer, setCompletedAds],
+  );
+
+  // Start watching an advertisement
+
+  const startWatching = useCallback(
+    (ad) => {
+      if (!ad?.id) return false;
+
+      const alreadyCompleted =
+        completedAdsRef.current.includes(ad.id);
+
+      const anotherAdIsActive =
+        activeAdIdRef.current !== null &&
+        activeAdIdRef.current !== ad.id;
+
+      const sameAdIsActive =
+        activeAdIdRef.current === ad.id;
+
+      if (
+        alreadyCompleted ||
+        anotherAdIsActive ||
+        sameAdIsActive
+      ) {
+        return false;
+      }
 
       const duration = Math.max(
         Number(ad.duration) || 1,
-        1
+        1,
       );
 
-      setWatchingAds((previous) => ({
-        ...previous,
+      const endTime =
+        Date.now() + duration * 1000;
+
+      activeAdIdRef.current = ad.id;
+
+      setRewardEarned(null);
+
+      setWatchingAds({
         [ad.id]: {
           timeLeft: duration,
+          startedAt: Date.now(),
+          endTime,
         },
-      }));
+      });
 
-      let remaining = duration;
+      const updateTimer = () => {
+        const millisecondsLeft =
+          endTime - Date.now();
+
+        const secondsLeft = Math.max(
+          Math.ceil(millisecondsLeft / 1000),
+          0,
+        );
+
+        if (secondsLeft <= 0) {
+          completeAd(ad);
+          return;
+        }
+
+        setWatchingAds({
+          [ad.id]: {
+            timeLeft: secondsLeft,
+            startedAt:
+              endTime - duration * 1000,
+            endTime,
+          },
+        });
+      };
 
       timersRef.current[ad.id] =
-        setInterval(() => {
-          remaining -= 1;
+        window.setInterval(updateTimer, 250);
 
-          setWatchingAds((previous) => ({
-            ...previous,
-            [ad.id]: {
-              timeLeft: Math.max(
-                remaining,
-                0
-              ),
-            },
-          }));
-
-          if (remaining <= 0) {
-            clearTimer(ad.id);
-
-            setWatchingAds((previous) => {
-              const updated = {
-                ...previous,
-              };
-
-              delete updated[ad.id];
-
-              return updated;
-            });
-
-            setCompletedAds((previous) => {
-              if (
-                previous.includes(ad.id)
-              ) {
-                return previous;
-              }
-
-              return [
-                ...previous,
-                ad.id,
-              ];
-            });
-
-            setRewardEarned(ad);
-          }
-        }, 1000);
+      return true;
     },
-    [
-      clearTimer,
-      completedAds,
-      setCompletedAds,
-    ]
+    [completeAd],
   );
 
+  // Advertisement state helpers
+
   const isWatching = useCallback(
-    (adId) => {
-      return Boolean(
-        watchingAds[adId]
-      );
-    },
-    [watchingAds]
+    (adId) =>
+      activeAdIdRef.current === adId &&
+      Boolean(watchingAds[adId]),
+    [watchingAds],
   );
 
   const isCompleted = useCallback(
-    (adId) => {
-      return completedAds.includes(
-        adId
-      );
-    },
-    [completedAds]
+    (adId) => completedAds.includes(adId),
+    [completedAds],
   );
 
   const getTimeLeft = useCallback(
-    (adId) => {
-      return (
-        watchingAds[adId]?.timeLeft ?? 0
-      );
-    },
-    [watchingAds]
+    (adId) =>
+      watchingAds[adId]?.timeLeft ?? 0,
+    [watchingAds],
   );
 
+  const isAnyAdWatching =
+    activeAdIdRef.current !== null;
+
+  const activeAdId =
+    activeAdIdRef.current;
+
+  // Clear timers when component unmounts
+
   useEffect(() => {
+    const timers = timersRef.current;
+
     return () => {
-      Object.keys(
-        timersRef.current
-      ).forEach((adId) => {
-        clearTimer(adId);
+      Object.values(timers).forEach((timer) => {
+        window.clearInterval(timer);
       });
+
+      Object.keys(timers).forEach((key) => {
+        delete timers[key];
+      });
+
+      activeAdIdRef.current = null;
     };
-  }, [clearTimer]);
+  }, []);
 
   return {
     rewardEarned,
@@ -147,6 +217,8 @@ function useAdWatch(initialCompletedAds = []) {
     isWatching,
     isCompleted,
     getTimeLeft,
+    isAnyAdWatching,
+    activeAdId,
   };
 }
 

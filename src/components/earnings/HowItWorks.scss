@@ -825,3 +825,540 @@
     transform: translateY(-50%);
   }
 }
+
+// =========================================================
+// PREMIUM HOW IT WORKS UPDATE
+// =========================================================
+
+.howItWorks {
+  margin-top: 38px;
+}
+
+// =========================================================
+// HEADER
+// =========================================================
+
+.howHeader {
+  align-items: center;
+
+  margin-bottom: 21px;
+}
+
+.howEyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #9d8cff;
+}
+
+.howEyebrow svg {
+  color: #58dfce;
+}
+
+.howHeader h2 {
+  margin-top: 8px;
+
+  font-size: clamp(25px, 2.7vw, 32px);
+
+  letter-spacing: -1px;
+}
+
+.howHeader p {
+  max-width: 620px;
+
+  margin-top: 7px;
+
+  color: #7e899e;
+
+  font-size: 12px;
+}
+
+// =========================================================
+// HEADER ACTIONS
+// =========================================================
+
+.howHeaderActions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex: 0 0 auto;
+}
+
+.howBadge {
+  min-height: 49px;
+
+  padding: 7px 11px;
+
+  border-color:
+    rgba(255, 255, 255, 0.075);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.howBadge > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.howBadge span {
+  width: 31px;
+  height: 31px;
+
+  flex-basis: 31px;
+
+  border-radius: 9px;
+}
+
+.howBadge strong {
+  color: #b2bbca;
+
+  font-size: 9px;
+}
+
+.howBadge small {
+  color: #687388;
+
+  font-size: 7.5px;
+  font-weight: 600;
+}
+
+// =========================================================
+// START BUTTON
+// =========================================================
+
+.howStartButton {
+  position: relative;
+
+  min-height: 49px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 14px 7px 7px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(166, 145, 255, 0.25);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6b50e8,
+      #8269f4
+    );
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  box-shadow:
+    0 12px 28px
+    rgba(91, 69, 218, 0.22);
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.howStartButton > span {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.14);
+}
+
+.howStartButton > svg {
+  transition:
+    transform 220ms ease;
+}
+
+.howStartButton:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(202, 191, 255, 0.42);
+
+  box-shadow:
+    0 17px 38px
+    rgba(91, 69, 218, 0.34);
+}
+
+.howStartButton:hover > svg {
+  transform: translateX(3px);
+}
+
+.howStartButton:focus-visible {
+  outline:
+    3px solid
+    rgba(82, 222, 204, 0.3);
+
+  outline-offset: 3px;
+}
+
+// =========================================================
+// STEPS
+// =========================================================
+
+.stepsGrid {
+  gap: 17px;
+}
+
+.stepCard {
+  min-height: 245px;
+
+  padding: 21px;
+
+  border-color:
+    rgba(255, 255, 255, 0.075);
+
+  border-radius: 21px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(117, 91, 245, 0.1),
+      transparent 39%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(18, 25, 50, 0.95),
+      rgba(9, 14, 30, 0.97)
+    );
+
+  box-shadow:
+    0 16px 44px
+    rgba(0, 0, 0, 0.19),
+    inset 0 1px
+    rgba(255, 255, 255, 0.035);
+}
+
+.stepCard:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(145, 120, 255, 0.29);
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(117, 91, 245, 0.15),
+      transparent 41%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(22, 30, 59, 0.97),
+      rgba(10, 16, 34, 0.98)
+    );
+
+  box-shadow:
+    0 24px 60px
+    rgba(0, 0, 0, 0.29),
+    0 0 35px
+    rgba(102, 78, 225, 0.05);
+}
+
+.stepGlow {
+  position: absolute;
+
+  top: -85px;
+  right: -85px;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(112, 84, 235, 0.07);
+
+  filter: blur(28px);
+
+  pointer-events: none;
+}
+
+.stepIcon {
+  width: 49px;
+  height: 49px;
+
+  flex-basis: 49px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(127, 99, 249, 0.25),
+      rgba(93, 70, 214, 0.07)
+    );
+}
+
+.stepNumber {
+  border-color:
+    rgba(158, 137, 255, 0.13);
+
+  background:
+    rgba(124, 96, 240, 0.07);
+
+  color: #9383d0;
+}
+
+// =========================================================
+// STEP CONTENT
+// =========================================================
+
+.stepContent {
+  margin-top: 20px;
+}
+
+.stepEyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #8273c4;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.stepContent h3 {
+  font-size: 17px;
+
+  letter-spacing: -0.35px;
+}
+
+.stepContent p {
+  max-width: 330px;
+
+  color: #8490a5;
+
+  font-size: 11.5px;
+}
+
+// =========================================================
+// STEP META
+// =========================================================
+
+.stepMeta {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: auto;
+  padding-top: 17px;
+
+  color: #727e94;
+
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.stepMeta > svg:first-child {
+  color: #927aff;
+}
+
+.stepCheck {
+  margin-left: auto;
+
+  color: #4fddcb;
+}
+
+.stepLine {
+  position: absolute;
+
+  left: 21px;
+  right: 21px;
+  bottom: 0;
+
+  width: auto;
+  height: 2px;
+
+  margin: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7558ed,
+      #54ddcc,
+      transparent
+    );
+
+  opacity: 0.65;
+}
+
+.stepCard:hover .stepLine {
+  width: auto;
+
+  opacity: 1;
+}
+
+// =========================================================
+// CONNECTORS
+// =========================================================
+
+.stepConnector {
+  position: absolute;
+
+  top: 50%;
+  right: -19px;
+
+  z-index: 6;
+
+  width: 38px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+.stepConnector > span {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(145, 119, 255, 0.45),
+      transparent
+    );
+}
+
+.stepConnector .stepArrow {
+  position: relative;
+
+  top: auto;
+  right: auto;
+
+  width: 27px;
+  height: 27px;
+
+  transform: none;
+}
+
+.stepWrapper:hover
+  .stepConnector .stepArrow {
+  transform: translateX(3px);
+}
+
+// =========================================================
+// RESPONSIVE
+// =========================================================
+
+@media (max-width: 1000px) {
+  .howHeader {
+    align-items: flex-start;
+  }
+
+  .stepsGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .stepWrapper:nth-child(2)
+    .stepConnector {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .howHeader {
+    flex-direction: column;
+  }
+
+  .howHeaderActions {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stepConnector {
+    display: none;
+  }
+
+  .stepCard {
+    min-height: 225px;
+  }
+}
+
+@media (max-width: 430px) {
+  .howHeaderActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .howBadge,
+  .howStartButton {
+    width: 100%;
+  }
+
+  .howStartButton {
+    justify-content: center;
+  }
+
+  .stepCard {
+    min-height: 215px;
+
+    padding: 18px;
+  }
+
+  .stepLine {
+    left: 18px;
+    right: 18px;
+  }
+}
+
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .howStartButton,
+  .howStartButton > svg,
+  .stepConnector .stepArrow {
+    transition: none;
+  }
+}

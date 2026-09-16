@@ -1,21 +1,70 @@
 import {
+  Activity,
+  ArrowRight,
+  ArrowUp,
+  CheckCircle2,
   ShieldCheck,
   Sparkles,
-  ArrowUp,
-  ArrowRight,
-  Activity,
+  Zap,
 } from "lucide-react";
 
 import "./Footer.scss";
 
-const liveActivities = [
-  "Someone just earned +25 VEs",
-  "Daily reward progress updated",
-  "New earning opportunity available",
-  "Reward session completed",
+const defaultUpdates = [
+  {
+    id: "tracking",
+    text: "Reward tracking is active",
+    icon: CheckCircle2,
+  },
+  {
+    id: "progress",
+    text: "Daily progress updates instantly",
+    icon: Activity,
+  },
+  {
+    id: "opportunities",
+    text: "New campaigns appear automatically",
+    icon: Sparkles,
+  },
+  {
+    id: "rewards",
+    text: "Completed rewards stay in history",
+    icon: ShieldCheck,
+  },
 ];
 
-function Footer({ onNavigate }) {
+function Footer({
+  onNavigate,
+  recentActivities = [],
+}) {
+  const currentYear =
+    new Date().getFullYear();
+
+  const activityUpdates =
+    recentActivities.length > 0
+      ? recentActivities
+          .slice(0, 4)
+          .map((activity) => ({
+            id: activity.id,
+            text: `${activity.title} · ${activity.reward}`,
+            icon: CheckCircle2,
+          }))
+      : defaultUpdates;
+
+  const handleNavigate = (page) => {
+    if (onNavigate) {
+      onNavigate(page);
+      return;
+    }
+
+    window.location.hash = `/${page}`;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -24,71 +73,81 @@ function Footer({ onNavigate }) {
   };
 
   const scrollToAds = () => {
-    const section = document.getElementById("available-ads");
+    const section =
+      document.getElementById("available-ads");
 
     if (section) {
       section.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-    } else {
-      scrollToTop();
+
+      return;
     }
+
+    handleNavigate("watch-ads");
   };
 
   return (
     <footer className="siteFooter">
-      {/* =========================
-          BACKGROUND MOTION
-      ========================= */}
+      {/* Background decoration */}
 
-      <div className="footerAmbient footerAmbientOne" aria-hidden="true" />
+      <div
+        className="footerAmbient footerAmbientOne"
+        aria-hidden="true"
+      />
 
-      <div className="footerAmbient footerAmbientTwo" aria-hidden="true" />
+      <div
+        className="footerAmbient footerAmbientTwo"
+        aria-hidden="true"
+      />
 
-      <div className="footerGrid" aria-hidden="true" />
+      <div
+        className="footerGrid"
+        aria-hidden="true"
+      />
 
-      <div className="footerOrb footerOrbOne" aria-hidden="true" />
+      <div
+        className="footerOrb footerOrbOne"
+        aria-hidden="true"
+      />
 
-      <div className="footerOrb footerOrbTwo" aria-hidden="true" />
-
-      {/* =========================
-          FLOATING REWARD SIGNALS
-      ========================= */}
-
-      <div className="rewardSignal rewardSignalOne" aria-hidden="true">
-        <span>+</span>25 VEs
-      </div>
-
-      <div className="rewardSignal rewardSignalTwo" aria-hidden="true">
-        <span>+</span>18 VEs
-      </div>
-
-      <div className="rewardSignal rewardSignalThree" aria-hidden="true">
-        <span>+</span>35 VEs
-      </div>
-
-      {/* =========================
-          FOOTER CONTENT
-      ========================= */}
+      <div
+        className="footerOrb footerOrbTwo"
+        aria-hidden="true"
+      />
 
       <div className="footerInner">
-        {/* TOP */}
+        {/* Footer top */}
 
         <div className="footerTop">
-          <div className="footerBrand">
-            <div className="footerLogo">
+          <button
+            type="button"
+            className="footerBrand"
+            onClick={() =>
+              handleNavigate("watch-ads")
+            }
+            aria-label="Go to Watch Ads"
+          >
+            <div
+              className="footerLogo"
+              aria-hidden="true"
+            >
               <span>V</span>
+              <i />
             </div>
 
             <div className="footerBrandText">
               <strong>VELOOP</strong>
               <span>REWARDS</span>
             </div>
-          </div>
+          </button>
 
           <div className="footerStatus">
-            <span className="footerStatusPulse">
+            <span
+              className="footerStatusPulse"
+              aria-hidden="true"
+            >
               <span />
             </span>
 
@@ -96,81 +155,152 @@ function Footer({ onNavigate }) {
           </div>
         </div>
 
-        {/* MAIN */}
+        {/* Main footer content */}
 
         <div className="footerMain">
           <div className="footerMessage">
             <div className="footerEyebrow">
-              <Sparkles size={11} />
-              KEEP EARNING
+              <Sparkles
+                size={12}
+                aria-hidden="true"
+              />
+
+              YOUR TIME, REWARDED
             </div>
 
             <h3>
               Watch.
               <span> Earn.</span>
               <br />
-              Repeat.
+              Keep growing.
             </h3>
 
-            <p>Turn your time into meaningful rewards with VELOOP.</p>
+            <p>
+              Discover campaigns, complete them and
+              keep every reward organized in one place.
+            </p>
+
+            <button
+              type="button"
+              className="footerPrimaryButton"
+              onClick={scrollToAds}
+            >
+              <span className="footerPrimaryIcon">
+                <Zap
+                  size={14}
+                  fill="currentColor"
+                  aria-hidden="true"
+                />
+              </span>
+
+              Explore available ads
+
+              <ArrowRight
+                size={16}
+                aria-hidden="true"
+              />
+            </button>
           </div>
 
-          {/* LIVE ACTIVITY */}
+          {/* Activity updates */}
 
           <div className="footerLive">
             <div className="footerLiveHeader">
               <div>
-                <Activity size={12} />
-                <span>LIVE ACTIVITY</span>
+                <Activity
+                  size={13}
+                  aria-hidden="true"
+                />
+
+                <span>PLATFORM UPDATES</span>
               </div>
 
-              <span className="liveIndicator">LIVE</span>
+              <span className="liveIndicator">
+                ACTIVE
+              </span>
             </div>
 
             <div className="footerLiveTrack">
-              {liveActivities.map((activity, index) => (
-                <div
-                  className="liveActivity"
-                  key={activity}
-                  style={{
-                    "--activity-index": index,
-                  }}
-                >
-                  <span className="liveDot" />
+              {activityUpdates.map(
+                (
+                  {
+                    id,
+                    text,
+                    icon: Icon,
+                  },
+                  index,
+                ) => (
+                  <div
+                    className="liveActivity"
+                    key={id}
+                    style={{
+                      "--activity-index": index,
+                    }}
+                  >
+                    <span
+                      className="footerActivityIcon"
+                      aria-hidden="true"
+                    >
+                      <Icon size={12} />
+                    </span>
 
-                  <span>{activity}</span>
-                </div>
-              ))}
+                    <span>{text}</span>
+                  </div>
+                ),
+              )}
             </div>
           </div>
 
-          {/* QUICK LINKS */}
+          {/* Quick links */}
 
-          <nav className="footerLinks" aria-label="Footer navigation">
-            <span className="footerLinksTitle">QUICK ACCESS</span>
+          <nav
+            className="footerLinks"
+            aria-label="Footer navigation"
+          >
+            <span className="footerLinksTitle">
+              QUICK ACCESS
+            </span>
 
-            <button type="button" onClick={scrollToAds}>
-              Watch Ads
-              <ArrowRight size={12} />
+            <button
+              type="button"
+              onClick={scrollToAds}
+            >
+              <span>Watch ads</span>
+              <ArrowRight size={13} />
             </button>
 
-            <button type="button" onClick={() => onNavigate?.("dashboard")}>
-              Dashboard
-              <ArrowRight size={12} />
+            <button
+              type="button"
+              onClick={() =>
+                handleNavigate("dashboard")
+              }
+            >
+              <span>Dashboard</span>
+              <ArrowRight size={13} />
             </button>
 
-            <button type="button" onClick={() => onNavigate?.("offers")}>
-              Offers
-              <ArrowRight size={12} />
+            <button
+              type="button"
+              onClick={() =>
+                handleNavigate("offers")
+              }
+            >
+              <span>Offers</span>
+              <ArrowRight size={13} />
             </button>
 
-            <button type="button" onClick={() => onNavigate?.("support")}>
-              Support
-              <ArrowRight size={12} />
+            <button
+              type="button"
+              onClick={() =>
+                handleNavigate("support")
+              }
+            >
+              <span>Support</span>
+              <ArrowRight size={13} />
             </button>
           </nav>
 
-          {/* TOP BUTTON */}
+          {/* Scroll to top */}
 
           <button
             type="button"
@@ -178,25 +308,30 @@ function Footer({ onNavigate }) {
             onClick={scrollToTop}
             aria-label="Back to top"
           >
-            <ArrowUp size={16} strokeWidth={2} />
+            <ArrowUp
+              size={16}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
 
             <span>TOP</span>
           </button>
         </div>
 
-        {/* DIVIDER */}
+        <div
+          className="footerDivider"
+          aria-hidden="true"
+        />
 
-        <div className="footerDivider" />
-
-        {/* BOTTOM */}
+        {/* Footer bottom */}
 
         <div className="footerBottom">
-          <span className="footerCopyright">© 2026 VELOOP Rewards</span>
+          <span className="footerCopyright">
+            © {currentYear} VELOOP Rewards
+          </span>
 
           <span className="footerAuthor">
-            Crafted with
-            <Sparkles size={11} />
-            by{" "}
+            Crafted by{" "}
             <a
               href="https://www.linkedin.com/in/sagarsinghkhangarot"
               target="_blank"
@@ -209,13 +344,21 @@ function Footer({ onNavigate }) {
 
           <div className="footerTrust">
             <span>
-              <ShieldCheck size={13} />
+              <ShieldCheck
+                size={13}
+                aria-hidden="true"
+              />
+
               Secure experience
             </span>
 
             <span>
-              <Sparkles size={13} />
-              Built for rewards
+              <Sparkles
+                size={13}
+                aria-hidden="true"
+              />
+
+              Transparent rewards
             </span>
           </div>
         </div>

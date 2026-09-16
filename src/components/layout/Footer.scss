@@ -1,465 +1,341 @@
-// ============================================
-// VELOOP — FOOTER
-// Cinematic Premium Footer
-// ============================================
+// =========================================================
+// VELOOP FOOTER
+// =========================================================
 
 .siteFooter {
   position: relative;
 
   width: 100%;
-  min-width: 0;
 
-  margin-top: 48px;
-  padding: 48px 0 24px;
+  margin-top: 42px;
+  padding: 34px 0 20px;
 
   overflow: hidden;
   isolation: isolate;
 
-  border-top: 1px solid rgba(255, 255, 255, 0.045);
+  border: 1px solid
+    rgba(133, 107, 255, 0.17);
 
-  color: #8d94ad;
+  border-radius: 26px 26px 0 0;
 
   background:
     radial-gradient(
-      circle at 18% 0%,
-      rgba(124, 58, 237, 0.075),
-      transparent 30%
+      circle at 10% 100%,
+      rgba(89, 67, 210, 0.15),
+      transparent 32%
     ),
     radial-gradient(
-      circle at 88% 80%,
-      rgba(99, 102, 241, 0.045),
-      transparent 28%
+      circle at 90% 0%,
+      rgba(73, 218, 200, 0.07),
+      transparent 29%
     ),
     linear-gradient(
-      180deg,
-      #0a0a15 0%,
-      #080810 100%
+      145deg,
+      #0d142d 0%,
+      #080d1e 53%,
+      #060914 100%
     );
+
+  box-shadow:
+    0 -15px 55px
+    rgba(0, 0, 0, 0.18),
+    inset 0 1px
+    rgba(255, 255, 255, 0.04);
 }
 
-// ============================================
-// AMBIENT BACKGROUND
-// ============================================
+// =========================================================
+// BACKGROUND
+// =========================================================
 
 .footerAmbient {
   position: absolute;
 
-  width: 360px;
-  height: 190px;
-
   border-radius: 50%;
 
-  filter: blur(75px);
+  filter: blur(45px);
 
   pointer-events: none;
 
-  z-index: -3;
-
-  opacity: 0.4;
+  z-index: -2;
 }
 
 .footerAmbientOne {
-  top: -135px;
-  left: 12%;
+  top: -150px;
+  left: 16%;
 
-  background: rgba(124, 58, 237, 0.085);
+  width: 320px;
+  height: 320px;
+
+  background:
+    rgba(116, 87, 238, 0.1);
 
   animation:
-    footerAmbientOne
-    11s ease-in-out
-    infinite alternate;
+    footerAmbientFloatOne
+    9s ease-in-out infinite;
 }
 
 .footerAmbientTwo {
-  right: 4%;
-  bottom: -135px;
+  right: -80px;
+  bottom: -150px;
 
-  background: rgba(99, 102, 241, 0.05);
+  width: 280px;
+  height: 280px;
+
+  background:
+    rgba(73, 218, 200, 0.055);
 
   animation:
-    footerAmbientTwo
-    13s ease-in-out
-    infinite alternate;
+    footerAmbientFloatTwo
+    11s ease-in-out infinite;
 }
-
-@keyframes footerAmbientOne {
-  from {
-    transform:
-      translate3d(-18px, 0, 0)
-      scale(0.96);
-  }
-
-  to {
-    transform:
-      translate3d(35px, 18px, 0)
-      scale(1.08);
-  }
-}
-
-@keyframes footerAmbientTwo {
-  from {
-    transform:
-      translate3d(20px, 10px, 0)
-      scale(1);
-  }
-
-  to {
-    transform:
-      translate3d(-28px, -18px, 0)
-      scale(1.1);
-  }
-}
-
-// ============================================
-// GRID
-// ============================================
 
 .footerGrid {
   position: absolute;
   inset: 0;
 
-  z-index: -4;
-
-  opacity: 0.16;
+  opacity: 0.12;
 
   background-image:
     linear-gradient(
-      rgba(255, 255, 255, 0.025) 1px,
+      rgba(154, 131, 255, 0.045) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.025) 1px,
+      rgba(154, 131, 255, 0.045) 1px,
       transparent 1px
     );
 
-  background-size: 46px 46px;
+  background-size: 48px 48px;
 
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7),
-    transparent 88%
-  );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 85%
+    );
 
   pointer-events: none;
-}
 
-// ============================================
-// ORBS
-// ============================================
+  z-index: -1;
+}
 
 .footerOrb {
   position: absolute;
 
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 
   border-radius: 50%;
 
-  background: #a78bfa;
+  background: #9d84ff;
 
   box-shadow:
-    0 0 14px rgba(167, 139, 250, 0.7);
-
-  opacity: 0.3;
+    0 0 11px
+    rgba(157, 132, 255, 0.75);
 
   pointer-events: none;
-
-  z-index: -1;
 }
 
 .footerOrbOne {
-  top: 28%;
-  left: 7%;
+  top: 25%;
+  left: 48%;
 
   animation:
-    footerOrbFloatOne
-    7s ease-in-out
-    infinite;
+    footerOrbFloat 5s ease-in-out infinite;
 }
 
 .footerOrbTwo {
-  right: 12%;
-  bottom: 27%;
+  right: 8%;
+  bottom: 28%;
+
+  background: #54ddcc;
+
+  box-shadow:
+    0 0 11px
+    rgba(84, 221, 204, 0.7);
 
   animation:
-    footerOrbFloatTwo
-    9s ease-in-out
-    infinite;
+    footerOrbFloat 6s 0.5s
+    ease-in-out infinite;
 }
 
-@keyframes footerOrbFloatOne {
-  0%,
-  100% {
-    transform:
-      translate3d(0, 8px, 0);
-
-    opacity: 0.18;
-  }
-
-  50% {
-    transform:
-      translate3d(25px, -18px, 0);
-
-    opacity: 0.55;
-  }
-}
-
-@keyframes footerOrbFloatTwo {
-  0%,
-  100% {
-    transform:
-      translate3d(0, 0, 0);
-
-    opacity: 0.18;
-  }
-
-  50% {
-    transform:
-      translate3d(-22px, 20px, 0);
-
-    opacity: 0.5;
-  }
-}
-
-// ============================================
-// REWARD SIGNALS
-// ============================================
-
-.rewardSignal {
-  position: absolute;
-
-  z-index: -1;
-
-  padding: 6px 9px;
-
-  border: 1px solid rgba(139, 92, 246, 0.1);
-  border-radius: 8px;
-
-  background: rgba(139, 92, 246, 0.03);
-
-  color: rgba(167, 139, 250, 0.3);
-
-  font-size: 7px;
-  font-weight: 750;
-
-  letter-spacing: 0.04em;
-
-  pointer-events: none;
-
-  animation:
-    rewardSignalFloat
-    8s ease-in-out
-    infinite;
-}
-
-.rewardSignal span {
-  color: rgba(52, 211, 153, 0.55);
-}
-
-.rewardSignalOne {
-  top: 22%;
-  right: 20%;
-
-  animation-delay: -1s;
-}
-
-.rewardSignalTwo {
-  top: 58%;
-  left: 17%;
-
-  animation-delay: -4s;
-}
-
-.rewardSignalThree {
-  bottom: 19%;
-  right: 7%;
-
-  animation-delay: -6s;
-}
-
-@keyframes rewardSignalFloat {
-  0%,
-  100% {
-    opacity: 0;
-
-    transform:
-      translate3d(0, 12px, 0);
-  }
-
-  20% {
-    opacity: 0.55;
-  }
-
-  50% {
-    opacity: 0.3;
-
-    transform:
-      translate3d(0, -12px, 0);
-  }
-
-  80% {
-    opacity: 0;
-  }
-}
-
-// ============================================
+// =========================================================
 // INNER
-// ============================================
+// =========================================================
 
 .footerInner {
   position: relative;
-
-  z-index: 3;
+  z-index: 2;
 
   width: 100%;
+
+  padding: 0 30px;
 }
 
-// ============================================
+// =========================================================
 // TOP
-// ============================================
+// =========================================================
 
 .footerTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  gap: 20px;
+  gap: 18px;
+
+  padding-bottom: 23px;
 }
 
+// =========================================================
+// BRAND
+// =========================================================
+
 .footerBrand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
 
   gap: 11px;
 
-  min-width: 0;
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
 }
 
-// ============================================
-// LOGO
-// ============================================
+.footerBrand:focus-visible {
+  outline: 2px solid
+    rgba(156, 134, 255, 0.6);
+
+  outline-offset: 5px;
+
+  border-radius: 10px;
+}
 
 .footerLogo {
   position: relative;
 
-  width: 39px;
-  height: 39px;
+  width: 41px;
+  height: 41px;
 
-  flex: 0 0 39px;
+  flex: 0 0 41px;
 
   display: grid;
   place-items: center;
 
-  border: 1px solid rgba(167, 139, 250, 0.32);
-  border-radius: 11px;
+  overflow: hidden;
 
-  background: linear-gradient(
-    145deg,
-    #8b5cf6,
-    #5b21b6
-  );
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8067f3,
+      #5940cf
+    );
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 900;
 
   box-shadow:
-    0 8px 25px rgba(124, 58, 237, 0.2),
-    inset 0 1px rgba(255, 255, 255, 0.18);
+    0 0 27px
+    rgba(103, 76, 220, 0.35);
 
-  animation:
-    footerLogoPulse
-    4s ease-in-out
-    infinite;
+  transform: skew(-7deg);
 }
 
-.footerLogo::after {
+.footerLogo::before {
+  position: absolute;
+  inset: -40%;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.28) 50%,
+      transparent 65%
+    );
+
+  transform: translateX(-110%);
+
   content: "";
 
-  position: absolute;
-  inset: -5px;
-
-  border: 1px solid rgba(139, 92, 246, 0.08);
-  border-radius: 15px;
-
   animation:
-    footerLogoRing
-    4s ease-in-out
-    infinite;
+    footerLogoShine
+    5s ease-in-out infinite;
 }
 
 .footerLogo span {
-  color: #ffffff;
+  position: relative;
+  z-index: 2;
 
-  font-size: 19px;
-  font-weight: 900;
-
-  line-height: 1;
-
-  letter-spacing: -0.06em;
+  transform: skew(7deg);
 }
 
-@keyframes footerLogoPulse {
-  0%,
-  100% {
-    box-shadow:
-      0 8px 25px rgba(124, 58, 237, 0.18),
-      inset 0 1px rgba(255, 255, 255, 0.18);
-  }
+.footerLogo i {
+  position: absolute;
 
-  50% {
-    box-shadow:
-      0 10px 32px rgba(124, 58, 237, 0.3),
-      inset 0 1px rgba(255, 255, 255, 0.2);
-  }
+  right: 4px;
+  bottom: 4px;
+  z-index: 3;
+
+  width: 7px;
+  height: 7px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.75);
+
+  border-radius: 50%;
+
+  background: #53dfcd;
+
+  box-shadow:
+    0 0 8px
+    rgba(83, 223, 205, 0.8);
+
+  transform: skew(7deg);
 }
-
-@keyframes footerLogoRing {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.75;
-    transform: scale(1.04);
-  }
-}
-
-// ============================================
-// BRAND TEXT
-// ============================================
 
 .footerBrandText {
   display: flex;
   flex-direction: column;
-
-  min-width: 0;
-
-  line-height: 1;
 }
 
 .footerBrandText strong {
-  color: #f5f3ff;
+  color: #ffffff;
 
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 850;
 
-  letter-spacing: 0.12em;
+  letter-spacing: 1.4px;
+  line-height: 1;
 }
 
 .footerBrandText span {
   margin-top: 5px;
 
-  color: #626a83;
+  color: #667187;
 
   font-size: 7px;
-  font-weight: 800;
+  font-weight: 750;
 
-  letter-spacing: 0.34em;
+  letter-spacing: 2.7px;
+  line-height: 1;
 }
 
-// ============================================
+// =========================================================
 // STATUS
-// ============================================
+// =========================================================
 
 .footerStatus {
   display: inline-flex;
@@ -467,29 +343,33 @@
 
   gap: 7px;
 
-  padding: 7px 12px;
+  padding: 7px 10px;
 
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid
+    rgba(83, 223, 205, 0.1);
+
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.02);
+  background:
+    rgba(83, 223, 205, 0.045);
 
-  color: #686f88;
+  color: #7a958f;
 
   font-size: 8px;
   font-weight: 650;
-
-  white-space: nowrap;
 }
 
 .footerStatusPulse {
-  position: relative;
-
-  width: 6px;
-  height: 6px;
+  width: 13px;
+  height: 13px;
 
   display: grid;
   place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(83, 223, 205, 0.08);
 }
 
 .footerStatusPulse span {
@@ -498,53 +378,44 @@
 
   border-radius: 50%;
 
-  background: #34d399;
+  background: #53dfcd;
 
   box-shadow:
-    0 0 10px rgba(52, 211, 153, 0.75);
+    0 0 8px
+    rgba(83, 223, 205, 0.75);
 
   animation:
-    statusPulse
-    2s ease-in-out
-    infinite;
+    footerStatusPulse
+    2s ease-in-out infinite;
 }
 
-@keyframes statusPulse {
-  0%,
-  100% {
-    transform: scale(0.8);
-    opacity: 0.65;
-  }
-
-  50% {
-    transform: scale(1.25);
-    opacity: 1;
-  }
-}
-
-// ============================================
+// =========================================================
 // MAIN GRID
-// ============================================
+// =========================================================
 
 .footerMain {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(220px, 1fr)
-    minmax(120px, 0.65fr)
-    auto;
+    minmax(280px, 1.25fr)
+    minmax(240px, 0.9fr)
+    minmax(130px, 0.45fr)
+    45px;
 
-  align-items: center;
+  align-items: start;
 
-  gap: 38px;
+  gap: 28px;
 
-  margin-top: 34px;
+  padding:
+    28px 0 30px;
+
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.055);
 }
 
-// ============================================
+// =========================================================
 // MESSAGE
-// ============================================
+// =========================================================
 
 .footerMessage {
   min-width: 0;
@@ -554,74 +425,162 @@
   display: inline-flex;
   align-items: center;
 
-  gap: 5px;
+  gap: 6px;
 
-  margin-bottom: 8px;
-
-  color: #8f7bea;
+  color: #9e8cff;
 
   font-size: 8px;
-  font-weight: 800;
+  font-weight: 850;
 
-  line-height: 1;
+  letter-spacing: 1.4px;
+}
 
-  letter-spacing: 0.18em;
+.footerEyebrow svg {
+  color: #56decd;
 }
 
 .footerMessage h3 {
-  margin: 0;
+  margin: 10px 0 11px;
 
-  color: #f5f3ff;
+  color: #f7f8fc;
 
-  font-size: 27px;
+  font-size: clamp(30px, 3vw, 42px);
   font-weight: 850;
 
-  line-height: 1.04;
-
-  letter-spacing: -0.04em;
+  line-height: 1.02;
+  letter-spacing: -1.8px;
 }
 
 .footerMessage h3 span {
-  background: linear-gradient(
-    90deg,
-    #a78bfa,
-    #818cf8
-  );
+  background:
+    linear-gradient(
+      90deg,
+      #a997ff,
+      #59dfce
+    );
 
-  -webkit-background-clip: text;
   background-clip: text;
+  -webkit-background-clip: text;
 
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .footerMessage p {
-  max-width: 290px;
+  max-width: 450px;
 
-  margin: 10px 0 0;
+  margin: 0;
 
-  color: #626a83;
+  color: #7d889d;
 
-  font-size: 10px;
-
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.65;
 }
 
-// ============================================
-// LIVE ACTIVITY
-// ============================================
+// =========================================================
+// PRIMARY BUTTON
+// =========================================================
+
+.footerPrimaryButton {
+  position: relative;
+
+  min-height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 18px;
+  padding: 6px 14px 6px 6px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(180, 165, 255, 0.22);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #674be4,
+      #8067f2
+    );
+
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 9px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 28px
+    rgba(91, 68, 211, 0.24);
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.footerPrimaryButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 17px 37px
+    rgba(91, 68, 211, 0.36);
+}
+
+.footerPrimaryButton > svg {
+  transition:
+    transform 200ms ease;
+}
+
+.footerPrimaryButton:hover > svg {
+  transform: translateX(3px);
+}
+
+.footerPrimaryButton:focus-visible {
+  outline: 3px solid
+    rgba(83, 223, 205, 0.28);
+
+  outline-offset: 3px;
+}
+
+.footerPrimaryIcon {
+  width: 31px;
+  height: 31px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.14);
+}
+
+// =========================================================
+// PLATFORM UPDATES
+// =========================================================
 
 .footerLive {
   min-width: 0;
 
-  padding: 13px;
+  padding: 15px;
 
-  border: 1px solid rgba(255, 255, 255, 0.055);
-  border-radius: 13px;
+  border: 1px solid
+    rgba(255, 255, 255, 0.065);
 
-  background: rgba(255, 255, 255, 0.018);
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.023);
 
   box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.02);
+    inset 0 1px
+    rgba(255, 255, 255, 0.025);
 }
 
 .footerLiveHeader {
@@ -631,7 +590,10 @@
 
   gap: 10px;
 
-  margin-bottom: 9px;
+  padding-bottom: 11px;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.055);
 }
 
 .footerLiveHeader > div {
@@ -640,300 +602,280 @@
 
   gap: 6px;
 
-  color: #676e86;
+  color: #8d7edf;
 
   font-size: 7px;
-  font-weight: 800;
+  font-weight: 850;
 
-  letter-spacing: 0.12em;
+  letter-spacing: 1px;
 }
 
 .footerLiveHeader svg {
-  color: #8b7cf1;
+  color: #55ddcc;
 }
 
 .liveIndicator {
-  color: #34d399;
+  padding: 3px 6px;
+
+  border: 1px solid
+    rgba(83, 223, 205, 0.1);
+
+  border-radius: 999px;
+
+  background:
+    rgba(83, 223, 205, 0.05);
+
+  color: #58c8ba;
 
   font-size: 6px;
   font-weight: 850;
 
-  letter-spacing: 0.1em;
+  letter-spacing: 0.5px;
 }
-
-// ============================================
-// LIVE TRACK
-// ============================================
 
 .footerLiveTrack {
-  position: relative;
-
-  width: 100%;
-  height: 18px;
-
-  overflow: hidden;
-}
-
-.liveActivity {
-  position: absolute;
-  inset: 0;
-
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   gap: 7px;
 
-  min-width: 0;
+  margin-top: 11px;
+}
 
-  color: #70778f;
+.liveActivity {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 30px;
+
+  padding: 6px 8px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+
+  color: #7b869a;
 
   font-size: 8px;
 
-  white-space: nowrap;
-
-  opacity: 0;
-
-  transform: translateY(7px);
-
-  animation:
-    liveActivityCycle
-    16s linear
-    infinite;
-
-  animation-delay:
-    calc(var(--activity-index) * 4s);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
-.liveActivity > span:last-child {
-  min-width: 0;
+.liveActivity:hover {
+  border-color:
+    rgba(151, 129, 255, 0.1);
 
-  overflow: hidden;
+  background:
+    rgba(111, 84, 226, 0.055);
 
-  text-overflow: ellipsis;
+  color: #aab3c2;
 }
 
-.liveDot {
-  width: 4px;
-  height: 4px;
+.footerActivityIcon {
+  width: 21px;
+  height: 21px;
 
-  flex: 0 0 4px;
+  flex: 0 0 21px;
 
-  border-radius: 50%;
+  display: grid;
+  place-items: center;
 
-  background: #34d399;
+  border-radius: 6px;
 
-  box-shadow:
-    0 0 8px rgba(52, 211, 153, 0.55);
+  background:
+    rgba(118, 91, 230, 0.09);
+
+  color: #9d87f7;
 }
 
-@keyframes liveActivityCycle {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  4% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  24% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-
-// ============================================
-// QUICK LINKS
-// ============================================
+// =========================================================
+// LINKS
+// =========================================================
 
 .footerLinks {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
-  gap: 8px;
-
-  min-width: 0;
+  gap: 6px;
 }
 
 .footerLinksTitle {
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 
-  color: #41475d;
+  color: #59647a;
 
   font-size: 7px;
-  font-weight: 800;
+  font-weight: 850;
 
-  line-height: 1;
-
-  letter-spacing: 0.16em;
+  letter-spacing: 1.3px;
 }
 
 .footerLinks button {
-  display: inline-flex;
+  width: 100%;
+  min-height: 30px;
+
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  gap: 6px;
+  gap: 8px;
 
-  padding: 0;
+  padding: 5px 7px;
 
   border: 0;
+  border-radius: 8px;
 
   background: transparent;
 
-  color: #70778f;
+  color: #7c879b;
 
   font: inherit;
-
-  font-size: 8px;
-  font-weight: 650;
+  font-size: 9px;
+  text-align: left;
 
   cursor: pointer;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.footerLinks button:hover {
+  transform: translateX(2px);
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  color: #c0b4f4;
+}
+
+.footerLinks button svg {
+  flex: 0 0 auto;
+
+  color: #4d586d;
 
   transition:
     color 180ms ease,
     transform 180ms ease;
 }
 
-.footerLinks button svg {
-  opacity: 0;
-
-  transform: translateX(-4px);
-
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
-}
-
-.footerLinks button:hover {
-  color: #b8a7ff;
+.footerLinks button:hover svg {
+  color: #9b87ef;
 
   transform: translateX(2px);
 }
 
-.footerLinks button:hover svg {
-  opacity: 1;
-
-  transform: translateX(0);
-}
-
 .footerLinks button:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.5);
-  outline-offset: 4px;
+  outline: 2px solid
+    rgba(154, 132, 255, 0.5);
 
-  border-radius: 4px;
+  outline-offset: 2px;
 }
 
-// ============================================
+// =========================================================
 // TOP BUTTON
-// ============================================
+// =========================================================
 
 .footerTopButton {
-  width: 39px;
-  height: 39px;
-
-  flex: 0 0 39px;
+  width: 43px;
+  height: 56px;
 
   display: flex;
-  flex-direction: column;
-
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
-  gap: 1px;
+  gap: 4px;
 
   padding: 0;
 
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  border-radius: 10px;
+  border: 1px solid
+    rgba(150, 127, 255, 0.15);
 
-  background: rgba(139, 92, 246, 0.045);
+  border-radius: 12px;
 
-  color: #9f8cff;
+  background:
+    rgba(112, 84, 225, 0.07);
+
+  color: #9b89ec;
 
   cursor: pointer;
 
   transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
+    transform 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
 }
 
 .footerTopButton span {
-  font-size: 5px;
-  font-weight: 800;
+  font-size: 6px;
+  font-weight: 850;
 
-  line-height: 1;
-
-  letter-spacing: 0.12em;
-
-  opacity: 0.5;
+  letter-spacing: 0.8px;
 }
 
 .footerTopButton:hover {
   transform: translateY(-3px);
 
-  border-color: rgba(139, 92, 246, 0.42);
+  border-color:
+    rgba(165, 145, 255, 0.3);
 
-  background: rgba(139, 92, 246, 0.09);
+  background:
+    rgba(112, 84, 225, 0.13);
 
-  box-shadow:
-    0 10px 28px rgba(124, 58, 237, 0.15);
+  color: #c6b9fa;
 }
 
 .footerTopButton:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
-  outline-offset: 4px;
+  outline: 2px solid
+    rgba(154, 132, 255, 0.55);
+
+  outline-offset: 3px;
 }
 
-// ============================================
+// =========================================================
 // DIVIDER
-// ============================================
+// =========================================================
 
 .footerDivider {
   width: 100%;
   height: 1px;
 
-  margin: 28px 0 18px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.055),
-    rgba(139, 92, 246, 0.1),
-    transparent
-  );
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
 }
 
-// ============================================
+// =========================================================
 // BOTTOM
-// ============================================
+// =========================================================
 
 .footerBottom {
   display: grid;
 
   grid-template-columns:
-    1fr
-    auto
-    1fr;
+    1fr auto 1fr;
 
   align-items: center;
 
   gap: 18px;
 
-  color: #454b60;
+  padding-top: 18px;
+
+  color: #5d687c;
 
   font-size: 8px;
 }
@@ -944,56 +886,25 @@
 
 .footerAuthor {
   justify-self: center;
-
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  color: #626a83;
-
-  font-size: 8px;
-
-  white-space: nowrap;
-
-  animation:
-    authorReveal
-    0.8s ease
-    0.4s
-    both;
-}
-
-.footerAuthor svg {
-  color: #9f8cff;
-
-  animation:
-    authorSparkle
-    2.5s ease-in-out
-    infinite;
 }
 
 .footerAuthor a {
-  color: #9f8cff;
+  color: #9684e4;
 
-  font-weight: 750;
+  font-weight: 700;
 
-  text-decoration: none;
-
-  transition:
-    color 180ms ease,
-    text-shadow 180ms ease;
+  transition: color 180ms ease;
 }
 
 .footerAuthor a:hover {
-  color: #b8a7ff;
-
-  text-shadow:
-    0 0 14px rgba(167, 139, 250, 0.35);
+  color: #c0b2fa;
 }
 
 .footerAuthor a:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.5);
-  outline-offset: 3px;
+  outline: 2px solid
+    rgba(154, 132, 255, 0.5);
+
+  outline-offset: 2px;
 
   border-radius: 3px;
 }
@@ -1004,7 +915,7 @@
   display: flex;
   align-items: center;
 
-  gap: 18px;
+  gap: 13px;
 }
 
 .footerTrust span {
@@ -1013,166 +924,186 @@
 
   gap: 5px;
 
-  color: #454b60;
-
-  white-space: nowrap;
-
-  transition: color 180ms ease;
-}
-
-.footerTrust span:hover {
-  color: #727a93;
+  color: #667187;
 }
 
 .footerTrust svg {
-  color: #696f87;
+  color: #7e70c4;
 }
 
-// ============================================
+// =========================================================
+// ANIMATIONS
+// =========================================================
+
+@keyframes footerAmbientFloatOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(15px, 12px, 0);
+  }
+}
+
+@keyframes footerAmbientFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-14px, -10px, 0);
+  }
+}
+
+@keyframes footerOrbFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes footerLogoShine {
+  0%,
+  72% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes footerStatusPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+// =========================================================
 // TABLET
-// ============================================
+// =========================================================
 
 @media (max-width: 1000px) {
   .footerMain {
     grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
+      minmax(260px, 1fr)
+      minmax(220px, 0.9fr)
+      minmax(120px, 0.45fr);
 
-    gap: 28px;
+    gap: 20px;
   }
 
   .footerTopButton {
-    display: none;
+    position: absolute;
+
+    top: 21px;
+    right: 0;
   }
 
-  .footerLinks {
-    grid-column: 2;
+  .footerStatus {
+    margin-right: 55px;
   }
 
   .footerBottom {
     grid-template-columns:
-      1fr
-      auto;
-
-    gap: 12px;
+      1fr auto;
   }
 
   .footerAuthor {
-    grid-column: 1 / -1;
-
-    grid-row: 2;
-
-    justify-self: center;
-  }
-
-  .footerTrust {
-    justify-self: end;
+    display: none;
   }
 }
 
-// ============================================
+// =========================================================
 // MOBILE
-// ============================================
+// =========================================================
 
 @media (max-width: 700px) {
   .siteFooter {
-    margin-top: 36px;
+    margin-top: 34px;
+    padding-top: 27px;
 
-    padding: 34px 0 20px;
+    border-radius: 23px 23px 0 0;
+  }
+
+  .footerInner {
+    padding: 0 18px;
   }
 
   .footerTop {
-    align-items: flex-start;
+    padding-bottom: 19px;
   }
 
   .footerMain {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
 
-    align-items: stretch;
+    gap: 18px;
 
-    gap: 24px;
-
-    margin-top: 28px;
+    padding:
+      23px 0 25px;
   }
 
   .footerMessage h3 {
-    font-size: 25px;
-  }
-
-  .footerMessage p {
-    max-width: 310px;
+    font-size: 32px;
   }
 
   .footerLive {
-    width: 100%;
+    max-width: 100%;
   }
 
   .footerLinks {
-    width: 100%;
-
     display: grid;
 
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
-
-    gap: 13px 20px;
   }
 
   .footerLinksTitle {
     grid-column: 1 / -1;
   }
 
-  .footerLinks button {
-    width: fit-content;
+  .footerTopButton {
+    top: auto;
+    right: 0;
+    bottom: 85px;
   }
 
   .footerBottom {
-    display: flex;
-    flex-direction: column;
-
-    align-items: flex-start;
+    grid-template-columns: 1fr;
 
     gap: 11px;
   }
 
-  .footerCopyright {
-    order: 1;
-  }
-
-  .footerAuthor {
-    order: 2;
-
-    align-self: flex-start;
-
-    font-size: 8px;
-  }
-
+  .footerCopyright,
   .footerTrust {
-    order: 3;
-
-    justify-self: auto;
-
-    flex-wrap: wrap;
-
-    gap: 9px 16px;
-  }
-
-  .rewardSignal {
-    display: none;
+    justify-self: start;
   }
 }
 
-// ============================================
+// =========================================================
 // SMALL MOBILE
-// ============================================
+// =========================================================
 
 @media (max-width: 420px) {
   .siteFooter {
-    margin-top: 30px;
+    padding-top: 23px;
+  }
 
-    padding:
-      29px 0 18px;
+  .footerInner {
+    padding: 0 14px;
   }
 
   .footerLogo {
@@ -1182,19 +1113,12 @@
     flex-basis: 36px;
   }
 
-  .footerLogo span {
-    font-size: 17px;
-  }
-
   .footerBrandText strong {
-    font-size: 12px;
-  }
-
-  .footerBrandText span {
-    font-size: 6px;
+    font-size: 13px;
   }
 
   .footerStatus {
+    margin-right: 0;
     padding: 6px 8px;
   }
 
@@ -1203,157 +1127,55 @@
   }
 
   .footerMessage h3 {
-    font-size: 22px;
+    font-size: 28px;
+
+    letter-spacing: -1.2px;
   }
 
   .footerMessage p {
-    font-size: 9px;
-  }
-
-  .footerLive {
-    padding: 11px;
-  }
-
-  .footerLinks {
-    gap: 12px 14px;
-  }
-
-  .footerBottom {
-    font-size: 7px;
-  }
-
-  .footerTrust {
-    gap: 8px 13px;
-  }
-
-  .footerTrust span {
-    font-size: 7px;
-  }
-}
-
-// ============================================
-// VERY SMALL PHONES
-// ============================================
-
-@media (max-width: 340px) {
-  .footerTop {
-    gap: 8px;
-  }
-
-  .footerBrand {
-    gap: 8px;
-  }
-
-  .footerLogo {
-    width: 33px;
-    height: 33px;
-
-    flex-basis: 33px;
-
-    border-radius: 9px;
-  }
-
-  .footerLogo span {
-    font-size: 15px;
-  }
-
-  .footerBrandText strong {
     font-size: 10px;
   }
 
-  .footerBrandText span {
-    margin-top: 4px;
+  .footerPrimaryButton {
+    width: 100%;
 
-    font-size: 5px;
+    justify-content: center;
   }
 
-  .footerMessage h3 {
-    font-size: 20px;
+  .footerTopButton {
+    position: static;
+
+    width: 100%;
+    height: 39px;
+
+    flex-direction: row;
+
+    grid-column: 1 / -1;
   }
 
-  .footerMessage p {
-    font-size: 8px;
-  }
-
-  .footerLinks button {
-    font-size: 7px;
-  }
-
-  .footerTrust span {
-    font-size: 6.5px;
-  }
-}
-
-// ============================================
-// KEYFRAMES
-// ============================================
-
-@keyframes authorReveal {
-  from {
-    opacity: 0;
-
-    transform: translateY(7px);
-
-    filter: blur(3px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform: translateY(0);
-
-    filter: blur(0);
+  .footerTrust {
+    flex-wrap: wrap;
   }
 }
 
-@keyframes authorSparkle {
-  0%,
-  100% {
-    transform: scale(0.9);
-    opacity: 0.55;
-  }
-
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
-}
-
-// ============================================
+// =========================================================
 // REDUCED MOTION
-// ============================================
+// =========================================================
 
 @media (prefers-reduced-motion: reduce) {
-  .footerAmbientOne,
-  .footerAmbientTwo,
-  .footerOrbOne,
-  .footerOrbTwo,
-  .rewardSignal,
-  .footerLogo,
-  .footerLogo::after,
-  .footerStatusPulse span,
-  .liveActivity,
-  .footerAuthor,
-  .footerAuthor svg {
+  .footerAmbient,
+  .footerOrb,
+  .footerLogo::before,
+  .footerStatusPulse span {
     animation: none;
   }
 
-  .liveActivity {
-    position: relative;
-
-    opacity: 1;
-
-    transform: none;
-  }
-
-  .liveActivity:not(:first-child) {
-    display: none;
-  }
-
+  .footerPrimaryButton,
+  .footerPrimaryButton > svg,
+  .liveActivity,
   .footerLinks button,
   .footerLinks button svg,
   .footerTopButton,
-  .footerTrust span,
   .footerAuthor a {
     transition: none;
   }

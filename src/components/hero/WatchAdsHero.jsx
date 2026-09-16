@@ -1,7 +1,9 @@
 import {
   ArrowUpRight,
+  ChevronRight,
   CircleDollarSign,
   Play,
+  ShieldCheck,
   Sparkles,
   TrendingUp,
   Zap,
@@ -19,48 +21,34 @@ function WatchAdsHero({
   dailyGoal = DEFAULT_DAILY_GOAL,
 }) {
   const today = Math.max(Number(todayEarnings) || 0, 0);
-  const lifetime = Math.max(
-    Number(lifetimeEarnings) || 0,
-    0
-  );
-
-  const watched = Math.max(
-    Number(adsWatchedToday) || 0,
-    0
-  );
-
-  const available = Math.max(
-    Number(remainingAds) || 0,
-    0
-  );
-
-  const goal = Math.max(
-    Number(dailyGoal) || DEFAULT_DAILY_GOAL,
-    1
-  );
+  const lifetime = Math.max(Number(lifetimeEarnings) || 0, 0);
+  const watched = Math.max(Number(adsWatchedToday) || 0, 0);
+  const available = Math.max(Number(remainingAds) || 0, 0);
+  const goal = Math.max(Number(dailyGoal) || DEFAULT_DAILY_GOAL, 1);
 
   const percentage = Math.min(
     Math.round((today / goal) * 100),
-    100
+    100,
   );
 
-  const remaining = Math.max(
-    goal - today,
-    0
-  );
-
-  const potential = available > 0
-    ? remaining
-    : 0;
-
+  const remaining = Math.max(goal - today, 0);
+  const potential = available > 0 ? remaining : 0;
   const goalReached = today >= goal;
+
+  const handleWatchNext = () => {
+    document.getElementById("available-ads")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <section
       className="watchHero"
       aria-labelledby="watch-hero-title"
     >
-      {/* Ambient background */}
+      {/* Background effects */}
+
       <div
         className="heroGlow heroGlowOne"
         aria-hidden="true"
@@ -76,16 +64,13 @@ function WatchAdsHero({
         aria-hidden="true"
       />
 
-      {/* =================================================
-          LEFT CONTENT
-      ================================================= */}
+      {/* Left content */}
 
       <div className="heroContent">
-
         <div className="heroBadge">
           <span className="liveDot" />
 
-          <span>EARNING CENTER</span>
+          <span>LIVE REWARD HUB</span>
 
           <Sparkles
             size={13}
@@ -94,28 +79,57 @@ function WatchAdsHero({
         </div>
 
         <h1 id="watch-hero-title">
-          Watch Ads.
+          Your attention.
           <br />
-          <span>Earn More VEs.</span>
+          <span>Your rewards.</span>
         </h1>
 
         <p className="heroDescription">
-          Turn a few seconds of your time into real
-          rewards. Watch short advertisements, collect
-          VEs and grow your daily earnings.
+          Discover short campaigns worth your time. Watch,
+          earn VEs instantly and turn every spare moment into
+          measurable progress.
         </p>
 
-        {/* Quick stats */}
+        {/* Main action */}
+
+        <div className="heroActions">
+          <button
+            type="button"
+            className="heroPrimaryAction"
+            onClick={handleWatchNext}
+          >
+            <span className="heroActionIcon">
+              <Play
+                size={15}
+                fill="currentColor"
+                strokeWidth={0}
+              />
+            </span>
+
+            <span>Watch next ad</span>
+
+            <ChevronRight size={17} />
+          </button>
+
+          <div className="heroTrustNote">
+            <ShieldCheck size={16} />
+
+            <span>
+              Instant credit after completion
+            </span>
+          </div>
+        </div>
+
+        {/* Quick statistics */}
 
         <div className="heroQuickStats">
-
           <div className="quickStat">
             <div className="quickStatIcon purple">
               <CircleDollarSign size={17} />
             </div>
 
             <div>
-              <span>Total Earned</span>
+              <span>Total earned</span>
 
               <strong>
                 {lifetime.toLocaleString()} VEs
@@ -131,7 +145,7 @@ function WatchAdsHero({
             </div>
 
             <div>
-              <span>Today</span>
+              <span>Earned today</span>
 
               <strong>
                 +{today.toLocaleString()} VEs
@@ -147,27 +161,21 @@ function WatchAdsHero({
             </div>
 
             <div>
-              <span>Available</span>
+              <span>Watched today</span>
 
               <strong>
-                {available}{" "}
-                {available === 1 ? "Ad" : "Ads"}
+                {watched} completed
               </strong>
             </div>
           </div>
-
         </div>
 
         {/* Daily progress */}
 
         <div className="heroProgress">
-
           <div className="progressHeader">
-
             <div>
-              <span>
-                Today's earning goal
-              </span>
+              <span>Today&apos;s earning goal</span>
 
               <strong>
                 {today.toLocaleString()} /{" "}
@@ -178,7 +186,6 @@ function WatchAdsHero({
             <span className="progressPercent">
               {percentage}%
             </span>
-
           </div>
 
           <div
@@ -200,7 +207,6 @@ function WatchAdsHero({
           </div>
 
           <div className="progressFooter">
-
             <span>
               {goalReached
                 ? "Daily goal reached 🎉"
@@ -212,43 +218,34 @@ function WatchAdsHero({
                 ? "Bonus reward unlocked"
                 : "Keep watching to unlock bonus rewards"}
             </span>
-
           </div>
-
         </div>
       </div>
 
-      {/* =================================================
-          RIGHT VISUAL
-      ================================================= */}
+      {/* Right visual */}
 
       <div
         className="heroVisual"
         aria-hidden="true"
       >
-
         <div className="visualOrb orbOne" />
         <div className="visualOrb orbTwo" />
-
-        {/* Reward chip */}
 
         <div className="floatingReward rewardOne">
           <Zap size={14} />
           <span>+38 VEs</span>
         </div>
 
-        {/* Main ad card */}
+        {/* Featured campaign card */}
 
         <div className="adVisual">
-
           <div className="adTopLabel">
-            <span>AD • 30 SEC</span>
+            <span>FEATURED • 30 SEC</span>
           </div>
 
           <div className="adVisualGlow" />
 
           <div className="playRing">
-
             <div className="playCircle">
               <Play
                 size={30}
@@ -256,7 +253,6 @@ function WatchAdsHero({
                 strokeWidth={0}
               />
             </div>
-
           </div>
 
           <div className="adVisualLines">
@@ -266,32 +262,26 @@ function WatchAdsHero({
           </div>
 
           <div className="adVisualLabel">
-            <span>READY TO EARN</span>
+            <span>NEXT CAMPAIGN</span>
 
             <strong>
-              WATCH &amp; REWARD
+              DISCOVER. WATCH. EARN.
             </strong>
           </div>
-
         </div>
-
-        {/* Second reward */}
 
         <div className="floatingReward rewardTwo">
           <TrendingUp size={14} />
           <span>+20 VEs</span>
         </div>
 
-        {/* Potential earning */}
-
         <div className="heroFloatingCard">
-
           <div className="floatingCardIcon">
             <Zap size={16} />
           </div>
 
           <div>
-            <span>Potential today</span>
+            <span>Still available today</span>
 
             <strong>
               +{potential.toLocaleString()} VEs
@@ -299,9 +289,7 @@ function WatchAdsHero({
           </div>
 
           <ArrowUpRight size={17} />
-
         </div>
-
       </div>
     </section>
   );

@@ -1462,3 +1462,474 @@
     transform: none;
   }
 }
+
+// =========================================================
+// PREMIUM KEEP EARNING UPDATE
+// =========================================================
+
+.keepEarning {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(230px, 280px);
+
+  min-height: 490px;
+
+  margin-top: 70px;
+  padding: clamp(42px, 5vw, 66px);
+
+  border-color:
+    rgba(128, 101, 255, 0.27);
+
+  background:
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(111, 84, 235, 0.23),
+      transparent 33%
+    ),
+    radial-gradient(
+      circle at 15% 90%,
+      rgba(72, 218, 200, 0.08),
+      transparent 31%
+    ),
+    linear-gradient(
+      135deg,
+      #111832 0%,
+      #0b1024 54%,
+      #0d1022 100%
+    );
+
+  box-shadow:
+    0 34px 90px
+    rgba(0, 0, 0, 0.34),
+    inset 0 1px
+    rgba(255, 255, 255, 0.055);
+}
+
+// =========================================================
+// ICON
+// =========================================================
+
+.keepEarningIcon {
+  width: 65px;
+  height: 65px;
+
+  border-color:
+    rgba(154, 130, 255, 0.31);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(128, 100, 250, 0.22),
+      rgba(78, 61, 179, 0.07)
+    );
+
+  box-shadow:
+    0 15px 38px
+    rgba(89, 67, 204, 0.15),
+    inset 0 1px
+    rgba(255, 255, 255, 0.055);
+}
+
+.keepEarningEyebrow {
+  color: #a18eff;
+}
+
+.eyebrowSparkle {
+  color: #5be0cf;
+}
+
+// =========================================================
+// CONTENT
+// =========================================================
+
+.keepEarning h2 {
+  max-width: 760px;
+
+  font-size: clamp(42px, 4.5vw, 65px);
+}
+
+.keepEarning h2 span {
+  background:
+    linear-gradient(
+      100deg,
+      #ad9bff 0%,
+      #8068f4 48%,
+      #55decd 100%
+    );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.keepEarningDescription {
+  max-width: 670px;
+
+  color: #929caf;
+}
+
+// =========================================================
+// META ITEMS
+// =========================================================
+
+.metaItem {
+  border-color:
+    rgba(255, 255, 255, 0.075);
+
+  background:
+    rgba(255, 255, 255, 0.028);
+
+  backdrop-filter: blur(10px);
+}
+
+.metaItem:hover {
+  border-color:
+    rgba(148, 123, 255, 0.28);
+
+  background:
+    rgba(113, 86, 230, 0.07);
+}
+
+.metaIcon {
+  color: #9279fa;
+}
+
+// =========================================================
+// CTA BUTTON
+// =========================================================
+
+.keepEarningButton {
+  min-width: 230px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.13);
+
+  background:
+    linear-gradient(
+      110deg,
+      #664ae6,
+      #7e64f2 55%,
+      #6d55dc
+    );
+
+  box-shadow:
+    0 15px 38px
+    rgba(91, 69, 216, 0.3);
+}
+
+.keepEarningButton:hover {
+  box-shadow:
+    0 21px 48px
+    rgba(91, 69, 216, 0.42);
+}
+
+.keepEarningButton:focus-visible {
+  outline:
+    3px solid
+    rgba(83, 224, 206, 0.33);
+
+  outline-offset: 4px;
+}
+
+// =========================================================
+// NO ADS STATE
+// =========================================================
+
+.noAdsMessage {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 11px 14px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.075);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  color: #8e98aa;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  animation:
+    successReveal
+    0.6s ease both;
+}
+
+.noAdsMessage svg {
+  color: #8f79ef;
+}
+
+// =========================================================
+// GOAL CIRCLE
+// =========================================================
+
+.goalCircle {
+  width: 260px;
+  height: 260px;
+}
+
+.goalCircleGlow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(123, 94, 244, 0.21),
+      transparent 70%
+    );
+}
+
+.goalCircleTrack {
+  stroke:
+    rgba(255, 255, 255, 0.075);
+
+  stroke-width: 7;
+}
+
+.goalCircleProgress {
+  stroke: url("#goalGradient");
+
+  stroke: #8d72ff;
+
+  stroke-width: 8;
+
+  filter:
+    drop-shadow(
+      0 0 9px
+      rgba(139, 111, 255, 0.62)
+    );
+}
+
+.goalCircleCenter strong {
+  font-size: 42px;
+}
+
+.goalCircleCenter span {
+  color: #7a8498;
+}
+
+.goalCircleLabel {
+  bottom: -8px;
+
+  padding: 7px 11px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 10px;
+
+  background:
+    rgba(10, 15, 32, 0.76);
+
+  backdrop-filter: blur(10px);
+}
+
+// =========================================================
+// REWARD SIGNALS
+// =========================================================
+
+.keepRewardSignal {
+  border-color:
+    rgba(145, 119, 255, 0.2);
+
+  background:
+    rgba(10, 15, 32, 0.78);
+
+  color: #a9b2c3;
+
+  box-shadow:
+    0 15px 34px
+    rgba(0, 0, 0, 0.23);
+}
+
+.keepRewardSignal svg {
+  color: #9d84ff;
+}
+
+// =========================================================
+// COMPLETED STATE
+// =========================================================
+
+.keepEarning.goalCompleted {
+  border-color:
+    rgba(75, 222, 151, 0.23);
+
+  background:
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(52, 211, 153, 0.15),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 15% 90%,
+      rgba(72, 218, 200, 0.08),
+      transparent 31%
+    ),
+    linear-gradient(
+      135deg,
+      #101b2c 0%,
+      #0a1422 54%,
+      #0b121f 100%
+    );
+}
+
+.goalCompleted .keepEarningIcon {
+  border-color:
+    rgba(52, 211, 153, 0.26);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(52, 211, 153, 0.2),
+      rgba(30, 145, 106, 0.06)
+    );
+
+  color: #55dfa5;
+}
+
+.goalCompleted .iconPulse {
+  border-color:
+    rgba(52, 211, 153, 0.22);
+}
+
+.goalCompleted .keepEarningEyebrow {
+  color: #57dda5;
+}
+
+.goalCompleted .goalCircleProgress {
+  stroke: #45d899;
+
+  filter:
+    drop-shadow(
+      0 0 10px
+      rgba(69, 216, 153, 0.57)
+    );
+}
+
+.goalSuccessMessage {
+  border-color:
+    rgba(52, 211, 153, 0.2);
+
+  background:
+    rgba(52, 211, 153, 0.065);
+}
+
+// =========================================================
+// RESPONSIVE
+// =========================================================
+
+@media (max-width: 1050px) {
+  .keepEarning {
+    grid-template-columns:
+      minmax(0, 1fr)
+      225px;
+  }
+
+  .goalCircle {
+    width: 220px;
+    height: 220px;
+  }
+
+  .goalCircleCenter strong {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 760px) {
+  .keepEarning {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+
+    margin-top: 45px;
+    padding: 38px 24px 46px;
+  }
+
+  .keepEarningContent {
+    max-width: 100%;
+  }
+
+  .goalCircle {
+    width: 220px;
+    height: 220px;
+
+    justify-self: center;
+
+    margin-top: 45px;
+  }
+
+  .keepRewardSignal {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .keepEarning {
+    padding:
+      31px 18px 40px;
+
+    border-radius: 24px;
+  }
+
+  .keepEarningIcon {
+    width: 56px;
+    height: 56px;
+
+    margin-bottom: 20px;
+  }
+
+  .keepEarning h2 {
+    font-size: 39px;
+  }
+
+  .keepEarningDescription {
+    font-size: 12px;
+  }
+
+  .keepEarningMeta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .metaItem {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .metaDivider {
+    display: none;
+  }
+
+  .keepEarningButton,
+  .noAdsMessage {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .goalCircle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .goalCircleCenter strong {
+    font-size: 33px;
+  }
+}
+
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .noAdsMessage {
+    animation: none;
+  }
+}

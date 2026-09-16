@@ -322,7 +322,7 @@ function App() {
             ========================= */}
 
             <ScrollReveal delay={100}>
-              <EarningsInfo />
+              <EarningsInfo onNavigate={handleNavigation} />
             </ScrollReveal>
 
             {/* =========================

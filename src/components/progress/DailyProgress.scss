@@ -982,3 +982,516 @@
     transition: none;
   }
 }
+
+// =========================================================
+// PREMIUM DAILY PROGRESS UPDATE
+// =========================================================
+
+.dailyProgress {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(250px, 285px);
+
+  gap: 17px;
+
+  margin-top: 22px;
+}
+
+// =========================================================
+// MAIN PROGRESS CARD
+// =========================================================
+
+.progressMain {
+  padding: 24px 25px;
+
+  border-color:
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 21px;
+
+  background:
+    radial-gradient(
+      circle at 5% 110%,
+      rgba(96, 72, 234, 0.13),
+      transparent 38%
+    ),
+    linear-gradient(
+      140deg,
+      rgba(20, 27, 54, 0.94),
+      rgba(10, 15, 33, 0.96)
+    );
+
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.progressAmbientGlow {
+  position: absolute;
+
+  top: -100px;
+  right: -70px;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(114, 90, 255, 0.1);
+
+  filter: blur(45px);
+
+  pointer-events: none;
+}
+
+.progressTitle {
+  align-items: flex-start;
+}
+
+.progressTitle > div:last-child {
+  position: relative;
+  z-index: 2;
+}
+
+.progressTitle span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #9d8cff;
+}
+
+.progressTitle span svg {
+  color: #5de0cf;
+}
+
+.progressTitle h2 {
+  margin-top: 6px;
+
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.progressTitle p {
+  max-width: 410px;
+
+  margin: 5px 0 0;
+
+  color: #727e94;
+
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+// =========================================================
+// AMOUNT
+// =========================================================
+
+.progressAmount {
+  position: relative;
+  z-index: 2;
+
+  padding: 9px 12px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.progressAmount strong {
+  font-size: 29px;
+}
+
+// =========================================================
+// PROGRESS BAR
+// =========================================================
+
+.progressBarWrapper {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 24px;
+}
+
+.progressBarWrapper .bigProgress {
+  margin-top: 0;
+
+  height: 11px;
+}
+
+.bigProgressFill {
+  background:
+    linear-gradient(
+      90deg,
+      #6449e8 0%,
+      #8b70ff 56%,
+      #51ddcb 100%
+    );
+
+  box-shadow:
+    0 0 18px
+    rgba(111, 87, 244, 0.38);
+}
+
+.progressMarker {
+  width: 24px;
+  height: 24px;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+.progressMarker span {
+  width: 20px;
+  height: 20px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b70ff,
+      #6248e7
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 92, 255, 0.14);
+
+  border-radius: 50%;
+}
+
+.progressMilestones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+  color: #505c72;
+
+  font-size: 8px;
+  font-weight: 650;
+}
+
+.progressMilestones span:last-child {
+  color: #9082c2;
+}
+
+// =========================================================
+// BOTTOM STATUS
+// =========================================================
+
+.progressBottom {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 13px;
+}
+
+.progressStatus svg {
+  color: #8e77ff;
+}
+
+.remainingText {
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+}
+
+.remainingText.completed {
+  background:
+    rgba(74, 222, 128, 0.09);
+
+  color: #66e392;
+}
+
+// =========================================================
+// BONUS CARD
+// =========================================================
+
+.progressReward {
+  position: relative;
+
+  min-height: 100%;
+
+  padding: 21px 18px;
+
+  border-radius: 21px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(251, 191, 36, 0.11),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(25, 29, 48, 0.97),
+      rgba(12, 17, 33, 0.98)
+    );
+}
+
+.progressReward:disabled {
+  opacity: 1;
+}
+
+.progressReward.bonusLocked {
+  cursor: not-allowed;
+
+  border-color:
+    rgba(255, 255, 255, 0.07);
+}
+
+.progressReward.bonusLocked:hover {
+  transform: none;
+
+  border-color:
+    rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 12px 40px
+    rgba(0, 0, 0, 0.18);
+}
+
+.progressReward.bonusUnlocked {
+  cursor: pointer;
+
+  border-color:
+    rgba(251, 191, 36, 0.28);
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(251, 191, 36, 0.22),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(36, 31, 37, 0.98),
+      rgba(17, 19, 33, 0.98)
+    );
+
+  box-shadow:
+    0 18px 50px
+    rgba(0, 0, 0, 0.25),
+    0 0 35px
+    rgba(251, 191, 36, 0.06);
+}
+
+.progressReward.bonusUnlocked:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(251, 191, 36, 0.43);
+
+  box-shadow:
+    0 23px 58px
+    rgba(0, 0, 0, 0.3),
+    0 0 40px
+    rgba(251, 191, 36, 0.1);
+}
+
+.bonusGlow {
+  position: absolute;
+
+  top: -55px;
+  right: -55px;
+
+  width: 140px;
+  height: 140px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(251, 191, 36, 0.08);
+
+  filter: blur(28px);
+
+  pointer-events: none;
+}
+
+.bonusUnlocked .bonusGlow {
+  animation:
+    bonusGlowPulse
+    2.8s ease-in-out infinite;
+}
+
+.rewardBadge {
+  position: relative;
+  z-index: 2;
+}
+
+.bonusLocked .rewardBadge {
+  color: #7d879a;
+
+  border-color:
+    rgba(255, 255, 255, 0.07);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+.bonusUnlocked .rewardBadge {
+  color: #fbbf24;
+
+  border-color:
+    rgba(251, 191, 36, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(251, 191, 36, 0.17),
+      rgba(245, 158, 11, 0.07)
+    );
+
+  box-shadow:
+    0 10px 25px
+    rgba(251, 191, 36, 0.09);
+}
+
+.rewardContent {
+  position: relative;
+  z-index: 2;
+}
+
+.rewardContent strong {
+  margin-top: 5px;
+
+  font-size: 16px;
+}
+
+.rewardContent small {
+  margin-top: 5px;
+
+  line-height: 1.45;
+}
+
+.bonusLocked .rewardArrow {
+  opacity: 0.35;
+}
+
+.bonusUnlocked .rewardArrow {
+  color: #fbbf24;
+
+  background:
+    rgba(251, 191, 36, 0.09);
+}
+
+// =========================================================
+// ANIMATION
+// =========================================================
+
+@keyframes bonusGlowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.15);
+  }
+}
+
+// =========================================================
+// RESPONSIVE
+// =========================================================
+
+@media (max-width: 1000px) {
+  .dailyProgress {
+    grid-template-columns:
+      minmax(0, 1fr)
+      245px;
+  }
+}
+
+@media (max-width: 850px) {
+  .dailyProgress {
+    grid-template-columns: 1fr;
+  }
+
+  .progressReward {
+    min-height: 105px;
+  }
+}
+
+@media (max-width: 600px) {
+  .progressMain {
+    padding: 19px 16px;
+  }
+
+  .progressTop {
+    align-items: flex-start;
+  }
+
+  .progressTitle p {
+    max-width: 260px;
+
+    font-size: 9px;
+  }
+
+  .progressAmount {
+    padding: 7px 9px;
+  }
+
+  .progressAmount strong {
+    font-size: 23px;
+  }
+
+  .progressMilestones {
+    font-size: 7px;
+  }
+
+  .progressReward {
+    min-height: 96px;
+
+    padding: 16px;
+  }
+}
+
+@media (max-width: 440px) {
+  .progressTop {
+    flex-direction: column;
+  }
+
+  .progressAmount {
+    align-self: flex-start;
+  }
+
+  .progressTitle p {
+    max-width: 100%;
+  }
+
+  .progressBottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .bonusUnlocked .bonusGlow {
+    animation: none;
+  }
+}

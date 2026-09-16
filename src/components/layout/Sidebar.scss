@@ -1,14 +1,11 @@
-// ============================================
-// VELOOP — SIDEBAR
-// Premium Responsive Navigation
-// ============================================
+// =========================================================
+// VELOOP SIDEBAR
+// =========================================================
 
 .sidebar {
   position: fixed;
-
-  top: 0;
-  left: 0;
-  bottom: 0;
+  inset: 0 auto 0 0;
+  z-index: 1000;
 
   width: 250px;
   height: 100vh;
@@ -17,137 +14,227 @@
   display: flex;
   flex-direction: column;
 
-  padding: 22px 14px;
+  padding: 18px 13px;
 
   overflow: hidden;
 
+  border-right: 1px solid
+    rgba(255, 255, 255, 0.07);
+
   background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(111, 83, 236, 0.11),
+      transparent 25%
+    ),
     linear-gradient(
       180deg,
-      rgba(13, 20, 48, 0.98) 0%,
-      rgba(5, 8, 22, 0.99) 100%
+      #0c122a 0%,
+      #070b1a 50%,
+      #050814 100%
     );
 
-  border-right: 1px solid var(--border);
-
   box-shadow:
-    8px 0 35px rgba(0, 0, 0, 0.08);
-
-  z-index: 1000;
+    12px 0 45px
+    rgba(0, 0, 0, 0.15);
 }
 
-// ============================================
-// LOGO
-// ============================================
+// =========================================================
+// SIDEBAR TOP
+// =========================================================
+
+.sidebarTop {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  margin-bottom: 9px;
+}
 
 .logoArea {
   width: 100%;
-  margin: 0;
-  padding: 4px 10px 24px;
 
   display: flex;
   align-items: center;
+
   gap: 11px;
 
+  padding: 4px 9px 13px;
+
   border: 0;
-  outline: none;
+  border-radius: 12px;
+
   background: transparent;
+
   color: inherit;
 
   font: inherit;
   text-align: left;
 
   cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-
-  &:hover {
-    background: transparent;
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(139, 92, 246, 0.55);
-    outline-offset: 3px;
-    border-radius: 12px;
-  }
 }
 
+.logoArea:hover {
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.logoArea:focus-visible {
+  outline: 2px solid
+    rgba(158, 137, 255, 0.55);
+
+  outline-offset: 2px;
+}
+
+// =========================================================
+// LOGO
+// =========================================================
+
 .logoMark {
-  width: 39px;
-  height: 39px;
-  flex: 0 0 39px;
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
 
   display: grid;
   place-items: center;
 
+  overflow: hidden;
+
   border-radius: 12px;
 
-  background: linear-gradient(
-    135deg,
-    #8b5cf6,
-    #6d28d9
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #8068f4,
+      #5941d2
+    );
 
   color: #ffffff;
+
   font-size: 20px;
   font-weight: 900;
 
   box-shadow:
-    0 0 25px rgba(124, 58, 237, 0.4);
+    0 0 28px
+    rgba(107, 80, 224, 0.36);
 
   transform: skew(-7deg);
 }
 
+.logoMark::before {
+  position: absolute;
+  inset: -40%;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.27) 50%,
+      transparent 65%
+    );
+
+  transform: translateX(-100%);
+
+  content: "";
+
+  animation:
+    logoShine 5s ease-in-out infinite;
+}
+
 .logoMark span {
-  display: block;
+  position: relative;
+  z-index: 2;
+
+  transform: skew(7deg);
+}
+
+.logoMark i {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 3;
+
+  width: 7px;
+  height: 7px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.75);
+
+  border-radius: 50%;
+
+  background: #50dfcc;
+
+  box-shadow:
+    0 0 8px
+    rgba(80, 223, 204, 0.85);
+
   transform: skew(7deg);
 }
 
 .logoText {
   min-width: 0;
+
   display: flex;
   flex-direction: column;
-  line-height: 1;
 }
 
 .logoText strong {
   color: #ffffff;
 
   font-size: 17px;
-  font-weight: 800;
+  font-weight: 850;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
+  line-height: 1;
 }
 
 .logoText span {
   margin-top: 5px;
 
-  color: var(--text-muted);
+  color: #69748c;
 
   font-size: 8px;
-  font-weight: 700;
+  font-weight: 750;
 
-  letter-spacing: 3px;
+  letter-spacing: 2.8px;
+  line-height: 1;
 }
 
-// ============================================
+// =========================================================
+// CLOSE BUTTON
+// =========================================================
+
+.sidebarClose {
+  display: none;
+}
+
+// =========================================================
 // NAVIGATION
-// ============================================
+// =========================================================
 
 .navigation {
   min-width: 0;
+  min-height: 0;
 
   display: flex;
+  flex: 1;
   flex-direction: column;
 
-  gap: 5px;
+  gap: 13px;
 
-  flex: 1;
+  padding: 2px 3px 12px 0;
 
   overflow-x: hidden;
   overflow-y: auto;
 
-  padding-right: 2px;
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(128, 101, 255, 0.25)
+    transparent;
 }
 
 .navigation::-webkit-scrollbar {
@@ -161,133 +248,289 @@
 .navigation::-webkit-scrollbar-thumb {
   border-radius: 999px;
 
-  background: rgba(124, 58, 237, 0.25);
+  background:
+    rgba(128, 101, 255, 0.27);
 }
 
-// ============================================
-// NAV ITEM
-// ============================================
+// =========================================================
+// NAVIGATION GROUPS
+// =========================================================
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.navGroupLabel {
+  display: block;
+
+  padding: 0 12px;
+
+  color: #505b71;
+
+  font-size: 7px;
+  font-weight: 850;
+
+  letter-spacing: 1.5px;
+}
+
+.navGroupItems {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+// =========================================================
+// NAVIGATION ITEM
+// =========================================================
 
 .navItem {
   position: relative;
 
   width: 100%;
-  min-height: 43px;
-
-  flex: 0 0 auto;
+  min-height: 41px;
 
   display: flex;
   align-items: center;
 
-  gap: 13px;
+  gap: 11px;
 
-  padding: 0 13px;
+  padding: 0 11px;
 
   border: 1px solid transparent;
   border-radius: 11px;
 
   background: transparent;
 
-  color: var(--text-secondary);
+  color: #8c97ab;
+
+  font: inherit;
+  text-align: left;
 
   cursor: pointer;
 
-  text-align: left;
-
   transition:
-    color 200ms ease,
-    background 200ms ease,
-    transform 200ms ease,
-    border-color 200ms ease;
+    color 190ms ease,
+    background 190ms ease,
+    border-color 190ms ease,
+    transform 190ms ease;
 }
 
 .navItem:hover {
-  color: #ffffff;
-
-  background: rgba(255, 255, 255, 0.045);
-
-  border-color: rgba(255, 255, 255, 0.04);
-
   transform: translateX(2px);
+
+  border-color:
+    rgba(255, 255, 255, 0.04);
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #e8ecf4;
 }
 
 .navItem:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.5);
+  outline: 2px solid
+    rgba(158, 137, 255, 0.55);
 
   outline-offset: 2px;
 }
 
 .navItem.active {
-  color: #ffffff;
+  border-color:
+    rgba(159, 138, 255, 0.19);
 
   background:
     linear-gradient(
-      135deg,
-      rgba(124, 58, 237, 0.95),
-      rgba(91, 33, 182, 0.82)
+      100deg,
+      rgba(108, 80, 229, 0.29),
+      rgba(84, 65, 189, 0.12)
     );
 
-  border-color: rgba(167, 139, 250, 0.18);
+  color: #ffffff;
 
   box-shadow:
-    0 8px 25px rgba(124, 58, 237, 0.22);
+    inset 0 1px
+    rgba(255, 255, 255, 0.045),
+    0 9px 25px
+    rgba(76, 57, 180, 0.13);
 }
 
-.navItem > span:not(.activeIndicator) {
+// =========================================================
+// NAVIGATION ICON
+// =========================================================
+
+.navIcon {
+  width: 31px;
+  height: 31px;
+
+  flex: 0 0 31px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  color: #7f8ba3;
+
+  transition:
+    color 190ms ease,
+    background 190ms ease,
+    transform 190ms ease;
+}
+
+.navItem:hover .navIcon {
+  color: #b9adf3;
+
+  transform: scale(1.03);
+}
+
+.navItem.active .navIcon {
+  background:
+    rgba(137, 111, 255, 0.14);
+
+  color: #b9a8ff;
+}
+
+.navLabel {
   min-width: 0;
+  flex: 1;
 
   overflow: hidden;
 
-  font-size: 13px;
-  font-weight: 550;
+  font-size: 12px;
+  font-weight: 600;
 
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.activeIndicator {
-  margin-left: auto;
+.navBadge {
+  flex: 0 0 auto;
 
-  width: 22px;
-  height: 22px;
+  padding: 3px 6px;
 
-  flex: 0 0 22px;
+  border: 1px solid
+    rgba(82, 223, 204, 0.12);
 
-  display: grid;
-  place-items: center;
+  border-radius: 999px;
 
-  border-radius: 7px;
+  background:
+    rgba(82, 223, 204, 0.07);
 
-  background: rgba(255, 255, 255, 0.12);
+  color: #67d9c9;
+
+  font-size: 6px;
+  font-weight: 850;
+
+  letter-spacing: 0.5px;
 }
 
-// ============================================
+.navChevron {
+  flex: 0 0 auto;
+
+  color: #475269;
+
+  opacity: 0;
+
+  transform: translateX(-4px);
+
+  transition:
+    opacity 190ms ease,
+    color 190ms ease,
+    transform 190ms ease;
+}
+
+.navItem:hover .navChevron,
+.navItem.active .navChevron {
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+.navItem.active .navChevron {
+  color: #ae9df4;
+}
+
+.activeRail {
+  position: absolute;
+
+  top: 9px;
+  bottom: 9px;
+  left: -4px;
+
+  width: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      #a38cff,
+      #55ddcc
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(145, 119, 255, 0.6);
+}
+
+// =========================================================
 // STREAK CARD
-// ============================================
+// =========================================================
 
 .streakCard {
+  position: relative;
+
   display: flex;
   align-items: center;
 
-  gap: 11px;
+  gap: 10px;
 
   flex: 0 0 auto;
 
-  margin-bottom: 10px;
+  margin-bottom: 9px;
+  padding: 11px;
 
-  padding: 12px;
+  overflow: hidden;
 
-  border: 1px solid var(--border);
+  border: 1px solid
+    rgba(255, 255, 255, 0.065);
 
-  border-radius: 15px;
+  border-radius: 14px;
 
-  background: rgba(255, 255, 255, 0.035);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(249, 115, 22, 0.075),
+      rgba(255, 255, 255, 0.02)
+    );
+}
 
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.018);
+.streakGlow {
+  position: absolute;
+
+  top: -60px;
+  left: -40px;
+
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(249, 115, 22, 0.09);
+
+  filter: blur(25px);
+
+  pointer-events: none;
 }
 
 .streakIcon {
+  position: relative;
+  z-index: 2;
+
   width: 38px;
   height: 38px;
 
@@ -298,629 +541,63 @@
 
   border-radius: 11px;
 
-  background: rgba(249, 115, 22, 0.12);
+  background:
+    rgba(249, 115, 22, 0.12);
 
   color: #fb923c;
 }
 
 .streakContent {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.streakContent strong {
-  color: #ffffff;
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.streakContent span {
-  margin-top: 2px;
-
-  color: var(--text-muted);
-
-  font-size: 10px;
-}
-
-// ============================================
-// USER CARD
-// ============================================
-
-.userCard {
-  display: flex;
-
-  gap: 10px;
-
-  flex: 0 0 auto;
-
-  margin-bottom: 10px;
-
-  padding: 12px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 15px;
-
-  background: rgba(255, 255, 255, 0.035);
-
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.018);
-}
-
-.avatar {
-  width: 38px;
-  height: 38px;
-
-  flex: 0 0 38px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #38bdf8,
-      #6366f1
-    );
-
-  color: #ffffff;
-
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.userInfo {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.userInfo strong {
-  overflow: hidden;
-
-  color: #ffffff;
-
-  font-size: 12px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.userInfo > span {
-  margin-top: 2px;
-
-  color: var(--text-muted);
-
-  font-size: 10px;
-}
-
-// ============================================
-// XP
-// ============================================
-
-.xpTrack {
-  width: 100%;
-  height: 4px;
-
-  margin-top: 7px;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.xpFill {
-  width: 65%;
-  height: 100%;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      90deg,
-      #6366f1,
-      #a855f7
-    );
-}
-
-.userInfo small {
-  margin-top: 4px;
-
-  color: var(--text-muted);
-
-  font-size: 8px;
-}
-
-// ============================================
-// INVITE CARD
-// ============================================
-
-.inviteCard {
-  flex: 0 0 auto;
-
-  padding: 13px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(124, 58, 237, 0.1),
-      rgba(255, 255, 255, 0.025)
-    );
-
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.018);
-}
-
-.inviteTop {
-  display: flex;
-  justify-content: space-between;
-
-  gap: 8px;
-}
-
-.inviteTop > div {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.inviteTop strong {
-  color: #ffffff;
-
-  font-size: 11px;
-}
-
-.inviteTop div > span {
-  margin-top: 4px;
-
-  color: var(--text-muted);
-
-  font-size: 9px;
-
-  line-height: 1.4;
-}
-
-.gift {
-  flex: 0 0 auto;
-
-  font-size: 24px;
-}
-
-.inviteButton {
-  width: 100%;
-
-  margin-top: 11px;
-
-  padding: 8px;
-
-  border: 0;
-  border-radius: 8px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #6366f1,
-      #7c3aed
-    );
-
-  color: #ffffff;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.inviteButton:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 22px rgba(99, 102, 241, 0.28);
-}
-
-.inviteButton:focus-visible {
-  outline: 2px solid rgba(167, 139, 250, 0.55);
-
-  outline-offset: 3px;
-}
-
-// ============================================
-// MOBILE CLOSE BUTTON
-// ============================================
-
-.sidebarClose {
-  display: none;
-}
-
-// ============================================
-// TABLET — COLLAPSED SIDEBAR
-// ============================================
-
-@media (max-width: 1000px) and (min-width: 601px) {
-  .sidebar {
-    width: 82px;
-
-    padding: 18px 10px;
-  }
-
-  .logoArea {
-    justify-content: center;
-
-    padding-inline: 0;
-  }
-
-  .logoText,
-  .navItem > span:not(.activeIndicator),
-  .activeIndicator,
-  .streakContent,
-  .userInfo,
-  .inviteCard {
-    display: none;
-  }
-
-  .navItem {
-    justify-content: center;
-
-    padding: 0;
-  }
-
-  .streakCard,
-  .userCard {
-    justify-content: center;
-
-    padding: 9px;
-  }
-}
-
-// ============================================
-// MOBILE DRAWER
-// ============================================
-
-@media (max-width: 600px) {
-  .sidebar {
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: 0;
-
-    width: min(290px, 82vw);
-
-    height: 100vh;
-    height: 100dvh;
-
-    padding: 20px 14px;
-
-    flex-direction: column;
-
-    border-top: 0;
-    border-right: 1px solid var(--border);
-
-    transform: translateX(-105%);
-
-    transition:
-      transform 260ms cubic-bezier(
-        0.4,
-        0,
-        0.2,
-        1
-      );
-
-    box-shadow:
-      20px 0 60px rgba(0, 0, 0, 0.4);
-
-    overflow: hidden;
-  }
-
-  .sidebar.sidebarOpen {
-    transform: translateX(0);
-  }
-
-  // ------------------------------------------
-  // CLOSE
-  // ------------------------------------------
-
-  .sidebarClose {
-    position: absolute;
-
-    top: 17px;
-    right: 14px;
-
-    width: 34px;
-    height: 34px;
-
-    display: grid;
-    place-items: center;
-
-    padding: 0;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: rgba(255, 255, 255, 0.04);
-
-    color: var(--text-secondary);
-
-    cursor: pointer;
-
-    transition:
-      color 180ms ease,
-      background 180ms ease,
-      border-color 180ms ease;
-  }
-
-  .sidebarClose:hover {
-    color: #ffffff;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .sidebarClose:focus-visible {
-    outline: 2px solid rgba(167, 139, 250, 0.5);
-
-    outline-offset: 3px;
-  }
-
-  // ------------------------------------------
-  // LOGO
-  // ------------------------------------------
-
-  .logoArea {
-    display: flex;
-
-    padding: 4px 10px 24px;
-    padding-right: 50px;
-  }
-
-  .logoText {
-    display: flex;
-  }
-
-  // ------------------------------------------
-  // NAVIGATION
-  // ------------------------------------------
-
-  .navigation {
-    width: 100%;
-    height: auto;
-
-    flex-direction: column;
-
-    align-items: stretch;
-    justify-content: flex-start;
-
-    gap: 5px;
-
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  .navItem {
-    width: 100%;
-    min-height: 45px;
-
-    justify-content: flex-start;
-
-    padding: 0 13px;
-  }
-
-  .navItem > span:not(.activeIndicator) {
-    display: block;
-
-    font-size: 13px;
-  }
-
-  .activeIndicator {
-    display: grid;
-  }
-
-  // ------------------------------------------
-  // BOTTOM CARDS
-  // ------------------------------------------
-
-  .streakCard,
-  .userCard,
-  .inviteCard {
-    display: flex;
-  }
-
-  .streakContent,
-  .userInfo {
-    display: flex;
-  }
-
-  .streakCard {
-    margin-top: auto;
-  }
-
-  .userCard {
-    margin-bottom: 10px;
-  }
-
-  .inviteCard {
-    flex-direction: column;
-  }
-}
-
-// ============================================
-// SMALL MOBILE
-// ============================================
-
-@media (max-width: 380px) {
-  .sidebar {
-    width: min(275px, 88vw);
-
-    padding-inline: 12px;
-  }
-
-  .navItem {
-    min-height: 43px;
-  }
-
-  .streakCard,
-  .userCard {
-    padding: 10px;
-  }
-
-  .inviteCard {
-    padding: 11px;
-  }
-}
-
-// ============================================
-// REDUCED MOTION
-// ============================================
-
-@media (prefers-reduced-motion: reduce) {
-  .sidebar,
-  .navItem,
-  .inviteButton,
-  .sidebarClose {
-    transition: none;
-  }
-}
-
-/* =========================
-   PREMIUM SIDEBAR POLISH
-========================= */
-
-.logoMark {
   position: relative;
-  overflow: hidden;
-}
+  z-index: 2;
 
-.logoMark::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-
-  background: linear-gradient(
-    115deg,
-    transparent 35%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 65%
-  );
-
-  transform: translateX(-100%);
-  animation: logoShine 5s ease-in-out infinite;
-}
-
-.logoMark span {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes logoShine {
-  0%,
-  65% {
-    transform: translateX(-100%);
-  }
-
-  80%,
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* NAV ICON */
-
-.navIcon {
-  display: grid;
-  place-items: center;
-
-  width: 24px;
-  height: 24px;
-
-  transition:
-    transform 0.25s ease,
-    color 0.25s ease;
-}
-
-.navItem:hover .navIcon {
-  transform: translateX(2px);
-}
-
-.navItem.active .navIcon {
-  transform: translateX(1px);
-}
-
-/* NAV LABEL */
-
-.navLabel {
+  min-width: 0;
   flex: 1;
+
+  display: flex;
+  flex-direction: column;
 }
-
-/* NEW BADGE */
-
-.navBadge {
-  padding: 3px 6px;
-
-  border: 1px solid
-    rgba(139, 92, 246, 0.22);
-
-  border-radius: 5px;
-
-  background: rgba(139, 92, 246, 0.1);
-
-  color: #a78bfa;
-
-  font-size: 7px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-/* ACTIVE INDICATOR */
-
-.activeIndicator {
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-.navItem:hover .activeIndicator {
-  transform: translateX(2px);
-}
-
-/* =========================
-   STREAK
-========================= */
 
 .streakHeading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+
+  gap: 6px;
+}
+
+.streakHeading strong {
+  overflow: hidden;
+
+  color: #f5f7fb;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.streakContent > span {
+  margin-top: 3px;
+
+  color: #6f798d;
+
+  font-size: 8px;
 }
 
 .streakLive {
   display: inline-flex;
   align-items: center;
+
   gap: 4px;
 
-  color: #6ee7b7;
+  color: #55c98a;
 
-  font-size: 7px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 6px;
+  font-weight: 850;
+
+  letter-spacing: 0.5px;
 }
 
 .streakLive span {
@@ -929,79 +606,138 @@
 
   border-radius: 50%;
 
-  background: #34d399;
+  background: #4ade80;
 
   box-shadow:
-    0 0 8px rgba(52, 211, 153, 0.7);
+    0 0 8px
+    rgba(74, 222, 128, 0.7);
 
-  animation: statusPulse 2s ease-in-out infinite;
+  animation:
+    statusPulse 2s ease-in-out infinite;
 }
 
 .streakProgress {
   width: 100%;
   height: 3px;
 
-  margin-top: 9px;
+  margin-top: 8px;
 
   overflow: hidden;
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.06);
+  background:
+    rgba(255, 255, 255, 0.06);
 }
 
 .streakProgressFill {
-  width: 72%;
   height: 100%;
 
   border-radius: inherit;
 
-  background: linear-gradient(
-    90deg,
-    #f97316,
-    #fb923c
-  );
+  background:
+    linear-gradient(
+      90deg,
+      #f97316,
+      #fbbf24
+    );
 
   box-shadow:
-    0 0 9px rgba(249, 115, 22, 0.35);
+    0 0 9px
+    rgba(249, 115, 22, 0.35);
+
+  transition:
+    width 600ms ease;
 }
 
-/* =========================
-   USER CARD
-========================= */
+// =========================================================
+// USER CARD
+// =========================================================
 
-.userNameRow {
+.userCard {
+  position: relative;
+
+  width: 100%;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+
+  gap: 9px;
+
+  flex: 0 0 auto;
+
+  margin-bottom: 9px;
+  padding: 10px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.026);
+
+  color: inherit;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 190ms ease,
+    border-color 190ms ease,
+    background 190ms ease;
 }
 
-.levelBadge {
-  padding: 3px 6px;
+.userCard:hover {
+  transform: translateY(-2px);
 
-  border-radius: 5px;
+  border-color:
+    rgba(145, 120, 255, 0.19);
 
-  background: rgba(139, 92, 246, 0.1);
-
-  color: #a78bfa;
-
-  font-size: 7px;
-  font-weight: 800;
+  background:
+    rgba(112, 84, 231, 0.055);
 }
 
-.levelText {
-  display: block;
+.userCard:focus-visible {
+  outline: 2px solid
+    rgba(159, 138, 255, 0.55);
 
-  margin-top: 2px;
-
-  color: #676d87 !important;
-
-  font-size: 9px !important;
+  outline-offset: 2px;
 }
 
 .avatar {
   position: relative;
+
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7358e9,
+      #3f9dcc
+    );
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 20px
+    rgba(65, 88, 192, 0.18);
 }
 
 .avatarStatus {
@@ -1013,10 +749,94 @@
   width: 9px;
   height: 9px;
 
-  border: 2px solid #0b0e1e;
+  border: 2px solid #090d1d;
   border-radius: 50%;
 
-  background: #34d399;
+  background: #4ade80;
+}
+
+.userInfo {
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.userNameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 6px;
+}
+
+.userNameRow strong {
+  overflow: hidden;
+
+  color: #f5f7fb;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.levelBadge {
+  flex: 0 0 auto;
+
+  padding: 2px 5px;
+
+  border-radius: 5px;
+
+  background:
+    rgba(139, 112, 255, 0.11);
+
+  color: #aa96ff;
+
+  font-size: 6px;
+  font-weight: 850;
+}
+
+.levelText {
+  margin-top: 2px;
+
+  color: #667188;
+
+  font-size: 8px;
+}
+
+.xpTrack {
+  width: 100%;
+  height: 4px;
+
+  margin-top: 7px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+}
+
+.xpFill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6c50e6,
+      #9c7cff,
+      #55ddcc
+    );
+
+  transition:
+    width 700ms
+    cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .xpBottom {
@@ -1024,27 +844,67 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
 .xpBottom small {
-  color: #626881;
+  color: #59647a;
+
+  font-size: 6px;
 }
 
 .xpBottom span {
-  color: #8f95ad;
+  color: #858fa3;
 
-  font-size: 8px;
-  font-weight: 700;
+  font-size: 7px;
+  font-weight: 750;
 }
 
-/* =========================
-   INVITE CARD
-========================= */
+.userCardArrow {
+  flex: 0 0 auto;
+
+  color: #465167;
+
+  transition:
+    color 190ms ease,
+    transform 190ms ease;
+}
+
+.userCard:hover .userCardArrow {
+  color: #a795f2;
+
+  transform: translateX(2px);
+}
+
+// =========================================================
+// INVITE CARD
+// =========================================================
 
 .inviteCard {
   position: relative;
+
+  flex: 0 0 auto;
+
+  padding: 11px;
+
   overflow: hidden;
+
+  border: 1px solid
+    rgba(143, 116, 255, 0.14);
+
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(119, 91, 237, 0.14),
+      transparent 43%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(107, 79, 224, 0.1),
+      rgba(255, 255, 255, 0.018)
+    );
 }
 
 .inviteGlow {
@@ -1058,7 +918,8 @@
 
   border-radius: 50%;
 
-  background: rgba(139, 92, 246, 0.12);
+  background:
+    rgba(139, 92, 246, 0.13);
 
   filter: blur(35px);
 
@@ -1067,10 +928,17 @@
 
 .inviteTop {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 8px;
 }
 
 .inviteContent {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 }
@@ -1078,40 +946,122 @@
 .inviteLabel {
   display: flex;
   align-items: center;
+
   gap: 4px;
 
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 
   color: #a78bfa;
 
-  font-size: 7px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-size: 6px;
+  font-weight: 850;
+
+  letter-spacing: 0.8px;
+}
+
+.inviteContent strong {
+  color: #ffffff;
+
+  font-size: 10px;
+}
+
+.inviteContent > span {
+  margin-top: 3px;
+
+  color: #68738a;
+
+  font-size: 8px;
+}
+
+.gift {
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid
+    rgba(162, 140, 255, 0.14);
+
+  border-radius: 10px;
+
+  background:
+    rgba(117, 88, 231, 0.1);
+
+  color: #ad9aff;
 }
 
 .inviteButton {
   position: relative;
   z-index: 2;
 
+  width: 100%;
+  min-height: 34px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 7px;
 
+  margin-top: 9px;
+  padding: 7px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #674be3,
+      #8065f0
+    );
+
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 9px;
+  font-weight: 750;
+
+  cursor: pointer;
+
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 190ms ease,
+    box-shadow 190ms ease;
 }
 
 .inviteButton:hover {
   transform: translateY(-2px);
 
   box-shadow:
-    0 10px 25px rgba(124, 58, 237, 0.25);
+    0 10px 25px
+    rgba(101, 76, 221, 0.27);
 }
 
-.inviteButton:active {
-  transform: translateY(0);
+.inviteButton:focus-visible {
+  outline: 2px solid
+    rgba(171, 151, 255, 0.6);
+
+  outline-offset: 2px;
+}
+
+// =========================================================
+// ANIMATIONS
+// =========================================================
+
+@keyframes logoShine {
+  0%,
+  70% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(110%);
+  }
 }
 
 @keyframes statusPulse {
@@ -1127,15 +1077,168 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .logoMark::before,
-  .streakLive span {
-    animation: none;
+// =========================================================
+// TABLET COLLAPSED SIDEBAR
+// =========================================================
+
+@media (max-width: 1000px) and (min-width: 601px) {
+  .sidebar {
+    width: 82px;
+
+    padding: 18px 10px;
   }
 
+  .sidebarTop {
+    justify-content: center;
+  }
+
+  .logoArea {
+    justify-content: center;
+
+    padding-inline: 0;
+  }
+
+  .logoText,
+  .navGroupLabel,
+  .navLabel,
+  .navBadge,
+  .navChevron,
+  .activeRail,
+  .streakContent,
+  .userInfo,
+  .userCardArrow,
+  .inviteCard {
+    display: none;
+  }
+
+  .navigation {
+    gap: 10px;
+
+    padding-right: 0;
+  }
+
+  .navItem {
+    justify-content: center;
+
+    padding: 0;
+  }
+
+  .navIcon {
+    display: grid;
+  }
+
+  .streakCard,
+  .userCard {
+    justify-content: center;
+
+    padding: 9px;
+  }
+}
+
+// =========================================================
+// MOBILE DRAWER
+// =========================================================
+
+@media (max-width: 600px) {
+  .sidebar {
+    width: min(300px, 86vw);
+
+    transform: translateX(-105%);
+
+    transition:
+      transform 260ms
+      cubic-bezier(0.4, 0, 0.2, 1);
+
+    box-shadow:
+      20px 0 60px
+      rgba(0, 0, 0, 0.42);
+  }
+
+  .sidebar.sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarTop {
+    padding-right: 42px;
+  }
+
+  .sidebarClose {
+    position: absolute;
+
+    top: 16px;
+    right: 13px;
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 1px solid
+      rgba(255, 255, 255, 0.08);
+
+    border-radius: 9px;
+
+    background:
+      rgba(255, 255, 255, 0.04);
+
+    color: #929db1;
+
+    cursor: pointer;
+  }
+
+  .sidebarClose:hover {
+    background:
+      rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+  }
+
+  .navigation {
+    padding-bottom: 14px;
+  }
+}
+
+// =========================================================
+// SMALL MOBILE
+// =========================================================
+
+@media (max-width: 380px) {
+  .sidebar {
+    width: min(282px, 89vw);
+
+    padding-inline: 11px;
+  }
+
+  .navItem {
+    min-height: 40px;
+  }
+
+  .streakCard,
+  .userCard {
+    padding: 9px;
+  }
+}
+
+// =========================================================
+// REDUCED MOTION
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .logoMark::before,
+  .navItem,
   .navIcon,
-  .activeIndicator,
+  .navChevron,
+  .streakLive span,
+  .streakProgressFill,
+  .userCard,
+  .userCardArrow,
+  .xpFill,
   .inviteButton {
+    animation: none;
     transition: none;
   }
 }
