@@ -212,7 +212,11 @@ img {
 
     min-height: calc(100vh - 136px);
 
-    padding: 20px 15px 90px;
+    padding: 20px 15px 0;
+  }
+
+  .siteFooter {
+    margin-bottom: 0;
   }
 }
 
@@ -1743,3 +1747,4 @@ body,
     animation: none;
   }
 }
+
